@@ -1,0 +1,803 @@
+hw1ALM
+
+p =
+
+     0
+
+
+lambda =
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+
+r_p =
+
+     1
+
+
+<a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'local_min_unconstrained','CSHelpWindow');">Local minimum found</a>.
+
+Optimization completed because the <a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'grad_size','CSHelpWindow');">size of the gradient</a> is less than
+the default value of the <a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'optimality_tolerance_unc','CSHelpWindow');">optimality tolerance</a>.
+
+<<a href = "matlab: createExitMsg('fminusub',1.000000e+00,true,true,'fminunc',8.065075e-09,'default',1.000000e-06,0.000000e+00,'',0.000000e+00,0.000000e+00,'',0.000000e+00);">stopping criteria details</a>>
+
+
+Computing finite-difference Hessian using objective function.
+
+x0 =
+
+   0.350113005416948
+   8.217596212161899
+  -2.530475785010287
+
+
+xstar =
+
+   1.276756989556942
+  14.282393517682941
+  -2.921714790819759
+
+
+f =
+
+   0.042441647159707
+
+
+g =
+
+  -2.830270968670827
+   0.021405591645554
+   0.020170965548781
+  -0.785299189710368
+  -1.292171479081976
+  -0.415657041836048
+  -0.982605831141177
+   0.977636068610084
+   0.978980324117700
+
+
+ans =
+
+    14
+
+
+exitflag =
+
+     1
+
+___________________________________________________________
+p =
+
+     1
+
+
+lambda =
+
+                   0
+   0.042811183291108
+   0.040341931097563
+                   0
+                   0
+                   0
+                   0
+   1.955272137220168
+   1.957960648235400
+
+
+r_p =
+
+     5
+
+
+<a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'local_min_unconstrained','CSHelpWindow');">Local minimum found</a>.
+
+Optimization completed because the <a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'grad_size','CSHelpWindow');">size of the gradient</a> is less than
+the default value of the <a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'optimality_tolerance_unc','CSHelpWindow');">optimality tolerance</a>.
+
+<<a href = "matlab: createExitMsg('fminusub',1.000000e+00,true,true,'fminunc',1.656385e-07,'default',1.000000e-06,0.000000e+00,'',0.000000e+00,0.000000e+00,'',0.000000e+00);">stopping criteria details</a>>
+
+
+Computing finite-difference Hessian using objective function.
+
+x0 =
+
+   1.276756989556942
+  14.282393517682941
+  -2.921714790819759
+
+
+xstar =
+
+   1.415339832204870
+  15.759311463018443
+  -2.577782321399998
+
+
+f =
+
+   1.503066214958353
+
+
+g =
+
+  -3.246019496614610
+   0.132271865763896
+   0.125665104501317
+  -0.969913932877305
+  -1.257778232140000
+  -0.484443535720000
+  -0.885250947470214
+   0.852465503890276
+   0.861975812157810
+
+
+ans =
+
+    11
+
+
+exitflag =
+
+     1
+
+___________________________________________________________
+p =
+
+     2
+
+
+lambda =
+
+                   0
+   1.365529840930069
+   1.296992976110736
+                   0
+                   0
+                   0
+                   0
+  10.479927176122924
+  10.577718769813503
+
+
+r_p =
+
+    25
+
+
+<a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'local_min_unconstrained','CSHelpWindow');">Local minimum found</a>.
+
+Optimization completed because the <a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'grad_size','CSHelpWindow');">size of the gradient</a> is less than
+the default value of the <a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'optimality_tolerance_unc','CSHelpWindow');">optimality tolerance</a>.
+
+<<a href = "matlab: createExitMsg('fminusub',1.000000e+00,true,true,'fminunc',1.310886e-07,'default',1.000000e-06,0.000000e+00,'',0.000000e+00,0.000000e+00,'',0.000000e+00);">stopping criteria details</a>>
+
+
+Computing finite-difference Hessian using objective function.
+
+x0 =
+
+   1.415339832204870
+  15.759311463018443
+  -2.577782321399998
+
+
+xstar =
+
+   1.577158568494572
+  17.658668240467161
+  -1.689690306605792
+
+
+f =
+
+  18.175845003904250
+
+
+g =
+
+  -3.731475705483716
+   0.261726854795657
+   0.261333445747654
+  -1.207333530058395
+  -1.168969030660579
+  -0.662061938678842
+  -0.555346221114698
+   0.428302284290326
+   0.462183456018077
+
+
+ans =
+
+    10
+
+
+exitflag =
+
+     1
+
+___________________________________________________________
+p =
+
+     3
+
+
+lambda =
+
+                   0
+  14.451872580712944
+  14.363665263493456
+                   0
+                   0
+                   0
+                   0
+  31.895041390639243
+  33.686891570717343
+
+
+r_p =
+
+   125
+
+
+<a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'local_min_unconstrained','CSHelpWindow');">Local minimum found</a>.
+
+Optimization completed because the <a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'grad_size','CSHelpWindow');">size of the gradient</a> is less than
+the default value of the <a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'optimality_tolerance_unc','CSHelpWindow');">optimality tolerance</a>.
+
+<<a href = "matlab: createExitMsg('fminusub',1.000000e+00,true,true,'fminunc',8.920933e-07,'default',1.000000e-06,0.000000e+00,'',0.000000e+00,0.000000e+00,'',0.000000e+00);">stopping criteria details</a>>
+
+
+Computing finite-difference Hessian using objective function.
+
+x0 =
+
+   1.577158568494572
+  17.658668240467161
+  -1.689690306605792
+
+
+xstar =
+
+   1.408995023308075
+  16.087967822291439
+  -0.481294436641496
+
+
+f =
+
+  55.742698476949712
+
+
+g =
+
+  -3.226985069924226
+   0.127196018646460
+   0.149140558735103
+  -1.010995977786430
+  -1.048129443664150
+  -0.903741112671701
+  -0.304330799695254
+   0.105568171036755
+   0.141927293274670
+
+
+ans =
+
+    12
+
+
+exitflag =
+
+     1
+
+___________________________________________________________
+p =
+
+     4
+
+
+lambda =
+
+                   0
+  46.250877242327945
+  51.648804947269184
+                   0
+                   0
+                   0
+                   0
+  58.287084149827933
+  69.168714889384958
+
+
+r_p =
+
+   625
+
+
+<a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'local_min_unconstrained','CSHelpWindow');">Local minimum found</a>.
+
+Optimization completed because the <a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'grad_size','CSHelpWindow');">size of the gradient</a> is less than
+the default value of the <a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'optimality_tolerance_unc','CSHelpWindow');">optimality tolerance</a>.
+
+<<a href = "matlab: createExitMsg('fminusub',1.000000e+00,true,true,'fminunc',4.402889e-08,'default',1.000000e-06,0.000000e+00,'',0.000000e+00,0.000000e+00,'',0.000000e+00);">stopping criteria details</a>>
+
+
+Computing finite-difference Hessian using objective function.
+
+x0 =
+
+   1.408995023308075
+  16.087967822291439
+  -0.481294436641496
+
+
+xstar =
+
+   1.265605409167405
+  14.591070975135302
+   0.444008032949034
+
+
+f =
+
+  85.730125514583094
+
+
+g =
+
+  -2.796816227502215
+   0.012484327333924
+   0.042219355366807
+  -0.823883871891913
+  -0.955599196705097
+  -1.088801606589807
+  -0.225066608955370
+   0.003657068656904
+   0.034876690638764
+
+
+ans =
+
+    11
+
+
+exitflag =
+
+     1
+
+___________________________________________________________
+p =
+
+     5
+
+
+lambda =
+
+   1.0e+02 *
+
+                   0
+   0.618562864097328
+   1.044229991557784
+                   0
+                   0
+                   0
+                   0
+   0.628584199709575
+   1.127645781878395
+
+
+r_p =
+
+        3125
+
+
+<a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'local_min_possible','CSHelpWindow');">Local minimum possible</a>.
+
+fminunc stopped because the <a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'norm_current_step','CSHelpWindow');">size of the current step</a> is less than
+the default value of the <a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'step_size_tol','CSHelpWindow');">step size tolerance</a>.
+
+<<a href = "matlab: createExitMsg('fminusub',2.000000e+00,true,true,'fminunc',3.077419e-08,'default',1.000000e-06,0.000000e+00,'',0.000000e+00,0.000000e+00,'',0.000000e+00);">stopping criteria details</a>>
+
+
+Computing finite-difference Hessian using objective function.
+
+x0 =
+
+   1.265605409167405
+  14.591070975135302
+   0.444008032949034
+
+
+xstar =
+
+   1.237628759681719
+  14.185728965995825
+   0.727283434437060
+
+
+f =
+
+  94.911527329259371
+
+
+g =
+
+  -2.712886279045156
+  -0.009896992254625
+   0.013266354713988
+  -0.773216120749478
+  -0.927271656556294
+  -1.145456686887412
+  -0.202649636798318
+  -0.025164752687877
+   0.012720671491172
+
+
+ans =
+
+    15
+
+
+exitflag =
+
+     2
+
+___________________________________________________________
+p =
+
+     6
+
+
+lambda =
+
+   1.0e+02 *
+
+                   0
+   0.000000848183270
+   1.873377161182003
+                   0
+                   0
+                   0
+                   0
+                   0
+   1.922687750076670
+
+
+r_p =
+
+       15625
+
+
+<a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'local_min_unconstrained','CSHelpWindow');">Local minimum found</a>.
+
+Optimization completed because the <a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'grad_size','CSHelpWindow');">size of the gradient</a> is less than
+the default value of the <a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'optimality_tolerance_unc','CSHelpWindow');">optimality tolerance</a>.
+
+<<a href = "matlab: createExitMsg('fminusub',1.000000e+00,true,true,'fminunc',5.383177e-08,'default',1.000000e-06,0.000000e+00,'',0.000000e+00,0.000000e+00,'',0.000000e+00);">stopping criteria details</a>>
+
+
+Computing finite-difference Hessian using objective function.
+
+x0 =
+
+   1.237628759681719
+  14.185728965995825
+   0.727283434437060
+
+
+xstar =
+
+   1.237628759681719
+  14.005500456065775
+   0.872171151912445
+
+
+f =
+
+  99.847492383823834
+
+
+g =
+
+  -2.712886279045156
+  -0.009896992254625
+   0.000392889718984
+  -0.750687557008222
+  -0.912782884808755
+  -1.174434230382489
+  -0.182178927944464
+  -0.051484235499974
+   0.000239168407692
+
+
+ans =
+
+    11
+
+
+exitflag =
+
+     1
+
+___________________________________________________________
+p =
+
+     7
+
+
+lambda =
+
+   1.0e+02 *
+
+                   0
+                   0
+   1.996155198364500
+                   0
+                   0
+                   0
+                   0
+                   0
+   1.997427877480386
+
+
+r_p =
+
+       78125
+
+
+<a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'local_min_possible','CSHelpWindow');">Local minimum possible</a>.
+
+fminunc stopped because the <a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'norm_current_step','CSHelpWindow');">size of the current step</a> is less than
+the default value of the <a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'step_size_tol','CSHelpWindow');">step size tolerance</a>.
+
+<<a href = "matlab: createExitMsg('fminusub',2.000000e+00,true,true,'fminunc',5.170970e-07,'default',1.000000e-06,0.000000e+00,'',0.000000e+00,0.000000e+00,'',0.000000e+00);">stopping criteria details</a>>
+
+
+Computing finite-difference Hessian using objective function.
+
+x0 =
+
+   1.237628759681719
+  14.005500456065775
+   0.872171151912445
+
+
+xstar =
+
+   1.237628759681719
+  14.000029126364613
+   0.876120282958519
+
+
+f =
+
+  99.973104250604877
+
+
+g =
+
+  -2.712886279045156
+  -0.009896992254625
+   0.000002080454615
+  -0.750003640795577
+  -0.912387971704148
+  -1.175224056591704
+  -0.181664664939527
+  -0.052145430792037
+   0.000001305815426
+
+
+ans =
+
+     4
+
+
+exitflag =
+
+     2
+
+___________________________________________________________
+p =
+
+     8
+
+
+lambda =
+
+   1.0e+02 *
+
+                   0
+                   0
+   1.999405908700828
+                   0
+                   0
+                   0
+                   0
+                   0
+   1.999468214083182
+
+
+r_p =
+
+      390625
+
+
+<a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'local_min_possible','CSHelpWindow');">Local minimum possible</a>.
+
+fminunc stopped because it cannot decrease the objective function
+along the current <a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'search_direction','CSHelpWindow');">search direction</a>.
+
+<<a href = "matlab: createExitMsg('fminusub',5.000000e+00,true,true,'fminunc',0.000000e+00,'',0.000000e+00,0.000000e+00,'',0.000000e+00,0.000000e+00,'',0.000000e+00);">stopping criteria details</a>>
+
+
+Computing finite-difference Hessian using objective function.
+
+x0 =
+
+   1.237628759681719
+  14.000029126364613
+   0.876120282958519
+
+
+xstar =
+
+   1.237628759681719
+  13.999999657710770
+   0.876141650918566
+
+
+f =
+
+  99.973785629943563
+
+
+g =
+
+  -2.712886279045156
+  -0.009896992254625
+  -0.000000024449231
+  -0.749999957213846
+  -0.912385834908143
+  -1.175228330183713
+  -0.181661876210281
+  -0.052149016301068
+   0.000000002916323
+
+
+ans =
+
+     4
+
+
+exitflag =
+
+     5
+
+___________________________________________________________
+p =
+
+     9
+
+
+lambda =
+
+   1.0e+02 *
+
+                   0
+                   0
+   1.999214899085586
+                   0
+                   0
+                   0
+                   0
+                   0
+   1.999490997857182
+
+
+r_p =
+
+     1953125
+
+
+<a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'local_min_possible','CSHelpWindow');">Local minimum possible</a>.
+
+fminunc stopped because the <a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'norm_current_step','CSHelpWindow');">size of the current step</a> is less than
+the default value of the <a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'step_size_tol','CSHelpWindow');">step size tolerance</a>.
+
+<<a href = "matlab: createExitMsg('fminusub',2.000000e+00,true,true,'fminunc',7.436361e-09,'default',1.000000e-06,0.000000e+00,'',0.000000e+00,0.000000e+00,'',0.000000e+00);">stopping criteria details</a>>
+
+
+<a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'local_min_possible','CSHelpWindow');">Local minimum possible</a>.
+
+fminunc stopped because it cannot decrease the objective function
+along the current <a href = "matlab: helpview([docroot '/toolbox/optim/msg_csh/optim_msg_csh.map'],'search_direction','CSHelpWindow');">search direction</a>.
+
+<<a href = "matlab: createExitMsg('fminusub',5.000000e+00,true,true,'fminunc',0.000000e+00,'',0.000000e+00,0.000000e+00,'',0.000000e+00,0.000000e+00,'',0.000000e+00);">stopping criteria details</a>>
+
+
+Computing finite-difference Hessian using objective function.
+
+x0 =
+
+   1.237628759681719
+  13.999999657710770
+   0.876141650918566
+
+
+xstar =
+
+   1.237628759681719
+  13.999999659075149
+   0.876141664870233
+
+
+f =
+
+  99.973786369114805
+
+
+g =
+
+  -2.712886279045156
+  -0.009896992254625
+  -0.000000024351775
+  -0.749999957384394
+  -0.912385833512977
+  -1.175228332974047
+  -0.181661873185027
+  -0.052149020190679
+  -0.000000000877958
+
+
+ans =
+
+     1
+
+
+exitflag =
+
+     5
+
+___________________________________________________________
+f =
+
+  99.973786369114805
+
+
+g =
+
+  -2.712886279045156
+  -0.009896992254625
+  -0.000000024351775
+  -0.749999957384394
+  -0.912385833512977
+  -1.175228332974047
+  -0.181661873185027
+  -0.052149020190679
+  -0.000000000877958
+
+
+cr =
+
+   0.807996737452328
+
+
+b =
+
+  13.999999659075149
+
+
+a =
+
+   0.876141664870233
+
+diary off

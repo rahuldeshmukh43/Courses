@@ -1,0 +1,8 @@
+line number 1 in file contains match: diagra
+
+line number 2 in file contains match: d i  a   g   r  a
+
+line number 3 in file contains match: d - i - a - g - r - a
+
+line number 4 in file contains match: d .. i - a ... g .ra
+
