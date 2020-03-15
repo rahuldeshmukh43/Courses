@@ -1,2 +1,2 @@
 # Courses
-Purdue courses
+Purdue courses with homeworks and projects
