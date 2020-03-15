@@ -1,2 +1,2 @@
 # Courses
-Purdue courses with homeworks and projects
+My courses with homeworks and projects
