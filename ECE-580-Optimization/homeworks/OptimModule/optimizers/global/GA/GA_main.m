@@ -28,7 +28,7 @@ y_pos = [ 7.7288
  7.0002
  7.5569];
 
-Num_city = lenght(x_pos);
+Num_city = length(x_pos);
 lb = 1*ones(1,Num_city);
 ub = Num_city*ones(1,Num_city);
 resolution = ones(1,Num_city);
@@ -79,7 +79,7 @@ for i=1:Niters
    %perform mutation
    
    %perform elitism
-   
+   parents = elitism(parents, f_parent);
    %evaluate fitness of offspring
    f_parent = -1*fitness(parents, lb, coded_lens, resolution, x_pos, y_pos);  
    [best_f, av_f, worse_f] = log_f(f_parent, best_f, av_f, worse_f);

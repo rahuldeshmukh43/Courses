@@ -13,5 +13,5 @@ function d = route_len(r, x_pos, y_pos)
 r_end = [r(2:end),r(1)];
 delta_x = x_pos(r_end) - x_pos(r);
 delta_y = y_pos(r_end) - y_pos(r);
-d = sqrt(sum(delta_x.^2 + delta_y.^2));
+d = sum(sqrt(delta_x.^2 + delta_y.^2));
 end
