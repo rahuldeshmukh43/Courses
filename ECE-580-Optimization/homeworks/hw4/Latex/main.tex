@@ -1,0 +1,322 @@
+\documentclass[11pt]{article}
+
+% ------
+% LAYOUT
+% ------
+\textwidth 165mm %
+\textheight 230mm %
+\oddsidemargin 0mm %
+\evensidemargin 0mm %
+\topmargin -15mm %
+\parindent= 10mm
+
+\usepackage[dvips]{graphics}
+% \usepackage{multirow,multicol}
+\usepackage[table]{xcolor}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+% \usepackage{subfigure}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amsmath}
+% \usepackage{physics}
+\usepackage{enumerate}
+\usepackage{mathtools}
+% \usepackage{cancel}
+% \usepackage{epstopdf}
+
+\setlength{\parskip}{0.5em}
+
+\graphicspath{{../pix/}} % put all your figures here.
+\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+% \lstset{ %
+%   language = python
+%   backgroundcolor=\color{white},   % choose the background color
+%   basicstyle=\footnotesize,        % size of fonts used for the code
+%   frame = trlb,
+%   numbers=left,
+%   stepnumber=1,
+%   showstringspaces=false,
+%   tabsize=1,
+%   breaklines=true,                 % automatic line breaking only at whitespace
+%   captionpos=t,                    % sets the caption-position to bottom
+%   commentstyle=\color{mygreen},    % comment style
+%   %escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+%   keywordstyle=\color{blue},       % keyword style
+%   stringstyle=\color{mymauve},     % string literal style
+% }
+
+% % Define Language
+% \lstdefinelanguage{Output}
+% {
+%   % list of keywords
+% %   morekeywords={
+% %     import,
+% %     if,
+% %     while,
+% %     for
+% %   },
+%   sensitive=false, % keywords are not case-sensitive
+% %   morecomment=[l]{//}, % l is for line comment
+% %   morecomment=[s]{*}{*/}, % s is for start and end delimiter
+% %   morestring=[b]" % defines that strings are enclosed in double quotes
+% }
+% \lstset{ %
+%   language = {Output}
+% %   backgroundcolor=\color{white},   % choose the background color
+% %   basicstyle=\footnotesize,        % size of fonts used for the code
+%   frame = trlb,
+%   numbers=left,
+%   stepnumber=1,
+%   showstringspaces=false,
+%   tabsize=1,
+%   breaklines=true,                 % automatic line breaking only at whitespace
+%   captionpos=t,                    % sets the caption-position to top
+%   }
+%%##########################
+% My short functions
+\newcommand{\V}[1]{\pmb{#1}}
+\newcommand{\rp}{{\color{red}\pmb{+}}}
+\newcommand{\bm}{{\color{blue}\pmb{-}}}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\newcommand{\refEq}[1]{Eq. \ref{#1}}
+\newcommand{\reflst}[1]{Listing \ref{#1} at page \pageref{#1}}
+\newcommand{\reftbl}[1]{Table \ref{#1}}
+\newcommand{\reffig}[1]{Figure \ref{#1}}
+\newcommand{\dx}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\ddx}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+%%###########################
+
+\begin{document}
+\begin{center}
+\Large{\textbf{ECE 580: Homework 3}}
+
+Rahul Deshmukh
+
+\today
+\end{center}
+
+%#########################################
+
+
+\subsection*{Exercise 1} 
+For this problem, we need to construct two matrices $A_1,A_2$ such that $A_2^{\dagger}A_1^{\dagger} \neq (A_1A_2)^{\dagger} $.
+
+For example lets take 
+\begin{align}
+ A_1 &= \mat{ 0 & 1\\ 1& 1}= \mat{1\\0}\mat{1& 0}\nonumber\\
+ A_2 &= \mat{1 & 0\\ 0& 0}\nonumber\\
+ A_1^{\dagger} &= A_1^{-1} = \mat{-1 & 1\\ 1 & 0}\nonumber\\
+ A_2^{\dagger} &= (\mat{1\\0}\mat{1& 0})^{\dagger}\nonumber\\
+ &= \mat{1\\0}\left( \mat{1&0} \mat{1 & 0\\ 0& 0} \mat{1\\0} \right)^{-1}\mat{1 & 0}\nonumber\\
+ & = \mat{1\\0}\left( \mat{1&0} \mat{1\\0}\right)^{-1}\mat{1 & 0}\nonumber\\
+ & = \mat{1\\0}\mat{1 & 0}\nonumber\\
+ & = \mat{1 & 0\\ 0& 0}\nonumber\\
+ A_2^{\dagger}A_1^{\dagger} &= \mat{-1 & 1\\ 1 & 0}\mat{1 & 0\\ 0& 0} \nonumber\\
+ \Rightarrow A_2^{\dagger}A_1^{\dagger} & = \mat{-1& 1\\ 0& 0 } \label{eq:1}
+\end{align}
+
+Now the RHS is given by:
+\begin{align}
+ (A_1A_2) &= \mat{ 0 & 1\\ 1& 1}\mat{1 & 0\\ 0& 0} = \mat{0 & 0\\ 1 & 0} = \mat{0 \\1}\mat{1 &0 } \nonumber\\
+ (A_1A_2)^{\dagger} &=  (\mat{0 \\1}\mat{1 &0 })^{\dagger} \nonumber\\
+ & = \mat{1 \\0} \left( \mat{0 & 1} \mat{0 & 0\\ 1 & 0} \mat{1 \\0}\right)^{-1} \mat{0 &1} \nonumber\\
+ & = \mat{1 \\0} \left( \mat{0 & 1} \mat{0 \\1}\right)^{-1} \mat{0 &1} \nonumber\\
+ & = \mat{1 \\0} \mat{0 &1} \nonumber\\
+ \Rightarrow (A_1A_2)^{\dagger} &= \mat{0 & 1\\ 0 & 0} \label{eq:2}
+\end{align}
+
+Therefore from \refEq{eq:1}\& \refEq{eq:2} we can see that $A_2^{\dagger}A_1^{\dagger} \neq (A_1A_2)^{\dagger}$.
+
+%
+\newpage
+\vspace{2ex}
+%
+\subsection*{Exercise 2} 
+
+For Exercise 2 \& Exercise 3 we will be working with the Griewank function which is defined by the \reflst{lst:pso_fun}. The function plot over the domain $[-5,5]\text{x}[5,5]$ is at \reffig{fig:pso_fun}.
+
+\begin{figure}[!h]
+ \centering
+ \includegraphics[width=0.7\textwidth]{surf_plot}
+ \caption{Surface plot of Griewank function}
+ \label{fig:pso_fun}
+\end{figure}
+
+In my particle swarm algorithm, I am using the following parameter settings:
+\begin{itemize}
+ \item Swarm size: $d=20$
+ \item Number of iterations: 100
+ \item Inertial constant: $\omega = 0.8$
+ \item Cognitive constant: $c_1 = 2$
+ \item Social constant: $c_2 = 2$
+%  \item Bounds for velocity: $-v_{max}\leq v\leq v_{max}$ with $v_{max}=0.1$
+\end{itemize}
+After 100 iterations, I get the optimal solution as $\V{x}=\mat{0.0065 & -0.0024}^T$ with a function value 2.2609e-05.
+
+\noindent The location of the optimal solution on contour plot is at \reffig{fig:pso_min_cont}.
+
+\noindent The plot for best, average, and the worst objective function values in the population for every generation is at \reffig{fig:pso_min}
+
+\begin{figure}[!h]
+ \centering
+ \includegraphics[width=0.7\textwidth]{pso_min_traj}
+ \caption{Plot of optimal solution(red X) on contours of objective function}
+ \label{fig:pso_min_cont}
+\end{figure}
+
+\begin{figure}[!h]
+ \centering
+ \includegraphics[width=0.7\textwidth]{plot_pso_min}
+ \caption{Plot of Average, Best and Worse function values for PSO}
+ \label{fig:pso_min}
+\end{figure}
+
+\noindent For MATLAB function for this problem refer to \reflst{lst:pso} \& \reflst{lst:pso_fun} and the call to the function can be referred at \reflst{lst:main_code} with corresponding output at \reflst{lst:op}.
+%
+\clearpage
+\vspace{2ex}
+%
+\subsection*{Exercise 3}
+For Maximization problem, we just multiply the Griewank function with negative one and then minimize it with the same parameter settings. After 100 iterations, I get the optimal solution as $\V{x}=\mat{   -0.0001 &    4.4472}^T$ with a function value 2.0049. 
+
+\noindent The location of the optimal solution on contour plot is at \reffig{fig:pso_max_cont}.
+
+\noindent The plot for best, average, and the worst objective function value sin the population for every generation is at \reffig{fig:pso_max}.
+
+\begin{figure}[!h]
+ \centering
+ \includegraphics[width=0.7\textwidth]{pso_max_traj}
+ \caption{Plot of optimal solution (red X) on contours of objective function}
+ \label{fig:pso_max_cont}
+\end{figure}
+
+\begin{figure}[!h]
+ \centering
+ \includegraphics[width=0.7\textwidth]{plot_pso_max}
+ \caption{Plot of Average, Best and Worse function values for PSO}
+ \label{fig:pso_max}
+\end{figure}
+
+
+
+\noindent For MATLAB function for this problem refer to \reflst{lst:pso} \& \reflst{lst:pso_fun} and the call to the function can be referred at \reflst{lst:main_code} with corresponding output at \reflst{lst:op}.
+%
+\clearpage
+\vspace{2ex}
+\subsection*{Exercise 4} 
+In my GA algorithm, I am using the following parameter settings:
+\begin{itemize}
+ \item Population size: 1000
+ \item Number of iterations: 200
+ \item Probability for cross-over: 0.8
+\end{itemize}
+
+\noindent For the TSP, our design variable (\V{x}) is a 10 dimensional vector with each individual component ($x_i$) indicating the city visited at that the $i^{th}$ turn. We can have a total of $10!=3628800$ possible routes. 
+
+\noindent To obtain the initial population we randomly permute the numbers in the range 1-10 and then proceed with fitness evaulation. We then carry out selection, cross-over, elitism and fitness evaluation repeadtedly till the number of iterations are satisfied. 
+
+\noindent For crossover, we dont want to carry-out an operation which might result in a in-feasible sample. For example, with 10 cities and a resolution of 1 we can represent the decimal number with 4 bits. However, the coded word cannot be binary representations of numbers greater than 9. Therefore to avoid such a problem, we carry out cross-over by just inverting the visiting order between two randomly chosen coordinates of parent-vector.
+
+\noindent For selection, I am using the method-2 of tournament-selection.
+
+\noindent After carrying out several trials, I obtain a shortest route of 27.2133. The order of cities for this route is $\mat{6& 1 &10 &9 &7 &8 &4 &3 &5 &2 }$. 
+
+\noindent The shortest route found using GA is at \reffig{fig:ga_route}. The plot for best, average, and the worst objective function values in the population for every generation is at \reffig{fig:ga_conv}.
+
+\begin{figure}[!h]
+  \centering
+ \includegraphics[width=0.7\textwidth]{ga_best_route}
+ \caption{Shortest route calculated using GA}
+ \label{fig:ga_route}
+\end{figure}
+
+\begin{figure}[!h]
+ \centering
+ \includegraphics[width=0.7\textwidth]{ga_conv}
+ \caption{Plot of Average, Best and Worse function values for GA}
+ \label{fig:ga_conv}
+\end{figure}
+\noindent For main file for GA refer to \reflst{lst:ga_main}. The fitness function can be refered at \reflst{lst:ga_fit}. The encoding and decoding functions can be found at \reflst{lst:ga_encode}\& \reflst{lst:ga_decode} respectively. The function for Tournament selection is at \reflst{lst:tournament_selection}. The function for crossover and elitism can be refered at \reflst{lst:ga_xover} \& \reflst{lst:ga_elitism} respectively.
+
+
+\clearpage
+\vspace{2ex}
+\subsection*{Exercise 5} 
+For this problem we are required to solve the following problem
+\begin{align*}
+ \V{x}^* &= \operatorname*{argmax}_{\V{x}} \V{c}^T\V{x}\\
+ \text{subject to } &A\V{x} \leq \V{b}\\
+ & \V{x}\geq \V{0}\\
+ \text{where}\\
+ \V{c}^T &= \mat{6 & 4 & 7& 5}\\
+ A & = \mat{
+ 1& 2& 1 & 2\\
+ 6& 5& 3 & 2\\
+ 3& 4& 9 & 12\\
+ }\\
+ \V{b}& = \mat{20\\ 100\\ 75} 
+\end{align*}
+
+\noindent We convert the above problem to a minimization problem by multiplyting $\V{c}^T$ by negative one and then solve using MATLAB's \texttt{linprog()} function which works only for a minimization problem.
+
+\noindent We obtain an optimal solution as $\V{x}^* = \mat{15.0 & 0.0& 3.3333& 0.0}^T$ with the maximum function value of 113.3333.
+
+\noindent The MATLAB code for linprog can be found at \reflst{lst:main_code} with corresponding output at \reflst{lst:op}.
+
+\newpage
+\subsection*{MATLAB Code}
+\lstinputlisting[caption={Main Code}, label={lst:main_code}]{../main.m}
+\lstinputlisting[caption={Griewank Function}, label={lst:pso_fun}]{../griewank_fun.m}
+\lstinputlisting[caption={Particle Swarm}, label={lst:pso}]{../../OptimModule/optimizers/global/particleswarm.m}
+\subsection*{Genetic Algorithm Code}
+\lstinputlisting[caption={GA Main Code},label={lst:ga_main}]{../../OptimModule/optimizers/global/GA/GA_main.m}
+\lstinputlisting[caption={Fitness function},label={lst:ga_fit}]{../../OptimModule/optimizers/global/GA/fitness.m}
+\lstinputlisting[caption={Encoding function},label={lst:ga_encode}]{../../OptimModule/optimizers/global/GA/encode.m}
+\lstinputlisting[caption={Decoding function},label={lst:ga_decode}]{../../OptimModule/optimizers/global/GA/decode.m}
+\lstinputlisting[caption={Roulette-wheel selection function},label={lst:ga_selection_roulette}]{../../OptimModule/optimizers/global/GA/roulette.m}
+\lstinputlisting[caption={Tournament selection function},label={lst:tournament_selection}]{../../OptimModule/optimizers/global/GA/tournament_selection.m}
+\lstinputlisting[caption={Cross-over function},label={lst:ga_xover}]{../../OptimModule/optimizers/global/GA/crossover.m}
+\lstinputlisting[caption={Elitism function},label={lst:ga_elitism}]{../../OptimModule/optimizers/global/GA/elitism.m}
+\lstinputlisting[caption={Logging function},label={lst:ga_logger}]{../../OptimModule/optimizers/global/GA/log_f.m}
+\begin{lstlisting}[caption={Output},label={lst:op}]
+x_star_min =
+
+    0.0065
+   -0.0024
+
+fval =
+
+   2.2609e-05
+
+x_star_max =
+
+   -0.0001
+    4.4472
+
+fval =
+
+   2.0049
+
+-----------Linear Programming----------------
+Optimal solution found.
+
+x_star_linprog =
+
+   15.0000
+         0
+    3.3333
+         0
+
+fval =
+
+ 113.3333
+\end{lstlisting}
+\end{document}
