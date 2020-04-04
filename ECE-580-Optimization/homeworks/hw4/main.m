@@ -92,7 +92,7 @@ ub = Inf*[1, 1, 1, 1];
 c = [6, 4, 7, 5];
 [x_star_linprog,fval] = linprog(-1*c, A, b, Aeq, beq, lb, ub);
 x_star_linprog
-fval
+-1*fval
 
 %% Local helper functions for plotting
 % plotting for PSO
