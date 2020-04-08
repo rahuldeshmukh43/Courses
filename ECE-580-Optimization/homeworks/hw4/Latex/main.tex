@@ -109,31 +109,59 @@ Rahul Deshmukh
 \subsection*{Exercise 1} 
 For this problem, we need to construct two matrices $A_1,A_2$ such that $A_2^{\dagger}A_1^{\dagger} \neq (A_1A_2)^{\dagger} $.
 
-For example lets take 
+% For example lets take 
+% \begin{align}
+%  A_1 &= \mat{ 0 & 1\\ 1& 1}= \mat{1\\0}\mat{1& 0}\nonumber\\
+%  A_2 &= \mat{1 & 0\\ 0& 0}\nonumber\\
+%  A_1^{\dagger} &= A_1^{-1} = \mat{-1 & 1\\ 1 & 0}\nonumber\\
+%  A_2^{\dagger} &= (\mat{1\\0}\mat{1& 0})^{\dagger}\nonumber\\
+%  &= \mat{1\\0}\left( \mat{1&0} \mat{1 & 0\\ 0& 0} \mat{1\\0} \right)^{-1}\mat{1 & 0}\nonumber\\
+%  & = \mat{1\\0}\left( \mat{1&0} \mat{1\\0}\right)^{-1}\mat{1 & 0}\nonumber\\
+%  & = \mat{1\\0}\mat{1 & 0}\nonumber\\
+%  & = \mat{1 & 0\\ 0& 0}\nonumber\\
+%  A_2^{\dagger}A_1^{\dagger} &= \mat{-1 & 1\\ 1 & 0}\mat{1 & 0\\ 0& 0} \nonumber\\
+%  \Rightarrow A_2^{\dagger}A_1^{\dagger} & = \mat{-1& 1\\ 0& 0 } \label{eq:1}
+% \end{align}
+% 
+% Now the RHS is given by:
+% \begin{align}
+%  (A_1A_2) &= \mat{ 0 & 1\\ 1& 1}\mat{1 & 0\\ 0& 0} = \mat{0 & 0\\ 1 & 0} = \mat{0 \\1}\mat{1 &0 } \nonumber\\
+%  (A_1A_2)^{\dagger} &=  (\mat{0 \\1}\mat{1 &0 })^{\dagger} \nonumber\\
+%  & = \mat{1 \\0} \left( \mat{0 & 1} \mat{0 & 0\\ 1 & 0} \mat{1 \\0}\right)^{-1} \mat{0 &1} \nonumber\\
+%  & = \mat{1 \\0} \left( \mat{0 & 1} \mat{0 \\1}\right)^{-1} \mat{0 &1} \nonumber\\
+%  & = \mat{1 \\0} \mat{0 &1} \nonumber\\
+%  \Rightarrow (A_1A_2)^{\dagger} &= \mat{0 & 1\\ 0 & 0} \label{eq:2}
+% \end{align}
+
+We can construct $A_1,A_2$ randomly with the constraint that atleast one of them is rank deficient. The script at\reflst{lst:p1_code} generates two random vectors $a_1,a_2 \in \mathbb{R}^2$  and then constructs the matrices $A_1,A_2$ by taking the outer product of the vectors. We then evaluate the LHS: $A_2^{\dagger}A_1^{\dagger}$ and the RHS: $(A_1A_2)^{\dagger}$. It turns out that LHS$\neq$RHS. To illustrate, the computation for default seed is shown below:
+
 \begin{align}
- A_1 &= \mat{ 0 & 1\\ 1& 1}= \mat{1\\0}\mat{1& 0}\nonumber\\
- A_2 &= \mat{1 & 0\\ 0& 0}\nonumber\\
- A_1^{\dagger} &= A_1^{-1} = \mat{-1 & 1\\ 1 & 0}\nonumber\\
- A_2^{\dagger} &= (\mat{1\\0}\mat{1& 0})^{\dagger}\nonumber\\
- &= \mat{1\\0}\left( \mat{1&0} \mat{1 & 0\\ 0& 0} \mat{1\\0} \right)^{-1}\mat{1 & 0}\nonumber\\
- & = \mat{1\\0}\left( \mat{1&0} \mat{1\\0}\right)^{-1}\mat{1 & 0}\nonumber\\
- & = \mat{1\\0}\mat{1 & 0}\nonumber\\
- & = \mat{1 & 0\\ 0& 0}\nonumber\\
- A_2^{\dagger}A_1^{\dagger} &= \mat{-1 & 1\\ 1 & 0}\mat{1 & 0\\ 0& 0} \nonumber\\
- \Rightarrow A_2^{\dagger}A_1^{\dagger} & = \mat{-1& 1\\ 0& 0 } \label{eq:1}
+ a_1 &=\mat{
+    0.8147&
+    0.9058}^T\nonumber\\
+% 
+a_2 &=\mat{
+    0.1270&
+    0.9134}^T\nonumber\\
+%     
+A_1 &=a_1\otimes a_1 = \mat{
+    0.6638&    0.7380\\
+    0.7380&    0.8205}\nonumber\\
+% 
+A_2 &=a_2\otimes a_2= \mat{
+    0.0161&   0.1160\\
+    0.1160&    0.8343}\nonumber\\
+%     
+A_2^\dagger A_1^\dagger &= \mat{
+    0.0604&    0.0672\\
+    0.4348&    0.4834}\label{eq:1}\\
+% 
+(A_1A_2)^\dagger &= \mat{
+    0.0881&    0.0979\\
+    0.6334&    0.7042}\label{eq:2}
 \end{align}
 
-Now the RHS is given by:
-\begin{align}
- (A_1A_2) &= \mat{ 0 & 1\\ 1& 1}\mat{1 & 0\\ 0& 0} = \mat{0 & 0\\ 1 & 0} = \mat{0 \\1}\mat{1 &0 } \nonumber\\
- (A_1A_2)^{\dagger} &=  (\mat{0 \\1}\mat{1 &0 })^{\dagger} \nonumber\\
- & = \mat{1 \\0} \left( \mat{0 & 1} \mat{0 & 0\\ 1 & 0} \mat{1 \\0}\right)^{-1} \mat{0 &1} \nonumber\\
- & = \mat{1 \\0} \left( \mat{0 & 1} \mat{0 \\1}\right)^{-1} \mat{0 &1} \nonumber\\
- & = \mat{1 \\0} \mat{0 &1} \nonumber\\
- \Rightarrow (A_1A_2)^{\dagger} &= \mat{0 & 1\\ 0 & 0} \label{eq:2}
-\end{align}
-
-Therefore from \refEq{eq:1}\& \refEq{eq:2} we can see that $A_2^{\dagger}A_1^{\dagger} \neq (A_1A_2)^{\dagger}$.
+Therefore from \refEq{eq:1}\& \refEq{eq:2} we can see that $A_2^{\dagger}A_1^{\dagger} \neq (A_1A_2)^{\dagger}$. The output of the script is at \reflst{lst:p1_op}. We will observe the same phenomenon for all randomly generated matrices (you need to comment out line 3 in \reflst{lst:p1_code}).
 
 %
 \newpage
@@ -273,6 +301,52 @@ For this problem we are required to solve the following problem
 
 \newpage
 \subsection*{MATLAB Code}
+\lstinputlisting[caption={Problem-1 code}, label={lst:p1_code}]{../p1.m}
+\begin{lstlisting}[caption={Output of Problem-1 (for default seed)},label={lst:p1_op}]
+a_1 =
+
+    0.8147
+    0.9058
+
+
+a_2 =
+
+    0.1270
+    0.9134
+
+
+A_1 =
+
+    0.6638    0.7380
+    0.7380    0.8205
+
+
+A_2 =
+
+    0.0161    0.1160
+    0.1160    0.8343
+
+
+A_2_pinv_A_1_pinv =
+
+    0.0604    0.0672
+    0.4348    0.4834
+
+
+A_1A_2_pinv =
+
+    0.0881    0.0979
+    0.6334    0.7042
+
+
+diff =
+
+    0.0276    0.0307
+    0.1986    0.2208
+
+pinv(A_2)pinv(A_1) not equals pinv(A_1A_2)
+\end{lstlisting}
+%
 \lstinputlisting[caption={Main Code}, label={lst:main_code}]{../main.m}
 \lstinputlisting[caption={Griewank Function}, label={lst:pso_fun}]{../griewank_fun.m}
 \lstinputlisting[caption={Particle Swarm}, label={lst:pso}]{../../OptimModule/optimizers/global/particleswarm.m}
@@ -286,8 +360,8 @@ For this problem we are required to solve the following problem
 \lstinputlisting[caption={Cross-over function},label={lst:ga_xover}]{../../OptimModule/optimizers/global/GA/crossover.m}
 \lstinputlisting[caption={Elitism function},label={lst:ga_elitism}]{../../OptimModule/optimizers/global/GA/elitism.m}
 \lstinputlisting[caption={Logging function},label={lst:ga_logger}]{../../OptimModule/optimizers/global/GA/log_f.m}
-\begin{lstlisting}[caption={Output},label={lst:op}]
 
+\begin{lstlisting}[caption={Output},label={lst:op}]
 x_star_min =
 
     0.0007
