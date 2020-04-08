@@ -152,14 +152,14 @@ For Exercise 2 \& Exercise 3 we will be working with the Griewank function which
 
 In my particle swarm algorithm, I am using the following parameter settings:
 \begin{itemize}
- \item Swarm size: $d=20$
+ \item Swarm size: $d=40$
  \item Number of iterations: 100
  \item Inertial constant: $\omega = 0.8$
  \item Cognitive constant: $c_1 = 2$
  \item Social constant: $c_2 = 2$
 %  \item Bounds for velocity: $-v_{max}\leq v\leq v_{max}$ with $v_{max}=0.1$
 \end{itemize}
-After 100 iterations, I get the optimal solution as $\V{x}=\mat{0.0065 & -0.0024}^T$ with a function value 2.2609e-05.
+After several trials, I get the optimal solution as $\V{x}=\mat{0.0007 & 0.0023}^T$ with a function value 1.6217e-06. It should be noted that the PSO algorithm can get stuck in local minima as it not gauranteed to find the global minima due to finite size of the population and finite number of iterations.
 
 \noindent The location of the optimal solution on contour plot is at \reffig{fig:pso_min_cont}.
 
@@ -185,7 +185,7 @@ After 100 iterations, I get the optimal solution as $\V{x}=\mat{0.0065 & -0.0024
 \vspace{2ex}
 %
 \subsection*{Exercise 3}
-For Maximization problem, we just multiply the Griewank function with negative one and then minimize it with the same parameter settings. After 100 iterations, I get the optimal solution as $\V{x}=\mat{   -0.0001 &    4.4472}^T$ with a function value 2.0049. 
+For Maximization problem, we just multiply the Griewank function with negative one and then minimize it with the same parameter settings. After several trials, I get the optimal solution as $\V{x}=\mat{   0.0000 &    4.4474}^T$ with a function value 2.0049. 
 
 \noindent The location of the optimal solution on contour plot is at \reffig{fig:pso_max_cont}.
 
@@ -214,12 +214,12 @@ For Maximization problem, we just multiply the Griewank function with negative o
 \subsection*{Exercise 4} 
 In my GA algorithm, I am using the following parameter settings:
 \begin{itemize}
- \item Population size: 1000
+ \item Population size: 100
  \item Number of iterations: 200
  \item Probability for cross-over: 0.8
 \end{itemize}
 
-\noindent For the TSP, our design variable (\V{x}) is a 10 dimensional vector with each individual component ($x_i$) indicating the city visited at that the $i^{th}$ turn. We can have a total of $10!=3628800$ possible routes. 
+\noindent For the TSP, our design variable (\V{x}) is a 10 dimensional vector with each individual component ($x_i$) indicating the city visited at the $i^{th}$ turn. We can have a total of $9!=362880$ possible routes. 
 
 \noindent To obtain the initial population we randomly permute the numbers in the range 1-10 and then proceed with fitness evaulation. We then carry out selection, cross-over, elitism and fitness evaluation repeadtedly till the number of iterations are satisfied. 
 
@@ -227,7 +227,7 @@ In my GA algorithm, I am using the following parameter settings:
 
 \noindent For selection, I am using the method-2 of tournament-selection.
 
-\noindent After carrying out several trials, I obtain a shortest route of 27.2133. The order of cities for this route is $\mat{6& 1 &10 &9 &7 &8 &4 &3 &5 &2 }$. 
+\noindent After carrying out several trials, I obtain a shortest route of 27.2133. The order of cities for this route is $\mat{ 9   & 10&     1&     6&     2&     5&     3&     4&     8&     7}$. 
 
 \noindent The shortest route found using GA is at \reffig{fig:ga_route}. The plot for best, average, and the worst objective function values in the population for every generation is at \reffig{fig:ga_conv}.
 
@@ -287,26 +287,31 @@ For this problem we are required to solve the following problem
 \lstinputlisting[caption={Elitism function},label={lst:ga_elitism}]{../../OptimModule/optimizers/global/GA/elitism.m}
 \lstinputlisting[caption={Logging function},label={lst:ga_logger}]{../../OptimModule/optimizers/global/GA/log_f.m}
 \begin{lstlisting}[caption={Output},label={lst:op}]
+
 x_star_min =
 
-    0.0065
-   -0.0024
+    0.0007
+    0.0023
+
 
 fval =
 
-   2.2609e-05
+   1.6217e-06
+
 
 x_star_max =
 
-   -0.0001
-    4.4472
+    0.0000
+    4.4474
+
 
 fval =
 
-   2.0049
+    2.0049
 
 -----------Linear Programming----------------
 Optimal solution found.
+
 
 x_star_linprog =
 
@@ -315,8 +320,9 @@ x_star_linprog =
     3.3333
          0
 
-fval =
 
- 113.3333
+ans =
+
+  113.3333
 \end{lstlisting}
 \end{document}

@@ -2,10 +2,10 @@ function [x_star, history_out] = particleswarm(fun,a,b, Nswarm, Niters,...
     inert_const, cog_const,social_const, constricted, vmax_prop)
 %   a,b are the limits of the feasible domains of x i.e. x \in (a,b)
     history.name = 'Global Optimizer: PSO';
-    rng('default');
+%     rng('default');
     switch nargin
         case 3
-            Nswarm = 20;
+            Nswarm = 40;
             Niters = 100;
             constricted = 1;
             inert_const = 0.8;
@@ -76,8 +76,8 @@ function [x_star, history_out] = particleswarm(fun,a,b, Nswarm, Niters,...
     
     for count=1:Niters
         % generate r and s
-        r = rand(x_dim,1);
-        s = rand(x_dim,1);
+        r = rand(x_dim,Nswarm);
+        s = rand(x_dim,Nswarm);
         % update velocity
         V_swarm = inert_const*V_swarm + cog_const*(r.*(pbest_x-X_swarm)) + ...
                   social_const*(s.*(gbest_x-X_swarm));

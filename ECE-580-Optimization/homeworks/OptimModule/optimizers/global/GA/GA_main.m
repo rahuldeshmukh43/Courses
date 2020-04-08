@@ -3,7 +3,7 @@
 % deshmuk5@purdue.edu
 clc; clear all; close all;
 format long;
-save_dir = '../../../../hw4/';
+save_dir = '../../../../hw4/pix/';
 %% TSP setup
 % map coordinates
 x_pos = [ 0.4306
@@ -36,8 +36,8 @@ coded_lens = ceil(log2((ub-lb)./resolution));
 
 
 %% GA: solver params
-total_possible_path = factorial(Num_city)
-N_pop = 1000;
+total_possible_path = factorial(Num_city-1)
+N_pop = 100;
 p_xover = 0.8;
 p_mut = 0.05;
 Niters = 200;
@@ -60,10 +60,9 @@ elseif strcmp(selection_method, 'tournament_method2')
 end
 
 % draw initial population: all possible permuations of route
-s = RandStream('mlfg6331_64'); 
 X = zeros(N_pop, Num_city);
 for i=1:N_pop
-   ith_route =  datasample(s, 1:Num_city, Num_city, 'Replace', false);
+   ith_route = randperm(Num_city);
    X(i,:) = ith_route;    
 end
 %encode X
@@ -94,9 +93,9 @@ x_star = decode(x_star_coded, lb, coded_lens, resolution)
 fig1 = figure(1);
 hold on; grid on;
 x = 1:Niters+1;
-h1 =plot(x,-1*av_f,'-b','LineWidth',2);
-h2 = plot(x,-1*best_f,'-r','LineWidth',2);
-h3 = plot(x,-1*worse_f,'-k', 'LineWidth',2);
+h1 =plot(x,-1*av_f,'-b','LineWidth',1);
+h2 = plot(x,-1*best_f,'-r','LineWidth',1);
+h3 = plot(x,-1*worse_f,'-k', 'LineWidth',1);
 v = 1:10:Niters+1;
 plot(x(v),-1*av_f(v),'bx');
 plot(x(v),-1*best_f(v),'ro');
@@ -117,9 +116,9 @@ for i=1:Num_city
     y = y_pos(x_star(i));
     u = x_pos(x_star_end(i)) - x;
     v = y_pos(x_star_end(i)) - y;
-    text(x,y,num2str(x_star(i)),'FontSize',18, 'FontWeight','bold',...
+    text(x,y,num2str(x_star(i)),'FontSize',12, 'FontWeight','bold',...
         'HorizontalAlignment','left', 'VerticalAlignment','middle' );
-    quiver(x,y,u,v,'r','Autoscale','off','LineWidth',2);
+    quiver(x,y,u,v,'r','Autoscale','off','LineWidth',1);
 end
 box('on');hold off;
 xlabel('X'); ylabel('Y');
