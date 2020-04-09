@@ -1,0 +1,81 @@
++Task 2:
+Dataset00 Classification Accuracy:	 89.80%
+Dataset00 Confusion Matrix:
+[[131.   0.   1.  58.  10.]
+ [  2. 196.   0.   2.   0.]
+ [  0.   0. 200.   0.   0.]
+ [ 26.   0.   1. 172.   1.]
+ [  0.   0.   0.   1. 199.]]
+
+Dataset20 Classification Accuracy:	 87.10%
+Dataset20 Confusion Matrix:
+[[ 89.   2.   8.  92.   9.]
+ [  0. 197.   2.   1.   0.]
+ [  0.   0. 200.   0.   0.]
+ [  6.   0.   0. 193.   1.]
+ [  2.   0.   4.   2. 192.]]
+
+Dataset50 Classification Accuracy:	 57.30%
+Dataset50 Confusion Matrix:
+[[ 52.  17.  29.  76.  26.]
+ [  8. 154.  15.  10.  13.]
+ [ 17.   6. 121.  30.  26.]
+ [ 45.   3.  29.  99.  24.]
+ [ 15.   4.  15.  19. 147.]]
+
+Dataset80 Classification Accuracy:	 52.70%
+Dataset80 Confusion Matrix:
+[[ 49.   7.  22.  86.  36.]
+ [ 12. 134.  31.  14.   9.]
+ [ 21.  12. 100.  39.  28.]
+ [ 39.   5.   5. 121.  30.]
+ [ 17.  12.  13.  35. 123.]]
+
++Task 3:
+Noise Classification Accuracy: 100.00%
+Noise Confusion Matrix:
+[[1000.    0.    0.    0.]
+ [   0. 1000.    0.    0.]
+ [   0.    0. 1000.    0.]
+ [   0.    0.    0. 1000.]]
+
+Dataset00 Classification Accuracy:	 82.30%
+Dataset00 Confusion Matrix:
+[[160.   0.   3.  34.   3.]
+ [  4. 196.   0.   0.   0.]
+ [ 12.   2. 186.   0.   0.]
+ [ 90.   0.   1. 109.   0.]
+ [ 20.   2.   6.   0. 172.]]
+
+Dataset20 Classification Accuracy:	 65.20%
+Dataset20 Confusion Matrix:
+[[141.  14.   0.  36.   9.]
+ [  1. 198.   0.   1.   0.]
+ [ 21. 121.  25.  23.  10.]
+ [ 82.   3.   0. 112.   3.]
+ [ 10.  14.   0.   0. 176.]]
+
+Dataset50 Classification Accuracy:	 40.70%
+Dataset50 Confusion Matrix:
+[[ 80.  13.  20.  44.  43.]
+ [ 28.  69.  47.   8.  48.]
+ [ 33.  29.  67.  11.  60.]
+ [109.   7.  12.  40.  32.]
+ [ 18.  10.  15.   6. 151.]]
+
+Dataset80 Classification Accuracy:	 33.80%
+Dataset80 Confusion Matrix:
+[[51. 17. 19. 82. 31.]
+ [33. 66. 31. 36. 34.]
+ [33. 32. 53. 38. 44.]
+ [60.  6. 22. 96. 16.]
+ [44. 26. 30. 28. 72.]]
+
++Task 4:
+Dataset50 Classification Accuracy:	 75.30%
+Dataset50 Confusion Matrix:
+[[ 52.  10.  12.  99.  27.]
+ [  8. 185.   7.   0.   0.]
+ [  3.   2. 188.   5.   2.]
+ [ 34.   0.   7. 152.   7.]
+ [  6.   3.   4.  11. 176.]]
