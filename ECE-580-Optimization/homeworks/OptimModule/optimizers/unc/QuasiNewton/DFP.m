@@ -50,7 +50,7 @@ function [x_k, history_out] = DFP(x_k,fun,grad,...
         
         a_k = (delta_g_k'*delta_x_k);
         delta_H_k1 = (delta_x_k*delta_x_k')/a_k;
-        delta_H_k2 = ((H_k*delta_g_k)*(H_k*delta_g_k)')/(delta_g_k'*H_k*g_k);
+        delta_H_k2 = ((H_k*delta_g_k)*(H_k*delta_g_k)')/(delta_g_k'*H_k*delta_g_k);
         H_k = H_k + delta_H_k1 - delta_H_k2;
         
         count = count+1;

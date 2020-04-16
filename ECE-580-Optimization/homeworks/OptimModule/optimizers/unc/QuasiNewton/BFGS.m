@@ -49,7 +49,7 @@ function [x_k, history_out] = BFGS(x_k,fun,grad,...
         g_k = g_k + delta_g_k;
         
         a_k = delta_g_k'*delta_x_k;
-        beta_k = (delta_g_k'*H_k*g_k)/a_k;
+        beta_k = (delta_g_k'*H_k*delta_g_k)/a_k;
         delta_H_k1 = (1 + beta_k)*(delta_x_k*delta_x_k')/a_k;
         delta_H_k2 = ((H_k*delta_g_k*delta_x_k') + (H_k*delta_g_k*delta_x_k')')/a_k;
         H_k = H_k + delta_H_k1 - delta_H_k2;
