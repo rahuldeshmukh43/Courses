@@ -1,20 +1,18 @@
-% ECE 580 HW5: Problem 1
+% ECE 580 HW5: Problem 2
 % Rahul Deshmukh 
 % deshmuk5@purdue.edu
 clc; clear all; close all;
 format short;
 %% Include paths
 addpath('../OptimModule/optimizers/global/GA/');
+addpath('../OptimModule/optimizers/global/GA/Real_Num_GA/');
 save_dir = './pix/';
 %% set seed
-rng(7); % tried 0:10, 7 gave the smallest result, can jump between global and local min
-%% Canonical GA problem setup
+rng(6); % tried 0:10 ,6 was the best and always converges to global min
+%% Real GA problem setup
 lb = -5*ones(1,2);
 ub = 5*ones(1,2);
 Num_vars = length(lb);
-bits = 10;
-coded_lens = bits*ones(1,Num_vars);
-resolution = (ub-lb)./(2.^coded_lens-1)
 
 %% GA: solver params
 N_pop = 40; % cant be odd integer
@@ -22,6 +20,7 @@ p_xover = 0.9;
 p_mut = 0.01;
 Niters = 30;
 selection_method = 'tournament_method2';
+xover_method = 'conv_combo';
 
 %% GA starts
 
@@ -43,32 +42,28 @@ end
 X = rand(N_pop, Num_vars);
 % scale to domain
 X = (X.*(ub-lb) + lb);
-% discretize to resolution
-X = floor((X - lb)./resolution).*resolution + lb;
 
-%encode X
-parents = encode(X, lb, ub, coded_lens, resolution);
+parents = X;
 % evaluate fitness of parents
-f_parent = -1*fitness_griewank(parents, lb, coded_lens, resolution);
+f_parent = -1*griewank_fun(parents');
 [best_f, av_f, worse_f] = log_f(f_parent, best_f, av_f, worse_f);
 for i=1:Niters
    % generate mating pool using selection
    mating_pool = selection(parents, f_parent);
    %perform crossover
-   parents = two_point_crossover(mating_pool, p_xover);
+   parents = crossover(mating_pool, p_xover, xover_method);
    %perform mutation
-   parents = mutation(parents, p_mut);
+   parents = mutation(parents, p_mut, lb, ub);
    %perform elitism
    parents = elitism(parents, f_parent);
    %evaluate fitness of offspring
-   f_parent = -1*fitness_griewank(parents, lb, coded_lens, resolution);  
+   f_parent = -1*griewank_fun(parents');
    [best_f, av_f, worse_f] = log_f(f_parent, best_f, av_f, worse_f);
 end
 % find the best offspring
 [f_star, k_star] = max(f_parent);
 fprintf(strcat('best fval: \t',num2str(-1*f_star)))
-x_star_coded = parents(k_star,:);
-x_star = decode(x_star_coded, lb, coded_lens, resolution)
+x_star = parents(k_star,:)
 
 %% Convergence Plotting
 fig1 = figure(1);
@@ -87,5 +82,5 @@ box('on');
 xlabel('Num Iters'); ylabel('Function value');
 xlim([1, Niters+1])
 ylim(max(abs(worse_f))*(1.1)*[-1,1]);
-title('Convergence of GA');
-saveas(fig1,strcat(save_dir,'ga_canon_conv'),'epsc');
+title('Convergence of Real GA');
+saveas(fig1,strcat(save_dir,'ga_real_conv'),'epsc');

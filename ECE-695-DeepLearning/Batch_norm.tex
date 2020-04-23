@@ -1,0 +1,147 @@
+\documentclass[11pt]{article}
+
+% ------
+% LAYOUT
+% ------
+\textwidth 165mm %
+\textheight 230mm %
+\oddsidemargin 0mm %
+\evensidemargin 0mm %
+\topmargin -15mm %
+\parindent= 10mm
+
+\usepackage[dvips]{graphics}
+% \usepackage{multirow,multicol}
+\usepackage[table]{xcolor}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+% \usepackage{subfigure}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amsmath}
+% \usepackage{physics}
+\usepackage{enumerate}
+\usepackage{mathtools}
+% \usepackage{cancel}
+% \usepackage{epstopdf}
+
+\setlength{\parskip}{0.5em}
+
+\graphicspath{{../pix/}} % put all your figures here.
+%\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+% \lstset{ %
+%   language = python
+%   backgroundcolor=\color{white},   % choose the background color
+%   basicstyle=\footnotesize,        % size of fonts used for the code
+%   frame = trlb,
+%   numbers=left,
+%   stepnumber=1,
+%   showstringspaces=false,
+%   tabsize=1,
+%   breaklines=true,                 % automatic line breaking only at whitespace
+%   captionpos=t,                    % sets the caption-position to bottom
+%   commentstyle=\color{mygreen},    % comment style
+%   %escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+%   keywordstyle=\color{blue},       % keyword style
+%   stringstyle=\color{mymauve},     % string literal style
+% }
+
+% % Define Language
+% \lstdefinelanguage{Output}
+% {
+%   % list of keywords
+% %   morekeywords={
+% %     import,
+% %     if,
+% %     while,
+% %     for
+% %   },
+%   sensitive=false, % keywords are not case-sensitive
+% %   morecomment=[l]{//}, % l is for line comment
+% %   morecomment=[s]{*}{*/}, % s is for start and end delimiter
+% %   morestring=[b]" % defines that strings are enclosed in double quotes
+% }
+% \lstset{ %
+%   language = {Output}
+% %   backgroundcolor=\color{white},   % choose the background color
+% %   basicstyle=\footnotesize,        % size of fonts used for the code
+%   frame = trlb,
+%   numbers=left,
+%   stepnumber=1,
+%   showstringspaces=false,
+%   tabsize=1,
+%   breaklines=true,                 % automatic line breaking only at whitespace
+%   captionpos=t,                    % sets the caption-position to top
+%   }
+%%##########################
+% My short functions
+\newcommand{\V}[1]{\pmb{#1}}
+\newcommand{\rp}{{\color{red}\pmb{+}}}
+\newcommand{\bm}{{\color{blue}\pmb{-}}}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\newcommand{\refEq}[1]{Eq. \ref{#1}}
+\newcommand{\reflst}[1]{Listing \ref{#1} at page \pageref{#1}}
+\newcommand{\reftbl}[1]{Table \ref{#1}}
+\newcommand{\reffig}[1]{Figure \ref{#1}}
+\newcommand{\dx}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\ddx}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+%%###########################
+
+\begin{document}
+\begin{center}
+\Large{\textbf{Batch Norm}}
+
+Rahul Deshmukh
+
+\today
+\end{center}
+
+%#########################################
+\section{Question posted on Piazza}
+In today's class for Batch Normalization, we said that there are no learnable parameters. However, pytorch's documentation says that the $\gamma, \beta$ are learnable parameters of size 'C' (number of input channels). Also, we compute the constants $\mu_B, \sigma_B^2$ per channel. Thus we would need to back propagate to update the learnable parameters. 
+
+From my calculations, I get the following gradients:
+\begin{align*}
+g_{\gamma} &= \hat{z}^Tg_y\\
+g_{\beta} &= g_y\\
+g_{z} &= \frac{\gamma}{\sqrt{\sigma_B^2 + \epsilon}}\odot g_y
+\end{align*}
+
+can anyone verify if they get the same expressions? Also why does this help in making the training fast? Is it because of the multiplicative factor to $g_{z}$ that the gradients will not get muted?
+
+\section{My Asnwer:}
+
+A quick background read on batch normalization made me understand why batch normalization makes training faster. The key factor is the multiplicative factor to the gradient. 
+
+When training a DNN we can encounter two issues with gradients, (1) Vanishing gradients (2) Exploding gradients.  While in case (1) we stop learning whereas in case (2) the gradient direction no longer ensures descent which causes problems in convergence. Batch Normalization handles both these cases effectively by rescaling the gradient by $\frac{1}{\sqrt{\sigma_B^2 + \epsilon }}$ to ensure descent for case (2) and scaling by $\gamma$ as a solution to case (1).
+
+To see why the gradient direction is not a descent direction we can write the second order taylor's expansion of loss:
+\begin{align*}
+d^{(k)} &= -\nabla_{\theta} L(\theta^{(k)})\\
+\theta^{(k+1)}  &= \theta^{(k)} +\alpha  d^{(k)}  \\
+%
+L(\theta^{(k+1)}) &= L(\theta^{(k)}) +  (\nabla_{\theta} L(\theta^{(k)}) )^T(\theta^{(k+1)} - \theta^{(k)}  )  +\frac{1}{2!}(\theta^{(k+1)} - \theta^{(k)}  )^T (\nabla_{\theta}^2 L(\theta^{(k)}) )(\theta^{(k+1)} - \theta^{(k)}  )\\
+%
+\Rightarrow L(\theta^{(k+1)})&= L(\theta^{(k)}) - \alpha||d^{(k)}||^2_2  +\frac{\alpha^2}{2}( d^{(k)})^T (\nabla_{\theta}^2 L(\theta^{(k)}) )(d^{(k)} )
+\end{align*}
+
+Thererefore if $ \frac{\alpha^2}{2}( d^{(k)})^T (\nabla_{\theta}^2 L(\theta^{(k)}) )(d^{(k)} )\geq\alpha||d^{(k)}||^2_2 $ then $d^{(k)}$ is not a descent direction. To ensure that it is a direction of descent we can either decrease $\alpha$ or rescale the gradients and hessian. BN takes the second approach which is better because then we can choose step size without worrying about descent. 
+
+BN recenters and scales the input ($y$) to $z= \frac{y-\mu}{\sigma}$ . Due to such a transformation the Loss gradient and Hessian also get scaled by $\frac{1}{\sigma}$. And the new taylors series is given by:
+\begin{align*}
+L(\theta^{(k+1)})&= L(\theta^{(k)}) - \frac{\alpha}{\sigma^2}||d^{(k)}||^2_2  +\frac{\alpha^2}{2\sigma^3}( d^{(k)})^T (\nabla_{\theta}^2 L(\theta^{(k)}) )(d^{(k)} )
+\end{align*}
+
+Therefore the quadratic term can no longer be greater than the first order term and hence we have a descent direction.
+
+\vspace{2ex}
+BN also rescales the gradient by $\gamma$ which helps in case of vanishing gradient and the effect of BN can be understood as a method of increasing the gradient magnitude through a learnable parameter. 
+
+\end{document}

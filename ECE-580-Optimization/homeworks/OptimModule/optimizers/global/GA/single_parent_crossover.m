@@ -1,4 +1,4 @@
-function offspring = crossover(mating_pool, p_xover, Num_var, coded_lens)
+function offspring = single_parent_crossover(mating_pool, p_xover, Num_var, coded_lens)
 [N_pop,~] = size(mating_pool);
 cumsum_coded_lens = [0, cumsum(coded_lens)];
 

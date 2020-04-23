@@ -66,7 +66,7 @@ for i=1:N_pop
    X(i,:) = ith_route;    
 end
 %encode X
-parents = encode(X, lb, ub, coded_lens);
+parents = encode(X, lb, ub, coded_lens, resolution);
 % evaluate fitness of parents
 f_parent = -1*fitness(parents, lb, coded_lens, resolution, x_pos, y_pos);
 [best_f, av_f, worse_f] = log_f(f_parent, best_f, av_f, worse_f);
