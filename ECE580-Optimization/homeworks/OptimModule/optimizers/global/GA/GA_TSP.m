@@ -74,7 +74,7 @@ for i=1:Niters
    % generate mating pool using selection
    mating_pool = selection(parents, f_parent);
    %perform crossover
-   parents = crossover(mating_pool, p_xover, Num_city, coded_lens);
+   parents = single_parent_crossover(mating_pool, p_xover, Num_city, coded_lens);
    %perform mutation
    
    %perform elitism

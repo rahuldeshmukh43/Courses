@@ -1,0 +1,290 @@
+\documentclass[11pt]{article}
+
+% ------
+% LAYOUT
+% ------
+\textwidth 165mm %
+\textheight 230mm %
+\oddsidemargin 0mm %
+\evensidemargin 0mm %
+\topmargin -15mm %
+\parindent= 10mm
+
+\usepackage[dvips]{graphics}
+% \usepackage{multirow,multicol}
+\usepackage[table]{xcolor}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+% \usepackage{subfigure}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amsmath}
+% \usepackage{physics}
+\usepackage{enumerate}
+\usepackage{mathtools}
+% \usepackage{cancel}
+% \usepackage{epstopdf}
+
+\setlength{\parskip}{0.5em}
+
+\graphicspath{{../pix/}} % put all your figures here.
+\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+% My short functions
+\newcommand{\V}[1]{\pmb{#1}}
+\newcommand{\rp}{{\color{red}\pmb{+}}}
+\newcommand{\bm}{{\color{blue}\pmb{-}}}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\newcommand{\refEq}[1]{Eq. \ref{#1}}
+\newcommand{\reflst}[1]{Listing \ref{#1} at page \pageref{#1}}
+\newcommand{\reftbl}[1]{Table \ref{#1}}
+\newcommand{\reffig}[1]{Figure \ref{#1}}
+\newcommand{\dx}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\ddx}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+%%###########################
+
+\begin{document}
+\begin{center}
+\Large{\textbf{ECE 580: Homework 5}}
+
+Rahul Deshmukh
+
+\today
+\end{center}
+
+%#########################################
+\subsection*{Exercise 1} 
+In my Canonical GA, I am using the following parameter settings:
+\begin{itemize}
+ \item Number of bits used to represent each variable: 10 (resolution=0.0098)
+ \item Population size: 40
+ \item Number of iterations: 30
+ \item Probability for cross-over: 0.9
+ \item Probability of Mutation: 0.01
+ \item Selection Method: tournament selection method-2
+\end{itemize}
+
+\noindent After carrying out several trials, I obtain an optimal function value of $1.7928e-05$ for the optimal solution as
+$x^* = \mat{-0.0049&   -0.0049 }^T$. The plot for best, average, and the worst objective function values in the population for every generation is at \reffig{fig:ga_canon_conv}.
+
+\begin{figure}[!h]
+ \centering
+ \includegraphics[width=0.6\textwidth]{ga_canon_conv}
+ \caption{Plot of Average, Best and Worse function values for GA}
+ \label{fig:ga_canon_conv}
+\end{figure}
+
+\noindent For main file for GA refer to \reflst{lst:cga_main}. The fitness function can be refered at \reflst{lst:cga_fit} \&  \reflst{lst:cga_fit2}. The encoding and decoding functions can be found at \reflst{lst:cga_encode} \& \reflst{lst:cga_decode} respectively. The function for Tournament selection is at \reflst{lst:tournament_selection}. The function for crossover, mutation and elitism can be refered at \reflst{lst:cga_xover}, \reflst{lst:cga_mut} \& \reflst{lst:ga_elitism} respectively.
+
+%
+\clearpage
+\vspace{2ex}
+%
+\subsection*{Exercise 2} 
+In my Real-Number GA, I am using the following parameter settings:
+\begin{itemize}
+ \item Population size: 40
+ \item Number of iterations: 30
+ \item Probability for cross-over: 0.9
+ \item Crossover-Method: Convex Combination
+ \item Probability of Mutation: 0.01
+ \item Selection Method: tournament selection method-2
+\end{itemize}
+
+\noindent After carrying out several trials, I obtain an optimal function value of $1.7333e-11$ for the optimal solution as
+$x^* = 1.0e-05*\mat{0.0195&    0.8318}^T$. The plot for best, average, and the worst objective function values in the population for every generation is at \reffig{fig:ga_real_conv}.
+
+\begin{figure}[!h]
+ \centering
+ \includegraphics[width=0.6\textwidth]{ga_real_conv}
+ \caption{Plot of Average, Best and Worse function values for GA}
+ \label{fig:ga_real_conv}
+\end{figure}
+
+\noindent For main file for GA refer to \reflst{lst:rga_main}. The fitness function can be refered at \reflst{lst:cga_fit} \&  \reflst{lst:cga_fit2}. The function for Tournament selection is at \reflst{lst:tournament_selection}. The function for crossover, mutation and elitism can be refered at \reflst{lst:rga_xover}, \reflst{lst:rga_mut} \& \reflst{lst:ga_elitism} respectively.
+
+%
+\clearpage
+\vspace{2ex}
+%
+\subsection*{Exercise 3}
+The given LP problem is:
+\begin{align*}
+ \text{maximize} \quad& -4x_1 -3x_2\\
+ \text{subject to} \quad& 5x_1 +x_2 \geq 11\\
+ & 2x_1 +x_2 \geq 8\\
+ & x_1 + 2x_2 \geq 7\\
+ & x_1,x_2 \geq 0
+\end{align*}
+
+\noindent We first convert the above problem to standard form:
+\begin{align*}
+ \text{minimize} \quad& 4x_1 +3x_2\\
+ \text{subject to} \quad& 5x_1 +x_2 - x_3=  11\\
+ & 2x_1 +x_2 -x_4 = 8\\
+ & x_1 + 2x_2 -x_5 = 7\\
+ & x_1,x_2,x_3,x_4,x_5 \geq 0
+\end{align*}
+
+\noindent We then solve the above problem using Two-phase simplex method. The computations (with pivot elements in boxes) are as follows:
+\begin{align}
+\text{Phase 1:}&\nonumber\\
+%
+\begin{bmatrix}
+ \V{A}& \V{I}& \V{b}\\
+ \V{0}^T& \V{1}^T& 0
+\end{bmatrix}
+% 
+&=\begin{bmatrix}
+5&	1&	-1&	0&	0&	1&	0&	0&	11\\
+2&	1&	0&	-1&	0&	0&	1&	0&	8\\
+1&	2&	0&	0&	-1&	0&	0&	1&	7\\
+0&	0&	0&	0&	0&	1&	1&	1&	0
+\end{bmatrix}\nonumber\\
+% 
+&=\begin{bmatrix}
+\fbox{{\color{red}5}}&	1&	-1&	0&	0&	1&	0&	0&	11\\
+2&	1&	0&	-1&	0&	0&	1&	0&	8\\
+1&	2&	0&	0&	-1&	0&	0&	1&	7\\
+-8&	-4&	1&	1&	1&	0&	0&	0&	-26
+\end{bmatrix}\nonumber\\
+% 
+&=\begin{bmatrix}
+1&	1/5&	-1/5&	0&	0&	1/5&	0&	0&	11/5\\
+0&	3/5&	2/5&	-1&	0&	-2/5&	1&	0&	18/5\\
+0&	\fbox{{\color{red}9/5}}&	1/5&	0&	-1&	-1/5&	0&	1&	24/5\\
+0&	-12/5&	-3/5&	1&	1&	8/5&	0&	0&	-42/5
+\end{bmatrix}\nonumber\\
+% 
+&=\begin{bmatrix}
+1&	0&	-2/9&	0&	1/9&	2/9&	0&	-1/9&	5/3\\
+0&	0&	\fbox{{\color{red}1/3}}&	-1&	1/3&	-1/3&	1&	-1/3&	2\\
+0&	1&	1/9&	0&	-5/9&	-1/9&	0&	5/9&	8/3\\
+0&	0&	-1/3&	1&	-1/3&	4/3&	0&	4/3&	-2
+\end{bmatrix}\nonumber\\
+% 
+&=\begin{bmatrix}
+1&	0&	0&	-2/3&	1/3&	0&	2/3&	-1/3&	3\\
+0&	0&	1&	-3&	1&	-1&	3&	-1&	6\\
+0&	1&	0&	1/3&	-2/3&	0&	-1/3&	2/3&	2\\
+0&	0&	0&	0&	0&	1&	1&	1&	0
+\end{bmatrix}\nonumber
+\end{align}
+%
+\begin{align}
+\text{Phase 2:}&\nonumber\\
+%
+\begin{bmatrix}
+ \V{A}& \V{b}\\
+ \V{c}^T& 0
+\end{bmatrix}
+%
+&=\begin{bmatrix}
+1&	0&	0&	-2/3&	1/3&	3\\
+0&	0&	1&	-3&	1&	6\\
+0&	1&	0&	1/3&	-2/3&	2\\
+4&	3&	0&	0&	0&	0
+\end{bmatrix}\nonumber\\
+% 
+&=\begin{bmatrix}
+1&	0&	0&	-2/3&	1/3&	3\\
+0&	0&	1&	-3&	1&	6\\
+0&	1&	0&	1/3&	-2/3&	2\\
+0&	0&	0&	5/3&	2/3&	-18
+\end{bmatrix}\nonumber
+\end{align}
+
+\noindent The optimal solution is given by $x_1^*=3, x_2^*=2$ with maximum function value as $-4x_1^* -3x_2^* = -18$
+
+\noindent For MATLAB function for this problem refer to \reflst{lst:lp_2phsimplex} \& \reflst{lst:lp_simplex} and the call to the function can be referred at \reflst{lst:lp_main} with corresponding output at \reflst{lst:lp_op}.
+%
+\subsection*{Exercise 4} 
+The dual problem is given by:
+\begin{align*}
+ \text{maximize} \quad& \V{\lambda}^T\V{b}\\
+ \text{subject to} \quad& \V{\lambda}^T\V{A} \leq c^T
+\end{align*}
+\noindent that is:
+\begin{align*}
+ \text{maximize} \quad& 11\lambda_1 +8\lambda_2 + 7\lambda_3\\
+ \text{subject to} \quad& \mat{\lambda_1 &\lambda_2& \lambda_3}^T
+ \mat{5& 1\\
+ 2& 1\\
+ 1& 2} 
+ \leq \mat{4& 3}\\
+ & \lambda_1,\lambda_2,\lambda_3 \geq 0
+\end{align*}
+Since we have already obtained the optimal BFS $\V{x}^* = \mat{3& 2& 0& 0& 0}^T$ corresponding to the optimal basis 
+$\V{B} = \mat{5& 1& -1\\ 2& 1& 0\\ 1& 2& 0}$ and cost coefficients $\V{c}_{\V{B}} = \mat{4& 3& 0}^T$. From theorem of duality, we have
+\begin{align*}
+ \V{\lambda}^T\V{b} &= \V{c}^T\V{x} = \V{c}_{\V{B}}^T\V{B}^{-1}\V{b}\\
+ \Rightarrow \V{\lambda}^T &= \V{c}_{\V{B}}^T\V{B}^{-1}\\
+ &= \mat{4& 3& 0}^T \mat{5& 1& -1\\ 2& 1& 0\\ 1& 2& 0}^{-1}\\
+ &= \frac{1}{-3}\mat{4& 3& 0}^T\mat{0& -2& 1\\0& 1& -2\\ 3& -9& 3}^T\\
+ &\V{\lambda}^{* T}= \mat{0& 5/3& 2/3}\\
+ &\V{\lambda}^{* T}\V{b} = 18
+\end{align*}
+% 
+% 
+\clearpage
+\vspace{2ex}
+\subsection*{Exercise 5} 
+
+
+\clearpage
+\vspace{2ex}
+\subsection*{Exercise 6} 
+
+
+\clearpage
+\vspace{2ex}
+\subsection*{Exercise 7} 
+
+
+\newpage
+\subsection*{MATLAB Code}
+%
+\subsection*{Canonical GA Code}
+\lstinputlisting[caption={Canonical GA Main Code},label={lst:cga_main}]{../GA_griewank.m}
+\lstinputlisting[caption={Fitness function},label={lst:cga_fit}]{../fitness_griewank.m}
+\lstinputlisting[caption={Griewank function},label={lst:cga_fit2}]{../griewank_fun.m}
+\lstinputlisting[caption={Encoding function},label={lst:cga_encode}]{../../OptimModule/optimizers/global/GA/encode.m}
+\lstinputlisting[caption={Decoding function},label={lst:cga_decode}]{../../OptimModule/optimizers/global/GA/decode.m}
+\lstinputlisting[caption={Roulette-wheel selection function},label={lst:ga_selection_roulette}]{../../OptimModule/optimizers/global/GA/roulette.m}
+\lstinputlisting[caption={Tournament selection function},label={lst:tournament_selection}]{../../OptimModule/optimizers/global/GA/tournament_selection.m}
+\lstinputlisting[caption={Cross-over function},label={lst:cga_xover}]{../../OptimModule/optimizers/global/GA/two_point_crossover.m}
+\lstinputlisting[caption={Mutation function},label={lst:cga_mut}]{../../OptimModule/optimizers/global/GA/mutation.m}
+\lstinputlisting[caption={Elitism function},label={lst:ga_elitism}]{../../OptimModule/optimizers/global/GA/elitism.m}
+\lstinputlisting[caption={Logging function},label={lst:ga_logger}]{../../OptimModule/optimizers/global/GA/log_f.m}
+% 
+\subsection*{Real GA Code}
+\lstinputlisting[caption={Real GA Main Code},label={lst:rga_main}]{../Real_GA_griewank.m}
+\lstinputlisting[caption={Cross-over function},label={lst:rga_xover}]{../../OptimModule/optimizers/global/GA/Real_Num_GA/crossover.m}
+\lstinputlisting[caption={Mutation function},label={lst:rga_mut}]{../../OptimModule/optimizers/global/GA/Real_Num_GA/mutation.m}
+% 
+\subsection*{Linear programming Code}
+\lstinputlisting[caption={Linprog Main Code},label={lst:lp_main}]{../linprog_call.m}
+\lstinputlisting[caption={Two Phase Simplex},label={lst:lp_2phsimplex}]{../../OptimModule/optimizers/linprog/mylinprog.m}
+\lstinputlisting[caption={Simplex Method},label={lst:lp_simplex}]{../../OptimModule/optimizers/linprog/simplex.m}
+\begin{lstlisting}[caption={LP output}, label={lst:lp_op}]
+ ** Optimum Solution found using mylinprog **
+
+x_str =
+
+       3       
+       2       
+
+
+fval =
+
+      18    
+\end{lstlisting}
+% 
+\end{document}
