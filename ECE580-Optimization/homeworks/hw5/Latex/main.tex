@@ -1,5 +1,5 @@
-\documentclass[11pt]{article}
-
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
 % ------
 % LAYOUT
 % ------
@@ -9,9 +9,9 @@
 \evensidemargin 0mm %
 \topmargin -15mm %
 \parindent= 10mm
+\setlength{\parskip}{0.5em}
 
 \usepackage[dvips]{graphics}
-% \usepackage{multirow,multicol}
 \usepackage[table]{xcolor}
 \usepackage{listings}
 \usepackage{color}
@@ -21,16 +21,13 @@
 \usepackage{amsfonts}
 \usepackage{amsthm}
 \usepackage{amsmath}
-% \usepackage{physics}
-\usepackage{enumerate}
 \usepackage{mathtools}
-% \usepackage{cancel}
-% \usepackage{epstopdf}
+\usepackage{pifont}
 
-\setlength{\parskip}{0.5em}
+% 
+\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
 
 \graphicspath{{../pix/}} % put all your figures here.
-\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
@@ -48,6 +45,9 @@
 \newcommand{\reffig}[1]{Figure \ref{#1}}
 \newcommand{\dx}[2]{\frac{\partial #1}{\partial #2}}
 \newcommand{\ddx}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\cmark}{{\color{blue}\text{\ding{51}}}}%
+\newcommand{\xmark}{{\color{red}\text{\ding{55}}}}%
+\newcommand{\TODO}{{\color{red}TODO}}
 %%###########################
 
 \begin{document}
@@ -276,10 +276,14 @@ Therefore $\V{x}^*_b =\mat{2\\ \pm \sqrt{5}\\ 1}$ is a strict minimizer of $-f(x
 \clearpage
 \vspace{2ex}
 \subsection*{Exercise 6} 
-We have to solve the following constrained optimization problem:
+We have to solve the following optimization problem:
+\begin{align*}
+	\text{maximize} \quad& r(x) = \frac{18x_1^2 - 8x_1x_2 +12x_2^2}{2x_1^2 + 2x_2^2}
+\end{align*}
+Suppose the above problem has a solution $x^*$ which maximizes the function. Then $x = tx^*, t\in \mathbb{R}$ can be another possible solution. Therefore we convert the above problem to a constrained maximization problem with unique solution by enforcing the denominator to be 1. The converted problem is given by :
 \begin{align*}
  \text{maximize} \quad& f(x) = 18x_1^2 - 8x_1x_2 +12x_2^2\\
- \text{subject to} \quad& h(x)= 1 - 2x_1^2 + 2x_2^2 = 0
+	\text{subject to} \quad& h(x)= 1 - (2x_1^2 + 2x_2^2) = 0
 \end{align*}
 Converting to minimization problem:
 \begin{align*}
@@ -317,11 +321,341 @@ T(\V{x}^*_a) & = \{y: \nabla_{\V{x}}h_1^T(x)y = 0   \}\\
 &=\{y: y = t\mat{1\\2},\quad t\in\mathbb{R}-\{0\}\}\\
 \Rightarrow y^TL(\V{x}^*_a)y &= 100t^2 > 0 \quad \forall \quad t\in\mathbb{R}-\{0\}
 \end{align*}
-Therefore the solution corresponding to $\lambda=-10$, $\V{x}^*_a =\mat{\mp\frac{2}{\sqrt{10}} \\ \pm\frac{1}{\sqrt{10}}}$ is a strict minimizer of $-f(x)$ and thus is a maximizer of $f(x)$
+Therefore the solution corresponding to $\lambda=-10$, $\V{x}^*_a =\mat{\mp\frac{2}{\sqrt{10}} \\ \pm\frac{1}{\sqrt{10}}}$ is a strict minimizer of $-f(x)$ and thus is a maximizer of $f(x)$.\\ 
+
+\noindent Therefore all possible maximizers of $$r(x) = \frac{18x_1^2 - 8x_1x_2 +12x_2^2}{2x_1^2 + 2x_2^2}$$
+are of the form $\V{x}^* =t\mat{\mp\frac{2}{\sqrt{10}} \\ \pm\frac{1}{\sqrt{10}}} \quad \forall \quad t \in \mathbb{R}$
 
 \clearpage
 \vspace{2ex}
-\subsection*{Exercise 7} 
+\subsection*{Exercise 7}
+We need to find the extremizers for problems (a)-(c)
+\subsubsection*{Problem (a)}
+The given problem is:
+\begin{align*}
+ f(\V{x}) &= x_1^2 + x_2^2 -2x_1 -10x_2 +26\\
+ \text{subject to}\quad g(\V{x})&= \mat{\frac{x_2}{5}-x_1^2\\ 5x_1 +\frac{x_2}{2}-5} \leq \V{0}
+\end{align*}
+The gradients are given by:
+\begin{align*}
+ \nabla f(x) &= \mat{2x_1 -2\\ 2x_2-10}\\
+ \nabla g(x) &= \mat{-2x_1 & 1/5\\ 5&  1/2}\\
+ F(x) &= \mat{2&0\\0&0}\\
+ G_1(x) &= \mat{-2 & 0\\ 0& 0}\\
+ G_2(x) &= \mat{0 & 0\\ 0 &0}
+\end{align*}
+The lagrangian is given by:
+\begin{align*}
+ l(x,\lambda,\mu) &= f(x) + \lambda^Th(x) + \mu^Tg(x)\\
+ \nabla_x l(x,\lambda,\mu) &= \mat{2x_1 -2\\ 2x_2-10} +
+ \mat{-2x_1 & 1/5\\ 5& 1/2}^T\mat{\mu_1\\ \mu_2}\\
+ L(x,\lambda,\mu)&= F(x) + \sum_{i=1}^{m}\lambda_i H_i(x) + \sum_{i=1}^{p}\mu_i G_i(x)\\
+ &=  \mat{2&0\\0&0} +\mu_1\mat{-2 & 0\\ 0& 0} + \mu_2\mat{0 & 0\\ 0 &0}\\
+ &= \mat{2&0\\0&0} +\mu_1\mat{-2 & 0\\ 0& 0}
+\end{align*}
+FONC: Using KKT:-\\
+
+\noindent\underline{Case 1:} $\mu_1=0, \mu_2=0$
+\begin{align*}
+ \nabla_x l(x,\lambda,\mu) &= \mat{2x_1 -2\\ 2x_2-10}=0\\
+ \text{subject to}\quad g_1(x)&=\frac{x_2}{5}-x_1^2 \leq 0\\
+ g_2(x)&=5x_1 +\frac{x_2}{2}-5\leq 0
+\end{align*}
+The solution to the above system of equations is:
+\begin{align*}
+ \V{x}^* &= \mat{1\\5}\\
+ g_1(x)&= 0 \leq 0 \quad\cmark\\
+ g_2(x)&= 5+5/2 \leq 0 \quad\xmark
+\end{align*}
+Therefore the above solution is infeasible\\
+
+\noindent\underline{Case 2:} $\mu_1>0,\mu_2=0$ \TODO
+\begin{align*}
+ \nabla_x l(x,\lambda,\mu) &= \mat{2x_1 -2\\ 2x_2-10} +\mat{-2x_1 & 1/5\\ 5& 1/2}^T\mat{\mu_1\\ 0} =0\\
+ \text{subject to}\quad g_1(x)&=\frac{x_2}{5}-x_1^2 = 0\\
+ g_2(x)&=5x_1 +\frac{x_2}{2}-5\leq 0
+\end{align*}
+The solution to the above system of equations is:
+\begin{align*}
+ \V{x}^* &= \mat{1\\5}\\
+ g_1(x)&= 0 \leq 0 \quad\cmark\\
+ g_2(x)&= 5+5/2 \leq 0 \quad\xmark
+\end{align*}
+Therefore the above solution is infeasible\\
+
+\noindent\underline{Case 3:} $\mu_1=0, \mu_2>0$ \TODO
+
+\noindent\underline{Case 4:} $\mu_1>0, \mu_2>0$ \TODO
+
+
+
+
+\clearpage
+\subsubsection*{Problem (b)}
+\begin{align*}
+ f(\V{x}) &= x_1^2 +x_2^2\\
+ \text{subject to}\quad g(\V{x})&= \mat{-x_1\\-x_2\\-x_1-x_2+5} \leq \V{0}
+\end{align*}
+The gradients are given by:
+\begin{align*}
+ \nabla f(x) &= \mat{2x_1\\ 2x_2}\\
+ \nabla g(x) &= \mat{-1& 0\\ 0& -1\\-1& -1}\\
+ F(x) &= \mat{2&0\\0&2}\\
+ G_1(x) &= \mat{0 & 0\\ 0& 0}\\
+ G_2(x) &= \mat{0 & 0\\ 0 &0}\\
+ G_3(x) &= \mat{0 & 0\\ 0 &0}
+\end{align*}
+The lagrangian is given by:
+\begin{align*}
+ l(x,\lambda,\mu) &= f(x) + \lambda^Th(x) + \mu^Tg(x)\\
+ \nabla_x l(x,\lambda,\mu) &= \mat{2x_1\\ 2x_2} +
+\mat{-1& 0\\ 0& -1\\-1& -1}^T\mat{\mu_1\\ \mu_2\\ \mu_3}\\
+L(x,\lambda,\mu)&= F(x) + \sum_{i=1}^{m}\lambda_i H_i(x) + \sum_{i=1}^{p}\mu_i G_i(x)\\
+&= \mat{2&0\\0&2} + \mu_1\mat{0 & 0\\ 0& 0} + \mu_2\mat{0 & 0\\ 0& 0} + \mu_3\mat{0 & 0\\ 0& 0}\\
+&= \mat{2&0\\0&2} \succ 0 \quad \text{in all of }\mathbb{R}^2
+\end{align*}
+Thus as $L(x,\lambda,\mu)$ is PD in all of $\mathbb{R}^2$, the SONC is always satisfied for any solution satisfying KKT.
+
+\noindent FONC: Using KKT:-\\
+
+\noindent\underline{Case 1:} $\mu_1>0, \mu_2>0, \mu_3>0$
+\begin{align*}
+ \nabla_x l(x,\lambda,\mu) &= \mat{2x_1\\ 2x_2} +
+\mat{-1& 0\\ 0& -1\\-1& -1}^T\mat{\mu_1\\ \mu_2\\ \mu_3}\\
+% 
+ \text{subject to}\quad g_1(x)&=-x_1 = 0\\
+ g_2(x)&=-x_2 = 0\\
+ g_3(x)&= -x_1 -x_2 +5=0
+\end{align*}
+There is no feasible solution to the above system of equations.
+
+\noindent\underline{Case 2:} $\mu_1>0, \mu_2>0, \mu_3=0$
+\begin{align*}
+ \nabla_x l(x,\lambda,\mu) &= \mat{2x_1\\ 2x_2} +
+\mat{-1& 0\\ 0& -1\\-1& -1}^T\mat{\mu_1\\ \mu_2\\ 0}\\
+% 
+ \text{subject to}\quad g_1(x)&=-x_1 = 0\\
+ g_2(x)&=-x_2 = 0\\
+ g_3(x)&= -x_1 -x_2 +5 = 5\leq0 \quad \xmark
+\end{align*}
+There is no feasible solution to the above system of equations.
+
+\noindent\underline{Case 3:} $\mu_1>0, \mu_2=0, \mu_3>0$
+\begin{align*}
+ \nabla_x l(x,\lambda,\mu) &= \mat{2x_1\\ 2x_2} +
+\mat{-1& 0\\ 0& -1\\-1& -1}^T\mat{\mu_1\\ 0\\ \mu_3}\\
+% 
+ \text{subject to}\quad g_1(x)&=-x_1 = 0\\
+ g_2(x)&=-x_2 \leq 0\\
+ g_3(x)&= -x_1 -x_2 +5 =0 
+\end{align*}
+The solution to the above set of equations is :
+\begin{align*}
+ \V{x}^*&=\mat{x_1\\x_2} = \mat{0\\5}\\
+ \mu_3^*&=10\\
+ \mu_1^*&=-10>0 \quad \xmark
+\end{align*}
+There is no feasible solution.
+
+\noindent\underline{Case 4:} $\mu_1=0, \mu_2>0, \mu_3>0$
+\begin{align*}
+ \nabla_x l(x,\lambda,\mu) &= \mat{2x_1\\ 2x_2} +
+\mat{-1& 0\\ 0& -1\\-1& -1}^T\mat{0\\ \mu_2\\ \mu_3}\\
+% 
+ \text{subject to}\quad g_1(x)&=-x_1 \leq 0\\
+ g_2(x)&=-x_2 = 0\\
+ g_3(x)&= -x_1 -x_2 +5 =0 
+\end{align*}
+The solution to the above set of equations is :
+\begin{align*}
+ \V{x}^*&=\mat{x_1\\x_2} = \mat{5\\0}\\
+ \mu_3^*&= 10\\
+ \mu_2^*&= -10>0 \quad \xmark
+\end{align*}
+There is no feasible solution.
+
+\noindent\underline{Case 5:} $\mu_1>0, \mu_2=0, \mu_3=0$
+\begin{align*}
+ \nabla_x l(x,\lambda,\mu) &= \mat{2x_1\\ 2x_2} +
+\mat{-1& 0\\ 0& -1\\-1& -1}^T\mat{\mu_1\\ 0\\ 0}\\
+% 
+ \text{subject to}\quad g_1(x)&=-x_1 = 0\\
+ g_2(x)&=-x_2 \leq 0\\
+ g_3(x)&= -x_1 -x_2 +5 \leq0 
+\end{align*}
+The solution to the above set of equations is :
+\begin{align*}
+ \V{x}^*&=\mat{x_1\\x_2} = \mat{0\\0}\\
+ g_2(x)&=-x_2 =0\leq 0 \quad \cmark\\
+ g_3(x)&= -x_1 -x_2 +5 = 5 \leq0 \quad \xmark\\
+ \mu_1^*&= 0>0 \quad \xmark
+\end{align*}
+There is no feasible solution.
+
+\noindent\underline{Case 6:} $\mu_1=0, \mu_2>0, \mu_3=0$
+\begin{align*}
+ \nabla_x l(x,\lambda,\mu) &= \mat{2x_1\\ 2x_2} +
+\mat{-1& 0\\ 0& -1\\-1& -1}^T\mat{0\\ \mu_2\\ 0}\\
+% 
+ \text{subject to}\quad g_1(x)&=-x_1 \leq 0\\
+ g_2(x)&=-x_2 = 0\\
+ g_3(x)&= -x_1 -x_2 +5 \leq0 
+\end{align*}
+The solution to the above set of equations is :
+\begin{align*}
+ \V{x}^*&=\mat{x_1\\x_2} = \mat{0\\0}\\
+ g_1(x)&=-x_1 =0\leq 0 \quad \cmark\\
+ g_3(x)&= -x_1 -x_2 +5 = 5 \leq0 \quad \xmark\\
+ \mu_2^*&= 0>0 \quad \xmark
+\end{align*}
+There is no feasible solution.
+
+\noindent\underline{Case 7:} $\mu_1=0, \mu_2=0, \mu_3=0$
+\begin{align*}
+ \nabla_x l(x,\lambda,\mu) &= \mat{2x_1\\ 2x_2} +
+\mat{-1& 0\\ 0& -1\\-1& -1}^T\mat{0\\ 0\\ 0}\\
+% 
+ \text{subject to}\quad g_1(x)&=-x_1 \leq 0\\
+ g_2(x)&=-x_2 \leq 0\\
+ g_3(x)&= -x_1 -x_2 +5 \leq0 
+\end{align*}
+The solution to the above set of equations is :
+\begin{align*}
+ \V{x}^*&=\mat{x_1\\x_2} = \mat{0\\0}\\
+ g_1(x)&=-x_1 =0\leq 0 \quad \cmark\\
+ g_2(x)&=-x_2 =0\leq 0 \quad \cmark\\
+ g_3(x)&= -x_1 -x_2 +5 = 5 \leq0 \quad \xmark
+\end{align*}
+There is no feasible solution.
+
+\noindent\underline{Case 8:} $\mu_1=0, \mu_2=0, \mu_3>0$
+\begin{align*}
+ \nabla_x l(x,\lambda,\mu) &= \mat{2x_1\\ 2x_2} +
+\mat{-1& 0\\ 0& -1\\-1& -1}^T\mat{0\\ 0\\ \mu_3}\\
+% 
+ \text{subject to}\quad g_1(x)&=-x_1 \leq 0\\
+ g_2(x)&=-x_2 \leq 0\\
+ g_3(x)&= -x_1 -x_2 +5 =0 
+\end{align*}
+The solution to the above set of equations is :
+\begin{align*}
+ \V{x}^*&=\mat{x_1\\x_2} = \mat{5/2\\5/2},  \mu_3^*= 5\\
+ g_1(x)&=-x_1 =-5/2\leq 0 \quad \cmark\\
+ g_2(x)&=-x_2 =-5/2\leq 0 \quad \cmark
+\end{align*}
+Therefore $\V{x}^*=\mat{x_1\\x_2} = \mat{5/2\\5/2}$ is a possible extremizer. Also since $L(x,\lambda,\mu)\succ0$ for all of $\mathbb{R}^2$, thus $\V{x}^*$ a strict minimizer.
+
+\clearpage
+\subsubsection*{Problem (c)}
+\begin{align*}
+ f(\V{x}) &= x_1^2+6x_1x_2-4x_1 -2x_2\\
+ \text{subject to}\quad g(\V{x})&= \mat{x_1^2 +2x_2-1\\ 2x_1-2x_2-1} \leq \V{0}
+\end{align*}
+The gradients are given by:
+\begin{align*}
+ \nabla f(x) &= \mat{2x_1 +6x_2 -4\\ 6x_1 -2}\\
+ \nabla g(x) &= \mat{2x_1 & 2\\ 2&  -2}\\
+ F(x) &= \mat{2&6\\6&0}\\
+ G_1(x) &= \mat{1 & 0\\ 0& 0}\\
+ G_2(x) &= \mat{0 & 0\\ 0 &0}
+\end{align*}
+The lagrangian is given by:
+\begin{align*}
+ l(x,\lambda,\mu) &= f(x) + \lambda^Th(x) + \mu^Tg(x)\\
+ \nabla_x l(x,\lambda,\mu) &=  \mat{2x_1 +6x_2 -4\\ 6x_1 -2} +
+\mat{2x_1 & 2\\ 2&  -2}^T\mat{\mu_1\\ \mu_2}\\
+L(x,\lambda,\mu)&= F(x) + \sum_{i=1}^{m}\lambda_i H_i(x) + \sum_{i=1}^{p}\mu_i G_i(x)\\
+&= \mat{2&6\\6&0} + \mu_1\mat{1 & 0\\ 0& 0} + \mu_2\mat{0 & 0\\ 0& 0}\\
+&= \mat{2&6\\6&0} + \mu_1\mat{1 & 0\\ 0& 0}
+\end{align*}
+
+\noindent FONC: Using KKT:-
+
+\noindent\underline{Case 1:} $\mu_1=0, \mu_2=0$
+\begin{align*}
+ \nabla_x l(x,\lambda,\mu) &= \mat{2x_1 +6x_2 -4\\ 6x_1 -2} +
+\mat{2x_1 & 2\\ 2&  -2}^T\mat{0\\ 0}\\
+% 
+ \text{subject to}\quad g_1(x)&=x_1^2 +2x_2-1 \leq 0\\
+ g_2(x)&=2x_1-2x_2-1\leq 0
+\end{align*}
+The solution to the above set of equations is :
+\begin{align*}
+ \V{x}^*&=\mat{x_1\\x_2} = \mat{1/3\\5/9}\\
+ g_1(x)&=x_1^2 +2x_2-1 =2/9\leq 0 \quad \xmark\\
+ g_2(x)&=2x_1-2x_2-1 =-13/9\leq 0 \quad \cmark
+\end{align*}
+There is no feasible solution.
+
+\noindent\underline{Case 2:} $\mu_1>0,\mu_2=0$
+\begin{align*}
+ \nabla_x l(x,\lambda,\mu) &= \mat{2x_1 +6x_2 -4\\ 6x_1 -2} +
+\mat{2x_1 & 2\\ 2&  -2}^T\mat{\mu_1\\ 0}\\
+% 
+ \text{subject to}\quad g_1(x)&=x_1^2 +2x_2-1 = 0\\
+ g_2(x)&=2x_1-2x_2-1\leq 0
+\end{align*}
+The solution to the above set of equations gives:
+\begin{align*}
+x_1 &= \frac{1-\mu_1}{3}\\
+x_2 &= \frac{2}{3} - \frac{1}{9}(1-\mu_1^2)\\
+g_1(x)&= x_1^2 +2x_2 -1 = 0\\
+\Rightarrow& 3\mu_1^2 -2\mu_1+ 2 = 0\\
+\Rightarrow \mu_1^*&= \frac{2\pm\sqrt{4-24}}{2} \notin \mathbb{R}  
+\end{align*}
+There is no feasible solution.
+
+\noindent\underline{Case 3:} $\mu_1>0, \mu_2>0$
+\begin{align*}
+ \nabla_x l(x,\lambda,\mu) &= \mat{2x_1 +6x_2 -4\\ 6x_1 -2} +
+\mat{2x_1 & 2\\ 2&  -2}^T\mat{\mu_1\\ \mu_2}\\
+% 
+ \text{subject to}\quad g_1(x)&=x_1^2 +2x_2-1 = 0\\
+ g_2(x)&=2x_1-2x_2-1= 0
+\end{align*}
+The solution to the above set of equations gives :
+\begin{align*}
+ \V{x}^*&=\mat{x_1\\x_2} = \mat{-1\pm \sqrt{3}\\-3/2 \pm \sqrt{3}}\\
+ \mu_1^*&=\pm\frac{1}{\sqrt{3}}(23\mp14\sqrt{3}) >0 \quad \xmark\\
+  \mu_2^*&= \mu_1 + (-4\pm3\sqrt{3})
+\end{align*}
+There is no feasible solution.
+
+\noindent\underline{Case 4:} $\mu_1=0, \mu_2>0$
+\begin{align*}
+ \nabla_x l(x,\lambda,\mu) &= \mat{2x_1 +6x_2 -4\\ 6x_1 -2} +
+\mat{2x_1 & 2\\ 2&  -2}^T\mat{0\\ \mu_2}\\
+% 
+ \text{subject to}\quad g_1(x)&=x_1^2 +2x_2-1 \leq 0\\
+ g_2(x)&=2x_1-2x_2-1= 0
+\end{align*}
+The solution to the above set of equations is :
+\begin{align*}
+ \V{x}^*&=\mat{x_1\\x_2} = \mat{9/14\\1/7}\\
+ \mu_2^*&=13/14 >0 \quad \cmark\\
+ g_1(x)&=x_1^2 +2x_2-1 = -59/196\leq 0 \quad \cmark\\
+\end{align*}
+Therefore $\V{x}^*=\mat{9/14\\1/7}$ is a possible extremizer. 
+
+\noindent SONC: 
+\begin{align*}
+ L(\V{x}^*,\mu^*) &= \mat{2&6\\6&0}\\
+ T(\V{x}^*) &=\{y: \mat{2x_1& 2\\2& -2}y = \V{0}\}\\
+ &=\{y: \mat{9/7& 2\\2& -2}y = \V{0}\}\\
+ &= \{y: y=\V{0}\}\\
+ \Rightarrow y^TL(\V{x}^*,\mu^*)y = 0 \geq 0
+\end{align*}
+Thus $\V{x}^*$ satisfies SONC and therefore is an extremizer. 
+
+\noindent SOSC:
+\begin{align*}
+ \tilde{T}(\V{x}^*) &= \{y:\mat{2&-2}y = 0\}\\
+ &= \{y:y=t\mat{1\\1} \quad \forall \quad t\in \mathbb{R} -\{0\}\}\\
+ \Rightarrow y^TL(\V{x}^*,\mu^*)y &= 14t^2>0 \quad \forall \quad t\in \mathbb{R} -\{0\}
+\end{align*}
+Therefore $\V{x}^*=\mat{9/14\\1/7}$ is a strict minimizer.
+
+
 
 
 \newpage
