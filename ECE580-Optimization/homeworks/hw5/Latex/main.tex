@@ -34,9 +34,7 @@
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
 
 % My short functions
-\newcommand{\V}[1]{\pmb{#1}}
-\newcommand{\rp}{{\color{red}\pmb{+}}}
-\newcommand{\bm}{{\color{blue}\pmb{-}}}
+\newcommand{\V}[1]{\boldsymbol{#1}}
 \newcommand{\floor}[1]{\lfloor #1 \rfloor}
 \newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
 \newcommand{\refEq}[1]{Eq. \ref{#1}}
@@ -369,7 +367,54 @@ The solution to the above system of equations is:
 \end{align*}
 Therefore the above solution is infeasible\\
 
-\noindent\underline{Case 2:} $\mu_1>0,\mu_2=0$ \TODO
+\noindent\underline{Case 2:} $\mu_1=0, \mu_2>0$
+\begin{align*}
+ \nabla_x l(x,\lambda,\mu) &= \mat{2x_1 -2\\ 2x_2-10} +\mat{-2x_1 & 1/5\\ 5& 1/2}^T\mat{0\\ \mu_2} =0\\
+ \text{subject to}\quad g_1(x)&=\frac{x_2}{5}-x_1^2 \leq 0\\
+ g_2(x)&=5x_1 +\frac{x_2}{2}-5= 0
+\end{align*}
+The solution to the above system of equations is:
+\begin{align*}
+ \V{x}^* &= \mat{x_1\\x_2} = \mat{51/101\\ 500/101}\\
+ \mu_2^*& = 20/101\\
+ g_1(x)&=\frac{x_2}{5}-x_1^2 = (100*101-51^2)/101^2 \leq 0 \quad \xmark\\
+\end{align*}
+There is no feasible solution.
+
+\noindent\underline{Case 3:} $\mu_1>0, \mu_2>0$ 
+\begin{align*}
+ \nabla_x l(x,\lambda,\mu) &= \mat{2x_1 -2\\ 2x_2-10} +\mat{-2x_1 & 1/5\\ 5& 1/2}^T\mat{\mu_1\\ \mu_2} =0\\
+ \text{subject to}\quad g_1(x)&=\frac{x_2}{5}-x_1^2 = 0\\
+ g_2(x)&=5x_1 +\frac{x_2}{2}-5= 0
+\end{align*}
+The solution to the above system of equations is:
+\begin{align*}
+ \V{x}^* &= \mat{x_1\\x_2} = \mat{-1\pm\sqrt{3}\\ 20\mp\sqrt{3}}\\
+ \mu_1^* &= \frac{304-202\sqrt{3}}{-2\sqrt{3}} \quad \cmark\\
+ \mu_2^* &= (-300 + 200\sqrt{3} -2\mu_1)/5 >0 \quad\cmark
+\end{align*}
+
+\noindent SONC:
+\begin{align*}
+ L(\V{x}^*,\mu^*)& = \mat{2&0\\0&0} +\mu_1\mat{-2 & 0\\ 0& 0}\\
+ T(\V{x}^*)&= \{y: \mat{-2x_1 & 1/5\\ 5&  1/2}y = 0 \}\\
+ &= \{y: \mat{-2(-1\pm\sqrt{3})& 1/5\\ 5&  1/2}y = 0 \}\\
+ &= \{y: y=\V{0}\}\\
+ \Rightarrow& y^TL(\V{x}^*,\mu^*)y = 0 \geq 0
+\end{align*}
+Thereofore $\V{x}^*  = \mat{-1\pm\sqrt{3}\\ 20\mp\sqrt{3}}$ is an extremizer.
+
+\noindent SOSC:
+\begin{align*}
+ \tilde{T}(\V{x}^*)&= \{y: \mat{-2x_1 & 1/5\\ 5&  1/2}y = 0 \}\\
+ &= \{y: \mat{-2(-1\pm\sqrt{3})& 1/5\\ 5&  1/2}y = 0 \}\\
+ &= \{y: y=\V{0}\}\\
+ \Rightarrow& y^TL(\V{x}^*,\mu^*)y = 0 > 0 \quad \xmark
+\end{align*}
+As $\V{x}^*$ does not satisfy SONC, it is not a minimizer. It is a saddle point.
+
+
+\noindent\underline{Case 4:} $\mu_1>0,\mu_2=0$ 
 \begin{align*}
  \nabla_x l(x,\lambda,\mu) &= \mat{2x_1 -2\\ 2x_2-10} +\mat{-2x_1 & 1/5\\ 5& 1/2}^T\mat{\mu_1\\ 0} =0\\
  \text{subject to}\quad g_1(x)&=\frac{x_2}{5}-x_1^2 = 0\\
@@ -377,18 +422,30 @@ Therefore the above solution is infeasible\\
 \end{align*}
 The solution to the above system of equations is:
 \begin{align*}
- \V{x}^* &= \mat{1\\5}\\
- g_1(x)&= 0 \leq 0 \quad\cmark\\
- g_2(x)&= 5+5/2 \leq 0 \quad\xmark
+ \V{x}^* &= \mat{x_1\\x_2}=\mat{-48+10\sqrt{23}\\23020-4800\sqrt{23}}\\
+ \mu_1^*&= \frac{52+10\sqrt{23}}{4} >0 \quad \cmark\\
+ g_2(x)&= 5x_1 +\frac{x_2}{2}-5 = 11265 - 2350\sqrt{23} \leq 0 \quad\cmark
 \end{align*}
-Therefore the above solution is infeasible\\
+Therefore $\V{x}^*= \mat{-48+10\sqrt{23}\\23020-4800\sqrt{23}}$ is a possible extremizer as it satisfies the KKT conditions.
 
-\noindent\underline{Case 3:} $\mu_1=0, \mu_2>0$ \TODO
+\noindent SONC:
+\begin{align*}
+ L(\V{x}^*,\mu^*)& = \mat{2&0\\0&0} +\mu_1\mat{-2 & 0\\ 0& 0}\\
+ T(\V{x}^*)& = \{y: \mat{-2x_1 & 1/5\\ 5&  1/2}y = 0\}\\
+ &= \{y: \mat{-2(-48+10\sqrt{23}) & 1/5\\ 5&  1/2}y = 0\}\\
+ & = \{y: y=\V{0}\}\\
+ \Rightarrow& y^TL(\V{x}^*,\mu^*)y = 0 \geq 0
+\end{align*}
+Therefore $\V{x}^*$ is an extremizer as it satisfies SONC.
 
-\noindent\underline{Case 4:} $\mu_1>0, \mu_2>0$ \TODO
-
-
-
+\noindent SOSC:
+\begin{align*}
+ \tilde{T}(\V{x}^*)& = \{y: \mat{-2x_1& 1/5}y=0\}\\
+ & = \{y: y=t\mat{1\\10x_1} \quad \forall \quad t\in \mathbb{R}-\{0\}\}\\
+ \Rightarrow& y^TL(\V{x}^*,\mu^*)y = 50x_1(1+x_1)t^2\\
+ & = 50*(-48+10\sqrt{23})(1-48+10\sqrt{23})t^2 < 0 \quad \forall \quad t\in \mathbb{R}-\{0\}\}
+\end{align*}
+Therefore $\V{x}^*=\mat{-48+10\sqrt{23}\\23020-4800\sqrt{23}}$ is a strict maximizer. 
 
 \clearpage
 \subsubsection*{Problem (b)}
