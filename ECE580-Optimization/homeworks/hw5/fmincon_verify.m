@@ -26,7 +26,7 @@ UB=[];
 X0=[0,0];
 [x_str,fval] = fmincon(f,X0,A,b,Aeq,beq,LB,UB,@p6con)
 
-%% P7a: have the correct solution.... fmincon gives a saddle point for the current code
+%% P7a: have the same solution but the extremizer is not a strict minimizer
 fprintf('\n-------P7a------------\n')
 f = @(x) (x(1)^2 +x(2)^2 -2*x(1) -10*x(2) +26);
 A=[5,1/2];
