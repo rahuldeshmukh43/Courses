@@ -278,7 +278,7 @@ We have to solve the following optimization problem:
 \begin{align*}
 	\text{maximize} \quad& r(x) = \frac{18x_1^2 - 8x_1x_2 +12x_2^2}{2x_1^2 + 2x_2^2}
 \end{align*}
-Suppose the above problem has a solution $x^*$ which maximizes the function. Then $x = tx^*, t\in \mathbb{R}$ can be another possible solution. Therefore we convert the above problem to a constrained maximization problem with unique solution by enforcing the denominator to be 1. The converted problem is given by :
+Suppose the above problem has a solution $x^*$ which maximizes the function. Then $x = tx^*, t\in \mathbb{R}-\{0\}$ can be another possible solution. Therefore we convert the above problem to a constrained maximization problem with unique solution by enforcing the denominator to be 1. The converted problem is given by :
 \begin{align*}
  \text{maximize} \quad& f(x) = 18x_1^2 - 8x_1x_2 +12x_2^2\\
 	\text{subject to} \quad& h(x)= 1 - (2x_1^2 + 2x_2^2) = 0
@@ -322,7 +322,7 @@ T(\V{x}^*_a) & = \{y: \nabla_{\V{x}}h_1^T(x)y = 0   \}\\
 Therefore the solution corresponding to $\lambda=-10$, $\V{x}^*_a =\mat{\mp\frac{2}{\sqrt{10}} \\ \pm\frac{1}{\sqrt{10}}}$ is a strict minimizer of $-f(x)$ and thus is a maximizer of $f(x)$.\\ 
 
 \noindent Therefore all possible maximizers of $$r(x) = \frac{18x_1^2 - 8x_1x_2 +12x_2^2}{2x_1^2 + 2x_2^2}$$
-are of the form $\V{x}^* =t\mat{\mp\frac{2}{\sqrt{10}} \\ \pm\frac{1}{\sqrt{10}}} \quad \forall \quad t \in \mathbb{R}$
+are of the form $\V{x}^* =t\mat{\mp\frac{2}{\sqrt{10}} \\ \pm\frac{1}{\sqrt{10}}} \quad \forall \quad t \in \mathbb{R}-\{0\}$
 
 \clearpage
 \vspace{2ex}
