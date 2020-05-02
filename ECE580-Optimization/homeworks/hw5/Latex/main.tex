@@ -405,49 +405,52 @@ The solution to the above system of equations is:
 \end{align*}
 There is no feasible solution.
 
+% \noindent\underline{Case 3:} $\mu_1>0,\mu_2=0$ 
+% \begin{align*}
+%  \nabla_x l(x,\lambda,\mu) &= \mat{2x_1 -2\\ 2x_2-10} +\mat{-2x_1 & 1/5\\ 5& 1/2}^T\mat{\mu_1\\ 0} =0\\
+%  \text{subject to}\quad g_1(x)&=\frac{x_2}{5}-x_1^2 = 0\\
+%  g_2(x)&=5x_1 +\frac{x_2}{2}-5\leq 0
+% \end{align*}
+% On solving the above set of equations we get:
+% \begin{align*}
+%  \mu_1 = 0 > 0 \quad \xmark
+% \end{align*}
+% There is no feasible solution.
+
 \noindent\underline{Case 3:} $\mu_1>0,\mu_2=0$ 
 \begin{align*}
  \nabla_x l(x,\lambda,\mu) &= \mat{2x_1 -2\\ 2x_2-10} +\mat{-2x_1 & 1/5\\ 5& 1/2}^T\mat{\mu_1\\ 0} =0\\
  \text{subject to}\quad g_1(x)&=\frac{x_2}{5}-x_1^2 = 0\\
  g_2(x)&=5x_1 +\frac{x_2}{2}-5\leq 0
 \end{align*}
-On solving the above set of equations we get:
+The solution to the above system of equations is:
 \begin{align*}
- \mu_1 = 0 > 0 \quad \xmark
+\mu_1^*&= 26\pm5\sqrt{23} >0 \quad \cmark\\
+ \V{x}^* &= \mat{x_1\\x_2}=\mat{-\frac{1}{2}\pm\frac{\sqrt{23}}{10}\\ \frac{12}{5}\mp\frac{\sqrt{23}}{2}}\\
+%  
+ g_2(x)&= 5x_1 +\frac{x_2}{2}-5 \\
+ &= -\frac{13}{10}-5 \pm\frac{\sqrt{23}}{4} \leq 0 \quad\cmark
 \end{align*}
-There is no feasible solution.
+Therefore $\V{x}^*= \mat{-\frac{1}{2}\pm\frac{\sqrt{23}}{10}\\ \frac{12}{5}\mp\frac{\sqrt{23}}{2}}$ is a possible extremizer as it satisfies the KKT conditions.
 
-% \noindent\underline{Case 4:} $\mu_1>0,\mu_2=0$ 
-% \begin{align*}
-%  \nabla_x l(x,\lambda,\mu) &= \mat{2x_1 -2\\ 2x_2-10} +\mat{-2x_1 & 1/5\\ 5& 1/2}^T\mat{\mu_1\\ 0} =0\\
-%  \text{subject to}\quad g_1(x)&=\frac{x_2}{5}-x_1^2 = 0\\
-%  g_2(x)&=5x_1 +\frac{x_2}{2}-5\leq 0
-% \end{align*}
-% The solution to the above system of equations is:
-% \begin{align*}
-%  \V{x}^* &= \mat{x_1\\x_2}=\mat{-48+10\sqrt{23}\\23020-4800\sqrt{23}}\\
-%  \mu_1^*&= \frac{52+10\sqrt{23}}{4} >0 \quad \cmark\\
-%  g_2(x)&= 5x_1 +\frac{x_2}{2}-5 = 11265 - 2350\sqrt{23} \leq 0 \quad\cmark
-% \end{align*}
-% Therefore $\V{x}^*= \mat{-48+10\sqrt{23}\\23020-4800\sqrt{23}}$ is a possible extremizer as it satisfies the KKT conditions.
-% 
-% \noindent SONC:
-% \begin{align*}
-%  L(\V{x}^*,\mu^*)& = \mat{2&0\\0&0} +\mu_1\mat{-2 & 0\\ 0& 0}\\
-%  T(\V{x}^*)& = \{y: \mat{-2x_1 & 1/5\\5&1/2}y = 0\}\\
-%  & = \{y: y=\V{0}\}\\
-%  \Rightarrow& y^TL(\V{x}^*,\mu^*)y = 0 \geq 0
-% \end{align*}
-% Therefore $\V{x}^*$ is an extremizer as it satisfies SONC.
-% 
-% \noindent SOSC:
-% \begin{align*}
-%  \tilde{T}(\V{x}^*)& = \{y: \mat{-2x_1& 1/5}y=0\}\\
-%  & = \{y: y=t\mat{1\\10x_1} \quad \forall \quad t\in \mathbb{R}-\{0\}\}\\
-%  \Rightarrow& y^TL(\V{x}^*,\mu^*)y = t^2\mat{1&10x_1} \mat{2-2\mu_1&0\\0&0}  \mat{1\\10x_1}\\
-%  & = t^2(2-2\mu_1) < 0 \quad \forall \quad t\in \mathbb{R}-\{0\}
-% \end{align*}
-% Therefore $\V{x}^*=\mat{-48+10\sqrt{23}\\23020-4800\sqrt{23}}$ is a strict maximizer. 
+\noindent SONC:
+\begin{align*}
+ L(\V{x}^*,\mu^*)& = \mat{2&0\\0&0} +\mu_1\mat{-2 & 0\\ 0& 0}\\
+ T(\V{x}^*)& = \{y: \mat{-2x_1 & 1/5\\5&1/2}y = 0\}\\
+ & = \{y: y=\V{0}\}\\
+ \Rightarrow& y^TL(\V{x}^*,\mu^*)y = 0 \geq 0
+\end{align*}
+Therefore $\V{x}^*$ is an extremizer as it satisfies SONC.
+
+\noindent SOSC:
+\begin{align*}
+ \tilde{T}(\V{x}^*)& = \{y: \mat{-2x_1& 1/5}y=0\}\\
+ & = \{y: y=t\mat{1\\10x_1} \quad \forall \quad t\in \mathbb{R}-\{0\}\}\\
+ \Rightarrow& y^TL(\V{x}^*,\mu^*)y = t^2\mat{1&10x_1} \mat{2-2\mu_1&0\\0&0}  \mat{1\\10x_1}\\
+ & = t^2(2-2\mu_1)\\
+ & = t^2(-50\mp10\sqrt{23})< 0 \quad \forall \quad t\in \mathbb{R}-\{0\}
+\end{align*}
+Therefore $\V{x}^*=\mat{-\frac{1}{2}\pm\frac{\sqrt{23}}{10}\\ \frac{12}{5}\mp\frac{\sqrt{23}}{2}}$ is a strict maximizer. 
 
 % \begin{figure}
 %  \centering
@@ -463,7 +466,7 @@ There is no feasible solution.
 \end{align*}
 The solution to the above system of equations is:
 \begin{align*}
- \V{x}^* &= \mat{x_1\\x_2} = \mat{-1\pm\sqrt{3}\\ 20\mp10\sqrt{3}}\\
+ \V{x}^* &= \mat{x_1\\x_2} = \mat{-1+\sqrt{3}\\ 20-10\sqrt{3}}\\
  \mu_1^* &= \frac{304-202\sqrt{3}}{-2\sqrt{3}}>0 \quad \cmark\\
  \mu_2^* &= (-300 + 200\sqrt{3} -2\mu_1)/5 >0 \quad\cmark
 \end{align*}
