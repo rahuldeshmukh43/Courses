@@ -375,7 +375,7 @@ class Whole_corpus_Dataset(Dataset):
       focus_word_tensor = torch.zeros(len(self.vocab))
       focus_word_tensor[self.vocab.index(window_words[window_size//2])] = 1
       ctx_words_tensor = torch.zeros(len(self.vocab))
-      for i in range(window_size)
+      for i in range(window_size):
         ictx_idx = self.vocab.index(window_words[i])
         ctx_words_tensor[ictx_idx] = 1/window_size
       return focus_word_tensor, ctx_words_tensor
@@ -391,7 +391,7 @@ class SkipGramNet(nn.Module):
   def forward(self, x):
     mid = self.linear1(x)
     out = self.linear2(mid)
-  return out, mid
+    return out, mid
 
 # training :not used
 def run_training_w2v(net, train_dataloader, device, params):

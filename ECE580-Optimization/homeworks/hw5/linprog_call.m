@@ -7,6 +7,17 @@ format rat;
 addpath('../OptimModule/optimizers/linprog/');
 %%
 verbose=0;
+% c = [4; 3];
+% A = [-5, -1;
+%      -2, -1;
+%      -1, -2];
+% b = [-11; -8; -7];
+% Aeq = [];
+% beq = [];
+% LB=[];
+% UB=[];
+% [x_str, fval] = mylinprog(c,A,b,Aeq,beq,LB,UB,verbose)
+
 c = [4; 3];
 A = [-5, -1;
      -2, -1;
@@ -17,3 +28,19 @@ beq = [];
 LB=[];
 UB=[];
 [x_str, fval] = mylinprog(c,A,b,Aeq,beq,LB,UB,verbose)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
