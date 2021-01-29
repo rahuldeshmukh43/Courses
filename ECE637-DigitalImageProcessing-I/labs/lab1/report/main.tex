@@ -1,0 +1,317 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+% ------
+% LAYOUT
+% ------
+\textwidth 165mm %
+\textheight 230mm %
+\oddsidemargin 0mm %
+\evensidemargin 0mm %
+\topmargin -15mm %
+\parindent= 10mm
+\setlength{\parskip}{0.5em}
+
+\usepackage[dvips]{graphics}
+\usepackage[table]{xcolor}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+% \usepackage{subfigure}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{pifont}
+\usepackage[outdir=./]{epstopdf}
+\usepackage{caption}
+\usepackage{subcaption}
+% 
+% \usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+
+% My short functions
+\newcommand{\V}[1]{\boldsymbol{#1}}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\newcommand{\refEq}[1]{Eq. \ref{#1}}
+\newcommand{\reflst}[1]{Listing \ref{#1} at page \pageref{#1}}
+\newcommand{\reftbl}[1]{Table \ref{#1}}
+\newcommand{\reffig}[1]{Figure \ref{#1}}
+\newcommand{\dx}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\ddx}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\cmark}{{\color{blue}\text{\ding{51}}}}%
+\newcommand{\xmark}{{\color{red}\text{\ding{55}}}}%
+\newcommand{\TODO}{{\color{red}TODO}}
+
+%listing styles
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.82}
+
+\lstdefinestyle{CStyle}{
+    backgroundcolor=\color{white},   
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{magenta},
+    stringstyle=\color{mPurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=t,                    
+    keepspaces=true,
+    frame=trlb,
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C
+}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstdefinestyle{PythonStyle}{ %
+  language = python,
+  backgroundcolor=\color{white},   % choose the background color
+  basicstyle=\footnotesize,        % size of fonts used for the code
+  frame = trlb,
+  numbers=left,
+  stepnumber=1,
+  showstringspaces=false,
+  tabsize=1,
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=t,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  %escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{blue},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+}
+%%###########################
+
+\begin{document}
+\begin{center}
+\Large{\textbf{ECE 637: Lab 1}}
+
+Rahul Deshmukh
+
+\today
+\end{center}
+
+%#########################################
+\subsection*{Section 3 Report} 
+
+\begin{enumerate}
+\item Derivation of $H(e^{j\mu},e^{j\nu})$:
+\begin{align*}
+ h(m,n) &= 
+ \begin{cases}
+ \frac{1}{81} & |m|\leq 4, |n|\leq 4\\
+ 0 & \text{elsewhere}
+ \end{cases}\\
+ \text{Let}\quad h_1(m) &= \frac{1}{9}\sum_{i=-4}^4 \delta(m-i)\\
+ \text{Then}\quad h(m,n)&=h_1(m)h_1(n)\\
+ \Rightarrow H_1(e^{ju}) &= \frac{1}{9}\sum_{i=-4}^4 e^{-jiu}\\
+ &= \frac{1}{9} (1+ e^{-ju} + e^{-2ju}+ e^{-3ju} + e^{-4ju} +
+ e^{ju} + e^{2ju}+ e^{3ju} + e^{4ju})\\
+ &= \frac{1}{9}(1+ 2(\sum_{i=1}^{4}cos(iu)) )\\
+ \Rightarrow H(e^{ju},e^{jv}) &= H_1(e^{ju}) H_1(e^{jv})\\
+ &= \frac{1}{81}(1+ 2(\sum_{i=1}^{4}cos(iu)))(1+ 2(\sum_{k=1}^{4}cos(kv)) )
+\end{align*}
+
+
+
+\newpage
+\item Plot of $|H(e^{j\mu},e^{j\nu})|$
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=\textwidth]{../code/python/fig1}
+ \caption{Surface plot}
+\end{figure}
+
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=0.5\textwidth]{../code/python/fig1_contour}
+ \caption{Contour plot}
+\end{figure}
+
+\newpage
+\item Color image of img03.tif
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=0.5\textwidth]{../pix/img03}
+ \caption{color image img03.tif}
+\end{figure}
+
+\newpage
+\item FIR Filtered image of img03.tif
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=0.5\textwidth]{../code/C-Code/run/output/img03_FIR}
+ \caption{FIR filtered color image}
+ \end{figure}
+
+ \item For C-code for FIR filter refer to \reflst{lst:fir}.
+\end{enumerate}
+
+%
+\clearpage
+\vspace{2ex}
+%
+\subsection*{Section 4 Report} 
+\begin{enumerate}
+\item Derivation of $H(e^{j\mu},e^{j\nu})$:
+\begin{align*}
+ h(m,n) &= 
+ \begin{cases}
+ \frac{1}{25} & |m|\leq 2, |n|\leq 2\\
+ 0 & \text{elsewhere}
+ \end{cases}\\
+ \text{Let}\quad h_1(m) &= \frac{1}{5}\sum_{i=-2}^2 \delta(m-i)\\
+ \text{Then}\quad h(m,n)&=h_1(m)h_1(n)\\
+ \Rightarrow H_1(e^{ju}) &= \frac{1}{5}\sum_{i=-2}^2 e^{-jiu}\\
+ &= \frac{1}{5} (1+ e^{-ju} + e^{-2ju}+  e^{ju} + e^{2ju})\\
+ &= \frac{1}{5}(1+ 2(\sum_{i=1}^{2}cos(iu)) )\\
+ \Rightarrow H(e^{ju},e^{jv}) &= H_1(e^{ju}) H_1(e^{jv})\\
+ &= \frac{1}{25}(1+ 2(\sum_{i=1}^{2}cos(iu)))(1+ 2(\sum_{k=1}^{2}cos(kv)) )
+\end{align*}
+
+\item Derivation of $G(e^{j\mu},e^{j\nu})$:
+\begin{align*}
+ g(m,n)&=\delta(m,n) +\lambda(\delta(m,n)-h(m,n))\\
+ G(e^{ju},e^{jv}) &= 1 + \lambda(1-H(e^{ju},e^{jv}))\\
+ &= 1+ \lambda(1- \frac{1}{25}(1+ 2(\sum_{i=1}^{2}cos(iu)))(1+ 2(\sum_{k=1}^{2}cos(kv)) ) )
+\end{align*}
+
+
+
+\newpage
+\item Plot of $|H(e^{j\mu},e^{j\nu})|$
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=\textwidth]{../code/python/fig2}
+ \caption{Surface plot}
+\end{figure}
+
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=0.5\textwidth]{../code/python/fig2_contour}
+ \caption{Contour plot}
+\end{figure}
+
+\newpage
+\item Plot of $|G(e^{j\mu},e^{j\nu})|$ for $\lambda=1.5$
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=\textwidth]{../code/python/fig3}
+ \caption{Surface plot}
+\end{figure}
+
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=0.5\textwidth]{../code/python/fig3_contour}
+ \caption{Contour plot}
+\end{figure}
+
+\newpage
+\item Input color image imgblur.tif
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=0.5\textwidth]{../pix/imgblur}
+ \caption{color image imgblur.tif}
+\end{figure}
+
+\newpage
+\item Output sharpened image for $\lambda=1.5$
+\begin{figure}[!hp]
+\centering
+\includegraphics[width=0.5\textwidth]{../code/C-Code/run/output/imgblur_FIR_sharp}
+\caption{output sharpened image}
+\end{figure}
+
+\item For C-code for FIR sharpening filter refer to \reflst{lst:fir_sharpen}.
+\end{enumerate}
+
+%
+\clearpage
+\vspace{2ex}
+%
+\subsection*{Section 5 Report}
+\begin{enumerate}
+\item Derivation of $H(e^{j\mu},e^{j\nu})$:
+\begin{align*}
+ y(m,n) &= 0.01x(m,n) + 0.9(y(m-1,n)+y(m,n-1)) -0.81y(m-1,n-1)\\
+ &\text{Taking Z transform we get}\\
+ Y(z_1,z_2)&= 0.01X(z_1,z_2) + 0.9(z_1^{-1}Y(z_1,z_2)+z_2^{-1}Y(z_1,z_2)) -0.81z_1^{-1}z_2^{-1}Y(z_1,z_2)\\
+ \Rightarrow H(z_1,z_2) &= \frac{Y(z_1,z_2)}{X(z_1,z_2)}\\
+ &= \frac{0.01}{0.9(z_1^{-1} + z_2^{-1}) -0.81z_1^{-1}z_2^{-1}}\Big|_{z_1=e^{ju},z_2=e^{jv}}\\
+ \Rightarrow H(e^{ju},e^{jv}) &= \frac{0.01}{0.9(e^{-ju} + e^{-jv}) -0.81e^{-ju}e^{-jv}}
+\end{align*}
+
+\newpage
+\item Plot of $|H(e^{j\mu},e^{j\nu})|$
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=\textwidth]{../code/python/fig4}
+ \caption{Surface plot}
+\end{figure}
+
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=0.5\textwidth]{../code/python/fig4_contour}
+ \caption{Contour plot}
+\end{figure}
+
+\item Image of the point spread functions
+% \begin{figure}[!hp]
+%  \centering
+%  \includegraphics[width=0.5\textwidth]{../code/python/lab1_52}
+%  \caption{Contour plot}
+% \end{figure}
+
+\begin{figure}[!hp]
+ \centering
+ \begin{subfigure}[b]{0.45\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{../code/python/lab1_52.jpg}
+  \caption{image for $x(m,n)=\delta(m-127,n-127)$}
+ \end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.45\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{../code/python/lab1_52_IIR}
+  \caption{IIR filtered image $y(m,n)$}
+ \end{subfigure}
+\end{figure}
+
+
+\newpage
+\item IIR Filtered output color image
+\begin{figure}[!hp]
+\centering
+\includegraphics[width=0.5\textwidth]{../code/C-Code/run/output/img03_IIR}
+\caption{IIR filtered image}
+\end{figure}
+
+
+\item For C-code for IIR filter refer to \reflst{lst:iir}.
+\end{enumerate}
+
+
+
+\newpage
+\subsection*{Source Code}
+%
+\lstinputlisting[caption={FIR},label={lst:fir}, style=CStyle]{../code/C-Code/src/ImageReadWrite_FIR.c}
+\lstinputlisting[caption={FIR sharpening},label={lst:fir_sharpen}, style=CStyle]{../code/C-Code/src/ImageReadWrite_FIR_sharpen.c}
+\lstinputlisting[caption={IIR},label={lst:iir}, style=CStyle]{../code/C-Code/src/ImageReadWrite_IIR.c}
+
+\subsection*{Appendix}
+\lstinputlisting[caption={Python code for frequency plots},label={lst:py_fft}, style=PythonStyle]{../code/python/lab1.py}
+
+\lstinputlisting[caption={Python code for plotting psf for IIR filter},label={lst:py_psf_iir}, style=PythonStyle]{../code/python/ex5.2.py}
+
+\begin{lstlisting} 
+\end{lstlisting}
+% 
+\end{document}
