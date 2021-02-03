@@ -1,0 +1,246 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+% ------
+% LAYOUT
+% ------
+\textwidth 165mm %
+\textheight 230mm %
+\oddsidemargin 0mm %
+\evensidemargin 0mm %
+\topmargin -15mm %
+\parindent= 10mm
+\setlength{\parskip}{0.5em}
+
+\usepackage[dvips]{graphics}
+\usepackage[table]{xcolor}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+% \usepackage{subfigure}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{pifont}
+\usepackage[outdir=./]{epstopdf}
+\usepackage{caption}
+\usepackage{subcaption}
+% 
+% \usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+
+% My short functions
+\newcommand{\V}[1]{\boldsymbol{#1}}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\newcommand{\refEq}[1]{Eq. \ref{#1}}
+\newcommand{\reflst}[1]{Listing \ref{#1} at page \pageref{#1}}
+\newcommand{\reftbl}[1]{Table \ref{#1}}
+\newcommand{\reffig}[1]{Figure \ref{#1}}
+\newcommand{\dx}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\ddx}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\cmark}{{\color{blue}\text{\ding{51}}}}%
+\newcommand{\xmark}{{\color{red}\text{\ding{55}}}}%
+\newcommand{\TODO}{{\color{red}TODO}}
+
+%listing styles
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.82}
+
+\lstdefinestyle{CStyle}{
+    backgroundcolor=\color{white},   
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{magenta},
+    stringstyle=\color{mPurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=t,                    
+    keepspaces=true,
+    frame=trlb,
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C
+}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstdefinestyle{PythonStyle}{ %
+  language = python,
+  backgroundcolor=\color{white},   % choose the background color
+  basicstyle=\footnotesize,        % size of fonts used for the code
+  frame = trlb,
+  numbers=left,
+  stepnumber=1,
+  showstringspaces=false,
+  tabsize=1,
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=t,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  %escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{blue},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+}
+%%###########################
+
+\begin{document}
+\begin{center}
+\Large{\textbf{ECE 637: Lab 2}}
+
+Rahul Deshmukh
+
+\today
+\end{center}
+
+%#########################################
+\subsection*{Section 1 Report} 
+
+\begin{enumerate}
+\item Gray scale image img04g.tif
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=\textwidth]{../pix/img04g}
+ \caption{Input gray scale image}
+\end{figure}
+
+\newpage
+\item Power Spectral density plots:
+\begin{figure}[!hp]
+ \centering
+ \begin{subfigure}[b]{0.9\textwidth}
+  \centering
+  \includegraphics[width=0.6\textwidth]{../pix/SpecAnal_64}
+  \caption{PSD for 64x64}
+ \end{subfigure}
+\begin{subfigure}[b]{0.9\textwidth}
+  \centering
+  \includegraphics[width=0.6\textwidth]{../pix/SpecAnal_128}
+  \caption{PSD for 128x128}
+ \end{subfigure}
+ \begin{subfigure}[b]{0.9\textwidth}
+   \centering
+  \includegraphics[width=0.6\textwidth]{../pix/SpecAnal_256}
+  \caption{PSD for 256x256}
+ \end{subfigure}
+\end{figure}
+
+
+\newpage
+\item Improved PSD using \textit{BetterSpecAnal(x)} function:
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=\textwidth]{../pix/BetterSpecAnal_img04g}
+ \caption{improved PSD for img04g.tif}
+\end{figure}
+
+\item For python code of \textit{BetterSpecAnal(x)} function refer to \reflst{lst:better_spec_anal}.
+\end{enumerate}
+
+%
+\clearpage
+\vspace{2ex}
+%
+\subsection*{Section 2 Report} 
+\begin{enumerate}
+\item The image $255*(x+0.5)$:
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=\textwidth]{../pix/Random_image}
+ \caption{random gray scale image generated}
+\end{figure}
+
+We need to find the difference equation for the given transfer function:
+\begin{align*}
+ H(z_1,z_2)= \frac{Y(z_1,z_2)}{X(z_1,z_2)}&= \frac{3}{1-0.99z_1^{-1} -0.99z_2^{-1}+0.981z_1^{-1}z_2^{-1}}\\
+ \Rightarrow Y(z_1,z_2)&= 3X(z_1,z_2) + 0.99(z_1^{-1} + z_2^{-1}) Y(z_1,z_2)  -0.981 z_1^{-1}z_2^{-1} Y(z_1,z_2)\\
+ &\text{Therefore the difference equation is given by:}\\
+ y(m,n) &= 3x(m,n) + 0.99(y(m-1,n) + y(m,n-1)) -0.981y(m-1,n-1)
+\end{align*}
+
+\newpage
+\item The image $y+127$:
+
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=\textwidth]{../pix/filtered_image}
+ \caption{IIR Filtered image}
+\end{figure}
+
+
+\newpage
+\item  Mesh plot of log $S_y(e^{j\mu},e^{j\nu})$:
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=\textwidth]{../pix/SpecAnal_filtered_image_64}
+ \caption{Mesh plot of PSD of y}
+\end{figure}
+
+\newpage
+\item Mesh plot of log of estimated PSD of y using \textit{BetterSpecAnal(y)}:
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=\textwidth]{../pix/BetterSpecAnal_filtered_image}
+ \caption{Mesh plot of PSD of y using \textit{BetterSpecAnal(x)}}
+\end{figure}
+
+\end{enumerate}
+
+
+\newpage
+\subsection*{Source Code}
+%
+\begin{lstlisting}[style={PythonStyle},caption={Python function for BetterSpecAnal},label={lst:better_spec_anal}] 
+def BetterSpecAnal(x,base_name):
+    block_size=64
+    h,w = x.shape
+    cx=w//2; cy=h//2
+    or_x = cx-5*(block_size//2)
+    or_y = cy-5*(block_size//2)
+    windows = []
+    for i in range(5):
+        for j in range(5):
+            ul_x = or_x +i*block_size
+            ul_y = or_y +j*block_size
+            windows.append(x[ul_y:ul_y+block_size,ul_x:ul_x+block_size])
+    W = np.hamming(block_size)
+    W = np.outer(W,W)
+    #multiply 2D hamming window
+    windows = [w*W for w in windows]
+    #compute squred DFT magnitude
+    Z = [ (1/(block_size**2)*np.abs(np.fft.fft2(w))**2) for w in windows]
+    Z = [np.fft.fftshift(z) for z in Z]
+    Zabs = [np.log(z) for z in Z]
+    #compute average
+    av = np.zeros((block_size,block_size))
+    for z in Zabs: av+=z
+    av/=25
+    
+    # Plot the result using a 3-D mesh plot and label the x and y axises properly. 
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    a = b = np.linspace(-np.pi, np.pi, num = block_size)
+    X, Y = np.meshgrid(a, b)
+    
+    surf = ax.plot_surface(X, Y, av, cmap=plt.cm.coolwarm)
+    ax.set_xlim(-1*np.pi,1*np.pi)
+    ax.set_ylim(-1*np.pi,1*np.pi)
+    ax.autoscale(enable=True,axis='z',tight=True)
+    ax.set_xlabel('$\mu$ axis')
+    ax.set_ylabel('$\\nu$ axis')
+    ax.set_zlabel('Z Label')
+    
+    fig.colorbar(surf, shrink=0.5, aspect=5)
+    plt.savefig('BetterSpecAnal_'+base_name+'.eps',format='eps')
+\end{lstlisting}
+
+\subsection*{Appendix}
+\lstinputlisting[caption={Complete python code for computing PSD},style={PythonStyle}]{../code/MySpecAnal.py}
+\lstinputlisting[caption={Python code for generating filtered image for section 2},style={PythonStyle}]{../code/generate_filtered_image.py}
+% 
+\end{document}
