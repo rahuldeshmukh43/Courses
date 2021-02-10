@@ -1,0 +1,10 @@
+T =  2
+Number of pixels in connected set: 36317
+Number of regions in connected components: 41
+T =  1
+Number of pixels in connected set: 3
+Number of regions in connected components: 36
+T =  3
+Number of pixels in connected set: 48926
+Number of regions in connected components: 23
+done
