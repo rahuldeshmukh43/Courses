@@ -19,8 +19,8 @@ def main(filename):
     im = Image.open(filename)
     img = np.array(im)
     NumRegions = np.max(img)
-    cmap = mp.colors.ListedColormap(np.random.rand(NumRegions,3))
-    plt.imshow(img,cmap=cmap)
+    cmap = mp.colors.ListedColormap(np.random.rand(NumRegions+1,3))
+    plt.imshow(img,cmap=cmap,interpolation='none')
     plt.title('Segmentation Image: Threshold='
               +str(threshold)+' NumRegions='+str(NumRegions))
     plt.colorbar(shrink=0.5, aspect=5)
