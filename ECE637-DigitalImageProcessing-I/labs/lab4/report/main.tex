@@ -1,0 +1,328 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+% ------
+% LAYOUT
+% ------
+\textwidth 165mm %
+\textheight 230mm %
+\oddsidemargin 0mm %
+\evensidemargin 0mm %
+\topmargin -15mm %
+\parindent= 10mm
+\setlength{\parskip}{0.5em}
+
+\usepackage[dvips]{graphics}
+\usepackage[table]{xcolor}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+% \usepackage{subfigure}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{pifont}
+\usepackage[outdir=./]{epstopdf}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{hyperref}
+% 
+% \usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+\urlstyle{same}
+
+% My short functions
+\newcommand{\V}[1]{\boldsymbol{#1}}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\newcommand{\refEq}[1]{Eq. \ref{#1}}
+\newcommand{\reflst}[1]{Listing \ref{#1} at page \pageref{#1}}
+\newcommand{\reftbl}[1]{Table \ref{#1}}
+\newcommand{\reffig}[1]{Figure \ref{#1}}
+\newcommand{\dx}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\ddx}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\cmark}{{\color{blue}\text{\ding{51}}}}%
+\newcommand{\xmark}{{\color{red}\text{\ding{55}}}}%
+\newcommand{\TODO}{{\color{red}TODO}}
+
+%listing styles
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.82}
+
+\lstdefinestyle{CStyle}{
+    backgroundcolor=\color{white},   
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{magenta},
+    stringstyle=\color{mPurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=t,                    
+    keepspaces=true,
+    frame=trlb,
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C
+}
+
+\lstdefinestyle{TextStyle}{
+    backgroundcolor=\color{white},   
+%     stringstyle=\color{mPurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=t,                    
+    keepspaces=true,
+    frame=trlb,
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstdefinestyle{PythonStyle}{ %
+  language = python,
+  backgroundcolor=\color{white},   % choose the background color
+  basicstyle=\footnotesize,        % size of fonts used for the code
+  frame = trlb,
+  numbers=left,
+  stepnumber=1,
+  showstringspaces=false,
+  tabsize=1,
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=t,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  %escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{blue},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+}
+\lstdefinestyle{BashStyle}{ %
+  language = bash,
+  backgroundcolor=\color{white},   % choose the background color
+  basicstyle=\footnotesize,        % size of fonts used for the code
+  frame = trlb,
+  numbers=left,
+  stepnumber=1,
+  showstringspaces=false,
+  tabsize=1,
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=t,                    % sets the caption-position to bottom
+  commentstyle=\color{blue},    % comment style
+  %escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{orange},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+}
+%%###########################
+
+\begin{document}
+\begin{center}
+\Large{\textbf{ECE 637: Lab 4}}
+
+Rahul Deshmukh
+
+\today
+\end{center}
+
+%#########################################
+\subsection*{Section 1 Report} 
+
+\begin{enumerate}
+\item Print out of kids.tif
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=\textwidth]{../code/python/output/section1/kids_gray}
+ \caption{kids.tif as gray scale image}
+\end{figure}
+
+\clearpage
+\item Print out of histogram of kids.tif
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=\textwidth]{../code/python/output/section1/kids_histogram}
+ \caption{Histogram of kids.tif}
+\end{figure}
+
+\clearpage
+\item Print out of race.tif
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=\textwidth]{../code/python/output/section1/race_gray}
+ \caption{race.tif as gray scale image}
+\end{figure}
+
+\clearpage
+\item Print out of histogram of race.tif
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=\textwidth]{../code/python/output/section1/race_histogram}
+ \caption{Histogram of race.tif}
+\end{figure}
+
+\item For python code refer to \reflst{lst:hist}.
+\end{enumerate}
+
+%
+\clearpage
+\vspace{2ex}
+%
+\subsection*{Section 2 Report} 
+\begin{enumerate}
+\item For python code refer to \reflst{lst:hist_eq}.
+ 
+\item Plot of $\hat{F}_x(i)$ for \textit{kids.tif}
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=\textwidth]{../code/python/output/section2/kids_cumsum_norm}
+ \caption{$\hat{F}_x(i)$ for \textit{kids.tif}}
+\end{figure}
+
+\clearpage
+\item Plot of equalized image's histogram
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=\textwidth]{../code/python/output/section2/kids_hist_eq_histogram}
+ \caption{equalized image's histogram for \textit{kids.tif}}
+\end{figure}
+
+\clearpage
+\item Equalized image
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=\textwidth]{../code/python/output/section2/kids_hist_eq}
+ \caption{equalized image's histogram for \textit{kids.tif}}
+\end{figure}
+
+\end{enumerate}
+
+%
+\clearpage
+\vspace{2ex}
+%
+\subsection*{Section 3 Report} 
+\begin{enumerate}
+\item For python code refer to \reflst{lst:hist_eq}.
+ 
+\item Plot of transformed image and its histogram for \textit{kids.tif} with $T1=80,\quad T2=160$
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=\textwidth]{../code/python/output/section3/kids_cont_st_gray}
+ \caption{Contrast stretched image for \textit{kids.tif}}
+\end{figure}
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=\textwidth]{../code/python/output/section3/kids_cont_st_histogram}
+ \caption{Histogram of contrast stretched image for \textit{kids.tif}}
+\end{figure}
+\end{enumerate}
+
+%
+\clearpage
+\vspace{2ex}
+%
+\subsection*{Section 4.2 Report} 
+\begin{enumerate}
+\item Image corresponding to the matching gray level
+\begin{figure}[!hp]
+ \centering
+ \includegraphics[width=\textwidth]{../code/python/output/section4/Array_pattern_gamma_1_710}
+ \caption{Array pattern corresponding to matching gray level}
+\end{figure}
+
+\item Derivation of the expression which relates the matching gray level to the value of $\gamma$
+
+\TODO
+
+\item The measured gray level was $g=170$ and measured $\gamma=1.709511$. (For more details refer to the python code at \reflst{lst:gamma_monitor} and bash script at \reflst{lst:bash} with corresponding output log at \reflst{lst:gamma_monitor_log})
+
+\end{enumerate}
+
+%
+\clearpage
+\vspace{2ex}
+%
+\subsection*{Section 4.3.1 Report} 
+\begin{enumerate}
+\item Original and corrected images \textit{linear.tif}
+\begin{figure}[!hp]
+ \centering
+\begin{subfigure}{0.45\textwidth}
+ \centering
+ \includegraphics[width=\textwidth]{../code/python/output/section4/linear}
+ \caption{Original image}
+\end{subfigure}
+\begin{subfigure}{0.45\textwidth}
+ \centering
+ \includegraphics[width=\textwidth]{../code/python/output/section4/linear_gamma_corrected}
+ \caption{Corrected image with $\gamma=1.709511$}
+\end{subfigure} 
+ \caption{plots for linear.tif}
+\end{figure}
+
+\item Formula used to transform the original image
+\TODO
+
+\end{enumerate}
+
+%
+\clearpage
+\vspace{2ex}
+%
+\subsection*{Section 4.3.2 Report} 
+\begin{enumerate}
+\item Original and corrected images for \textit{gamma15.tif}
+\begin{figure}[!hp]
+ \centering
+ \begin{subfigure}{0.45\textwidth}
+ \centering
+ \includegraphics[width=\textwidth]{../code/python/output/section4/gamma15}
+ \caption{Original image with $\gamma=1.5$}
+\end{subfigure}
+\begin{subfigure}{0.45\textwidth}
+ \centering
+ \includegraphics[width=\textwidth]{../code/python/output/section4/gamma15_gamma_corrected}
+ \caption{Corrected image with $\gamma=1.709511$}
+\end{subfigure}  
+ \caption{plots for gamma15.tif}
+\end{figure}
+
+\item Procedure used to change gamma correction of the original image
+\TODO
+
+\end{enumerate}
+
+
+\newpage
+\subsection*{Source Code}%
+\lstinputlisting[caption={Python code for histogram equalization of image},style={PythonStyle},label={lst:hist_eq}]{../code/python/hist_eq.py}
+\lstinputlisting[caption={Python code for contrast stretching of image},style={PythonStyle},label={lst:contrast}]{../code/python/contrast_stretch.py}
+
+\newpage
+\subsection*{Appendix}
+Got to \href{https://github.com/rahuldeshmukh43/Courses/tree/master/ECE637-DigitalImageProcessing-I/labs/lab4/code}{git repo} for complete code.
+%python code
+\lstinputlisting[caption={Python code for printing histogram of image},style={PythonStyle},label={lst:hist}]{../code/python/histogram.py}
+\lstinputlisting[caption={Python code for calculating gamma of display},style={PythonStyle},label={lst:gamma_monitor}]{../code/python/gamma_monitor_4.2.py}
+\lstinputlisting[caption={Python code for gamma correction of image},style={PythonStyle},label={lst:gamma_correction}]{../code/python/gamma_correction.py}
+%bash code
+\lstinputlisting[caption={Bash code for running python code for lab4},style={BashStyle},label={lst:bash}]{../code/python/run.bash}
+% terminal output logs
+\lstinputlisting[caption={output log for task for section4.2},style={TextStyle},label={lst:gamma_monitor_log}]{../code/python/Array_pattern_gamma.log}
+
+\end{document}
