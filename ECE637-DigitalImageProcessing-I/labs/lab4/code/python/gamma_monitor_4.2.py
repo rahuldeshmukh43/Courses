@@ -41,7 +41,8 @@ def main(gray):
     
     #ask if want to save
     print("Do you want to print the image?(y/n): ",end='')
-    print_it=input();
+    print_it=input()
+    print(print_it)
     if(print_it=='y'): 
         plt.savefig('Array_pattern_gamma_'+gamma_str+'.eps', format='eps')
     

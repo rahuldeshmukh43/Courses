@@ -1,5 +1,5 @@
 \documentclass[a4paper,11pt]{article}
-\usepackage[utf8]{inputenc}
+
 % ------
 % LAYOUT
 % ------
@@ -11,6 +11,8 @@
 \parindent= 10mm
 \setlength{\parskip}{0.5em}
 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[dvips]{graphics}
 \usepackage[table]{xcolor}
 \usepackage{listings}
@@ -27,6 +29,7 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{hyperref}
+\usepackage{textcomp}
 % 
 % \usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
 \hypersetup{
@@ -56,6 +59,11 @@
 \definecolor{mGreen}{rgb}{0,0.6,0}
 \definecolor{mGray}{rgb}{0.5,0.5,0.5}
 \definecolor{mPurple}{rgb}{0.58,0,0.82}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{upquote=true}
 
 \lstdefinestyle{CStyle}{
     backgroundcolor=\color{white},   
@@ -94,9 +102,6 @@
     tabsize=2,
 }
 
-\definecolor{mygreen}{rgb}{0,0.6,0}
-\definecolor{mygray}{rgb}{0.5,0.5,0.5}
-\definecolor{mymauve}{rgb}{0.58,0,0.82}
 \lstdefinestyle{PythonStyle}{ %
   language = python,
   backgroundcolor=\color{white},   % choose the background color
@@ -113,6 +118,7 @@
   keywordstyle=\color{blue},       % keyword style
   stringstyle=\color{mymauve},     % string literal style
 }
+
 \lstdefinestyle{BashStyle}{ %
   language = bash,
   backgroundcolor=\color{white},   % choose the background color
@@ -245,9 +251,16 @@ Rahul Deshmukh
  \caption{Array pattern corresponding to matching gray level}
 \end{figure}
 
-\item Derivation of the expression which relates the matching gray level to the value of $\gamma$
+\item Derivation of the expression which relates the matching gray level to the value of $\gamma$\\
 
-\TODO
+For matching gray level we have the following equation:
+\begin{align}
+ I_c &= I_g\nonumber\\
+ \Rightarrow \frac{I_{255}}{2} &= I_{255}(\frac{g}{255})^{\gamma}\nonumber\\
+ \Rightarrow g &= \frac{255}{\gamma}log(0.5)\label{eq:1}
+\end{align}
+
+Using \refEq{eq:1} we can calculte the matching gray level.
 
 \item The measured gray level was $g=170$ and measured $\gamma=1.709511$. (For more details refer to the python code at \reflst{lst:gamma_monitor} and bash script at \reflst{lst:bash} with corresponding output log at \reflst{lst:gamma_monitor_log})
 
@@ -275,8 +288,19 @@ Rahul Deshmukh
  \caption{plots for linear.tif}
 \end{figure}
 
-\item Formula used to transform the original image
-\TODO
+\item Formula used to transform the original image\\
+
+ For CRT we have the following transformation:\vspace{-2ex}
+ \begin{align}
+ y(x) &= 255(\frac{x}{255})^{\gamma} \label{eq:crt}
+ \end{align}
+ We want to find correction function $f(x)$ such that $y(f(x))=x$\vspace{-2ex}
+ \begin{align}
+ y(x) &= 255(\frac{f(x)}{255})^{\gamma}=x\nonumber\\
+ \Rightarrow \gamma log(\frac{f(x)}{255}) &= log(\frac{x}{255})\nonumber\\
+ \Rightarrow f(x) &= 255e^{\frac{1}{\gamma}log(\frac{x}{255})} \label{eq:linear_correction}
+\end{align}
+Using \refEq{eq:linear_correction} we can transform the original image for gamma correction.
 
 \end{enumerate}
 
@@ -302,8 +326,15 @@ Rahul Deshmukh
  \caption{plots for gamma15.tif}
 \end{figure}
 
-\item Procedure used to change gamma correction of the original image
-\TODO
+\item Procedure used to change gamma correction of the original image, for each pixel value do the following:
+
+\begin{description}
+ \item [(i)] Convert $\gamma_1$ image (x) to linear image (y) using \refEq{eq:crt}
+ \item [(ii)] Do gamma correction with $\gamma_2$ using \refEq{eq:linear_correction}
+\end{description}
+
+
+For implementation details refer to \reflst{lst:gamma_correction}
 
 \end{enumerate}
 
