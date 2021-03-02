@@ -5,7 +5,7 @@ Created on Tue Mar  2 00:48:48 2021
 
 @author: rahul
 course: ece637 DIP-1
-lab: 5 section 4
+lab-5 section 5
 """
 import glob,os,sys
 import numpy as np
