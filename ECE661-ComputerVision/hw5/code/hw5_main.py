@@ -2,7 +2,6 @@
 ECE661: hw5 main file
 @author: rahul deshmukh
 email: deshmuk5@purdue.edu
-PUID: 0030004932
 """
 
 #import libraries

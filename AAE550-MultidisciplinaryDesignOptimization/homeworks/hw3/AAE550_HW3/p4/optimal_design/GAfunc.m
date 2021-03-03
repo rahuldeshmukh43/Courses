@@ -5,7 +5,7 @@ function f = GAfunc(x)
 %                   x(4:6): cross sectional area in mm^2: type= continuous
 % Created By Rahul Deshmukh
 % email : deshmuk5@purdue.edu
-% PUID: 0030004932
+% PUID: 00 
 
 
 A = 1E-6*x(4:6); % converted cross sectional areas to [m^2]

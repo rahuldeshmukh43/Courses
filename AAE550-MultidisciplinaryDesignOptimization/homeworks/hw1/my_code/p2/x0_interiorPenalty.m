@@ -1,6 +1,6 @@
 %AAE:550 HW1 P2 
 % Rahul Deshmukh
-% PUID: 0030004932
+% PUID: 00 
 %%
 %script to find x0 for exterior penalty function
 % x=[1/cr,b,a]

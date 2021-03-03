@@ -1,6 +1,6 @@
 %AAE:550 HW1 P2 
 % Rahul Deshmukh
-% PUID: 0030004932
+% PUID: 00 
 %%
 function [f,gradF] = hw1funcwgrad(x)
 % function and its analytical gradient

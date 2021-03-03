@@ -2,7 +2,6 @@
 ECE661: hw10 Part-2: ADABOOST
 @author: Rahul Deshmukh
 email: deshmuk5@purdue.edu
-PUID: 0030004932
 """
 #%% ------------------- Import libraries -------------------------------------#
 import numpy as np

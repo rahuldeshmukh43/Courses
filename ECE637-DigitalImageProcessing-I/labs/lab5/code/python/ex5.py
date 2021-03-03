@@ -92,7 +92,7 @@ def testing(params, A, mu_x):
             mu_k = params[k]['mean']
             cov_k = params[k]['cov']
             class_scores[k] = (np.dot((y-mu_k),np.dot(np.linalg.inv(cov_k),(y-mu_k))) +
-                               np.abs(np.log(np.linalg.det(cov_k))))
+                               np.log(np.abs(np.linalg.det(cov_k))) )
         label = np.argmin(class_scores)
         char = chr(ord('a') + label)
         predicted_labels.append(char)

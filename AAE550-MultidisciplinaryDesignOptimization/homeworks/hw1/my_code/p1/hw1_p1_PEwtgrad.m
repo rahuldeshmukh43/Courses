@@ -1,5 +1,5 @@
 %HW1 problem (1)
-%Rahul Deshmukh PUID: 0030004932
+%Rahul Deshmukh PUID: 00 
 %deshmuk5@purdue.edu
 %---------------begin----------------------%
 %gradient of enrgy function

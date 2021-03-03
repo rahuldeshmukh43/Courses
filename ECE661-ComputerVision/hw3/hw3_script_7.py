@@ -2,7 +2,6 @@
 Created on Sat Sep  8 15:27:50 2018
 
 @author: rahul deshmukh 
-PUID: 0030004932
 HW3 ECE 661: Computer Vision
 email: deshmuk5@purdue.edu
 """

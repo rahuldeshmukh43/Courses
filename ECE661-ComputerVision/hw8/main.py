@@ -2,7 +2,6 @@
 ECE661: hw8 main file
 @author: Rahul Deshmukh
 email: deshmuk5@purdue.edu
-PUID: 0030004932
 """
 #%%
 # import libraries

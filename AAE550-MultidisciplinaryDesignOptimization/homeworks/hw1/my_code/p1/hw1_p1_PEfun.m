@@ -1,11 +1,11 @@
 %HW1 problem (1)
-%Rahul Deshmukh PUID: 0030004932
+%Rahul Deshmukh PUID: 00 
 %deshmuk5@purdue.edu
 %---------------begin----------------------%
-%
-function [K,p]=hw1_p1_tangent()
+%energy function
+function PE=hw1_p1_PEfun(u)
 %input: u is a col vector
-%output: K: tangent or global the stiffness matrix
+%output: PE: scalar value for potential energy function
 
 %definition of constants: E,A,L,phi,P
 E=17.3*10^6;%psi
@@ -29,4 +29,7 @@ K2=[cosd(phi);sind(phi)]*(E*A2/L2)*[cosd(phi),sind(phi)];
 K3=[0;sind(90)]*(E*A3/L3)*[0,sind(90)];
 
 K=K1+K2+K3;
+
+PE=(1/2)*u'*K*u-p'*u;
+
 end

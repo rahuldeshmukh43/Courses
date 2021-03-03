@@ -1,5 +1,5 @@
 % Created by Rahul Deshmukh
-% PUID: 0030004932
+% PUID: 00 
 % email: deshmuk5@purdue.edu
 
 function gen=b10to2(b10,bits)

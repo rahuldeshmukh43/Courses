@@ -2,7 +2,6 @@
 ECE661: hw10 Part-1: PCA-LDA
 @author: Rahul Deshmukh
 email: deshmuk5@purdue.edu
-PUID: 0030004932
 """
 #%% --------------------import libraries -------------------------------------#
 import cv2

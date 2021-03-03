@@ -1,11 +1,13 @@
 %HW1 problem (1)
-%Rahul Deshmukh PUID: 0030004932
+%Rahul Deshmukh PUID: 00 
 %deshmuk5@purdue.edu
 %---------------begin----------------------%
-%energy function
-function PE=hw1_p1_PEfun(u)
+%PE, gradient of PE, and Hessian of PE
+function [PE,gradPE,H]=hw1_p1_HessianPEfun(u)
 %input: u is a col vector
-%output: PE: scalar value for potential energy function
+%output: PE: scalar value of potential energy
+%        gradPE: gradient of potential energy function
+%        H: Hessina of potential energy function: tensor
 
 %definition of constants: E,A,L,phi,P
 E=17.3*10^6;%psi
@@ -31,5 +33,6 @@ K3=[0;sind(90)]*(E*A3/L3)*[0,sind(90)];
 K=K1+K2+K3;
 
 PE=(1/2)*u'*K*u-p'*u;
-
+gradPE=(1/2)*(K+K')*u-p;
+H=(1/2)*(K+K');
 end

@@ -1,6 +1,6 @@
 % AAE:550 HW1 P2 
 % Rahul Deshmukh
-% PUID: 0030004932
+% PUID: 00 
 %%
 function A = hw1SUMTalm(x,r_p,lambda)
 % This function is the pseudo-objective function using the ALM.
