@@ -58,7 +58,7 @@ def main(num_pts):
     X_scaled_hat = np.dot(E_hat.T,X)
     W_hat = np.dot(np.diag(np.sqrt(1/Lam_hat)), X_scaled_hat)
     mu_W_hat, R_W_hat = estimate_mean_cov(W_hat)
-    print('Estimated covariance of W_hat: ')
+    print('Estimated covariance of R_W_hat: ')
     print(R_W_hat);print()
     
     plot_pts(X_scaled_hat,'X_scaled_hat')

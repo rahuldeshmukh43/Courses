@@ -1,0 +1,289 @@
+\documentclass[a4paper,11pt]{article}
+
+% ------
+% LAYOUT
+% ------
+\textwidth 165mm %
+\textheight 230mm %
+\oddsidemargin 0mm %
+\evensidemargin 0mm %
+\topmargin -15mm %
+\parindent= 10mm
+\setlength{\parskip}{0.5em}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[dvips]{graphics}
+\usepackage[table]{xcolor}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+% \usepackage{subfigure}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{pifont}
+\usepackage[outdir=./]{epstopdf}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{hyperref}
+\usepackage{textcomp}
+% 
+% \usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+\urlstyle{same}
+
+% My short functions
+\newcommand{\V}[1]{\boldsymbol{#1}}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\newcommand{\refEq}[1]{Eq. \ref{#1}}
+\newcommand{\reflst}[1]{Listing \ref{#1} at page \pageref{#1}}
+\newcommand{\reftbl}[1]{Table \ref{#1}}
+\newcommand{\reffig}[1]{Figure \ref{#1}}
+\newcommand{\dx}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\ddx}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\cmark}{{\color{blue}\text{\ding{51}}}}%
+\newcommand{\xmark}{{\color{red}\text{\ding{55}}}}%
+\newcommand{\TODO}{{\color{red}TODO}}
+
+%listing styles
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.82}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{upquote=true}
+
+\lstdefinestyle{CStyle}{
+    backgroundcolor=\color{white},   
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{magenta},
+    stringstyle=\color{mPurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=t,                    
+    keepspaces=true,
+    frame=trlb,
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C
+}
+
+\lstdefinestyle{TextStyle}{
+    backgroundcolor=\color{white},   
+%     stringstyle=\color{mPurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=t,                    
+    keepspaces=true,
+    frame=trlb,
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+}
+
+\lstdefinestyle{PythonStyle}{ %
+  language = python,
+  backgroundcolor=\color{white},   % choose the background color
+  basicstyle=\footnotesize,        % size of fonts used for the code
+  frame = trlb,
+  numbers=left,
+  stepnumber=1,
+  showstringspaces=false,
+  tabsize=1,
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=t,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  %escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{blue},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+}
+
+\lstdefinestyle{BashStyle}{ %
+  language = bash,
+  backgroundcolor=\color{white},   % choose the background color
+  basicstyle=\footnotesize,        % size of fonts used for the code
+  frame = trlb,
+  numbers=left,
+  stepnumber=1,
+  showstringspaces=false,
+  tabsize=1,
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=t,                    % sets the caption-position to bottom
+  commentstyle=\color{blue},    % comment style
+  %escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{orange},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+}
+%%###########################
+
+\begin{document}
+\begin{center}
+\Large{\textbf{ECE 637: Lab 5}}
+
+Rahul Deshmukh\\\href{mailto:deshmuk5@purdue.edu}{{\color{blue}deshmuk5@purdue.edu}}
+
+\today
+\end{center}
+
+%#########################################
+\subsection*{Section 2.1 Report} 
+
+Scatter plots of $W,\tilde{X}$ and $X$
+\begin{figure}[!hp]
+ \centering
+ \begin{subfigure}{0.3\textwidth}
+%  \centering
+ \includegraphics[width=\textwidth]{../code/python/output/section_2/W}
+ \caption{plot of $W$}
+ \end{subfigure}
+%  
+ \begin{subfigure}{0.3\textwidth}
+%  \centering
+ \includegraphics[width=\textwidth]{../code/python/output/section_2/X_scaled}
+ \caption{plot of $\tilde{X}$}
+ \end{subfigure}
+%  
+ \begin{subfigure}{0.3\textwidth}
+%  \centering
+ \includegraphics[width=\textwidth]{../code/python/output/section_2/X}
+ \caption{plot of $X$}
+ \end{subfigure}
+ \caption{Scatter plots}
+\end{figure}
+
+For python code refer to \reflst{lst:ex2}.
+
+\clearpage
+\subsection*{Section 2.2 Report} 
+\begin{enumerate}
+ \item Theoretical value of $R_x = \begin{bmatrix}2&-1.2\\-1.2&1\end{bmatrix}$
+ \item Numerical listing of $\hat{R}_x$ can be found in lines 5-7 of \reflst{lst:sec2log}
+ \item Scatter plots of $\tilde{X}_i$ and $W$
+\begin{figure}[!hp]
+ \centering
+ \begin{subfigure}{0.45\textwidth}
+%  \centering
+ \includegraphics[width=\textwidth]{../code/python/output/section_2/W_hat}
+ \caption{plot of $W_i$}
+ \end{subfigure}
+%  
+ \begin{subfigure}{0.45\textwidth}
+%  \centering
+ \includegraphics[width=\textwidth]{../code/python/output/section_2/X_scaled_hat}
+ \caption{plot of $\tilde{X}_i$}
+ \end{subfigure}
+ \caption{Scatter plots}
+\end{figure} 
+ 
+ \item Numerical listing of $\hat{R}_W$ can be found in lines 13-15 of \reflst{lst:sec2log}
+\end{enumerate}
+\lstinputlisting[caption={output log for section2},style={TextStyle},label={lst:sec2log}]{../code/python/output/section_2/sec2.log}
+
+
+%
+\clearpage
+\vspace{2ex}
+\subsection*{Section 4 Report} 
+\begin{enumerate}
+ \item Eigen images:
+ \begin{figure}[!hp]
+  \centering
+  \includegraphics[width=\textwidth]{../code/python/output/section4/eigen_images}
+  \caption{First 12 eigen images with title}
+ \end{figure}
+ 
+ \clearpage
+ \item Plot of projection coefficients vs eigen vector number:
+ \begin{figure}[!hp]
+  \centering
+  \includegraphics[width=\textwidth]{../code/python/output/section4/projections}
+ \end{figure}
+ 
+ \clearpage
+ \item Original image vs 6 resynthesized versions:
+ \begin{figure}[!hp]
+ \centering
+ \begin{subfigure}{0.1\textwidth}
+%  \centering
+ \includegraphics[width=\textwidth]{../pix/a}
+ \caption{Original image}
+ \end{subfigure}
+%  
+ \begin{subfigure}{0.8\textwidth}
+%  \centering
+ \includegraphics[width=\textwidth]{../code/python/output/section4/reconstruction}
+ \caption{Resynthesized image}
+ \end{subfigure}
+\end{figure} 
+
+\end{enumerate}
+For python code refer to \reflst{lst:ex4}
+
+
+\clearpage
+\vspace{2ex}
+\subsection*{Section 5.1 Report} 
+The model has an accuracy of $69.231\%$. The mis-classified images are indicated with 'x' in the third column of \reflst{lst:ex5_opt_0_log}
+\lstinputlisting[caption={output log for classification},style={TextStyle},label={lst:ex5_opt_0_log}]{../code/python/output/section5/ex5_opt_0.log}
+
+\clearpage
+\vspace{2ex}
+\subsection*{Section 5.2 Report} 
+The classification results for all modifications can be found at Listings \ref{lst:ex5_opt_1_log}-\ref{lst:ex5_opt_4_log}.
+
+\begin{enumerate}
+ \item From listings \ref{lst:ex5_opt_1_log}-\ref{lst:ex5_opt_4_log} we can observe that modifications \#1,\#2,\#3 perform the best with same accuracy ($92.308\%$) on testing data.
+ \item When we constrain the covariance ($R_k$) we essentially are trying to obtain well-conditioned $B_k$ which helps in computing the inverse ($B_k$) for computing class scores. This solution is particularly helpful when we have limited training data which can lead to singular ML estimates of $R_k$. Here is a discussion on the effect of constraining for each modification:
+ \begin{enumerate}
+  \item Modification \#1: Accuracy$=92.308\%$ $$B_k=\Lambda_k$$ We make the assumption that we have a pure quadratic classifier (ie only $y^2_i$ terms). Also since we chose only the diagonal terms there are more chances that $B_k$ is non-singular (ie $[\Lambda_k]_{ii}\neq0 \quad \forall\quad i\in[1,2,..,n]$). This explains the improvement in accuracy compared to using $R_k$.
+  
+  \item Modification \#2: Accuracy$=92.308\%$ $$B_k=R_{wc}=\frac{1}{K}\sum_{k=1}^{K}R_k$$ We make the assumption that we have the same well-conditioned quadratic classifier $B_k=R_{wc}$ for all $K$ classes. Since we compute $B_k$ using a sum, the estimate has higher chances of being non-singular. This explains the improvement in accuracy compared to using $R_k$.
+  
+  \item Modification \#3: Accuracy$=92.308\%$ $$B_k=\Lambda$$ We make the asssumption that we have the same well-conditioned pure-quadratic classifier $B_k$ for all $K$ classes using only the diagonal terms of $R_{wc}$ to construct $\Lambda$. This explains the improvement in accuracy compared to using $R_k$.
+  
+  \item Modification \#4: Accuracy$=88.462\%$ $$B_k=I$$ We make the assumption that we have a linear classifier as $B_k=I$. Even though $B_k$ is non-singular in this case but we have reduced the complexity of our model. This explains the improvement in accuracy compared to using $R_k$. However the model does not have enough expressivity to get accuracy close to a quadratic classifier (Modification \#1-\#3).
+\end{enumerate}
+
+\end{enumerate}
+
+\clearpage
+\lstinputlisting[caption={output log for modification \#1},style={TextStyle},label={lst:ex5_opt_1_log}]{../code/python/output/section5/ex5_opt_1.log}
+\lstinputlisting[caption={output log for modification \#2},style={TextStyle},label={lst:ex5_opt_2_log}]{../code/python/output/section5/ex5_opt_2.log}
+\lstinputlisting[caption={output log for modification \#3},style={TextStyle},label={lst:ex5_opt_3_log}]{../code/python/output/section5/ex5_opt_3.log}
+\lstinputlisting[caption={output log for modification \#4},style={TextStyle},label={lst:ex5_opt_4_log}]{../code/python/output/section5/ex5_opt_4.log}
+
+\clearpage
+\subsection*{Appendix}
+Got to \href{https://github.com/rahuldeshmukh43/Courses/tree/master/ECE637-DigitalImageProcessing-I/labs/lab5/code/python/}{git repo} for complete code.
+%python code
+\lstinputlisting[caption={Python code for section 2},style={PythonStyle},label={lst:ex2}]{../code/python/ex2.py}
+\lstinputlisting[caption={Python code for PCA},style={PythonStyle},label={lst:ex4}]{../code/python/ex4.py}
+\lstinputlisting[caption={Python code for image classification using PCA},style={PythonStyle},label={lst:ex5}]{../code/python/ex5.py}
+\lstinputlisting[caption={Python code for data reading utility},style={PythonStyle},label={lst:ex5}]{../code/python/read_data.py}
+%bash code
+\lstinputlisting[caption={Bash code for running python code},style={BashStyle},label={lst:bash}]{../code/python/run.bash}
+% terminal output logs
+% \lstinputlisting[caption={output log for task for section4.2},style={TextStyle},label={lst:gamma_monitor_log}]{../code/python/Array_pattern_gamma.log}
+
+\end{document}

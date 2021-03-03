@@ -21,7 +21,8 @@ def display_eigen_images(U,Lam):
     for k in range(12):
         img=np.reshape(U[:,k],(Wd,Ht))
         axs[k//4,k%4].imshow(img,cmap=plt.cm.gray, interpolation='none') 
-        axs[k//4,k%4].set_title('Lam_'+str(k+1))
+        axs[k//4,k%4].set_title('eigenimg '+str(k+1))
+        axs[k//4,k%4].axis('off')
     plt.savefig('eigen_images.pdf')
     plt.close()
     
@@ -64,6 +65,7 @@ def main():
         img=np.reshape(recons[:,k],(Wd,Ht))
         axs[k//2,k%2].imshow(img,cmap=plt.cm.gray, interpolation='none') 
         axs[k//2,k%2].set_title('m='+str(m[k]))
+        axs[k//2,k%2].axis('off')
     plt.savefig('reconstruction.pdf')
     plt.close()
 
