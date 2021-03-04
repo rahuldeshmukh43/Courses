@@ -10,7 +10,6 @@ lab-5 section 5
 import glob,os,sys
 import numpy as np
 from PIL import Image
-import matplotlib.pyplot as plt
 from read_data import read_data
 
 Ht=64; Wd=64;
@@ -50,7 +49,7 @@ def option23(Y,option):
         params.append(dic)
     R_wc = np.zeros((eig_size,eig_size))
     for k in range(26): R_wc += params[k]['cov']
-    R_wc /= 26
+    R_wc /= 26.0
     if option==2:
         for k in range(26): params[k]['cov'] = R_wc
     elif option==3:
@@ -77,12 +76,12 @@ def testing(params, A, mu_x):
     #read images
     filenames = glob.glob(test_dir+'*/*.tif')
     true_labels = []
-    for i,f in enumerate(filenames):
+    for f in filenames:
         class_label = os.path.basename(f).split('.')[0]
         true_labels.append(class_label)
     #classify data
     predicted_labels = []
-    for i,f in enumerate(filenames):
+    for f in filenames:
         im = Image.open(f)
         img = np.array(im)
         x = np.reshape(img,Ht*Wd) - mu_x
@@ -93,9 +92,9 @@ def testing(params, A, mu_x):
             cov_k = params[k]['cov']
             class_scores[k] = (np.dot((y-mu_k),np.dot(np.linalg.inv(cov_k),(y-mu_k))) +
                                np.log(np.abs(np.linalg.det(cov_k))) )
-        label = np.argmin(class_scores)
-        char = chr(ord('a') + label)
-        predicted_labels.append(char)
+        class_idx = np.argmin(class_scores)
+        class_label = chr(ord('a') + class_idx)
+        predicted_labels.append(class_label)
     return true_labels, predicted_labels    
 
 if __name__=="__main__":
