@@ -41,32 +41,31 @@ def main(X_img,Y_img, filter_size):
     ht, wd = X_img.shape
     assert (ht,wd) == Y_img.shape    
     #make Z
-    Z_sparse=[]; Y_sparse=[]
-    for i in range(sampling_frequency):
-        for j in range(sampling_frequency):
+    Z_sparse=[]; Y_sparse=[]; N=0
+    for i in range(ht//sampling_frequency):
+        for j in range(wd//sampling_frequency):
             row = (i + 1)*sampling_frequency
             col = (j + 1)*sampling_frequency
             zs = X_img[row - filter_half_wd : row + filter_half_wd + 1, 
                        col - filter_half_wd : col + filter_half_wd + 1]
             ys = Y_img[row, col]
-            Z_sparse.append(list(zs.flatten()))
+            Z_sparse.append(list(zs.reshape(filter_size*filter_size)))
             Y_sparse.append(ys)
+            N+=1    
     Z_sparse = np.array(Z_sparse)
     Y_sparse = np.array(Y_sparse)
 
     #compute R_zz, r_zy, theta
-    R_zz = np.dot(Z_sparse.T, Z_sparse)/(sampling_frequency**2)
-    r_zy = np.dot(Z_sparse.T, Y_sparse)/(sampling_frequency**2)
+    R_zz = np.dot(Z_sparse.T, Z_sparse)/N
+    r_zy = np.dot(Z_sparse.T, Y_sparse)/N
     theta = np.dot(np.linalg.inv(R_zz), r_zy)
     
     #apply theta filter to X to get Y_hat
     theta = np.reshape(theta, (filter_size, filter_size))
-    #theta = np.zeros_like(theta)
-    #theta[filter_half_wd, filter_half_wd]=1.
     print('MSME filter: ')
     print(theta)
-    Y_hat_img = conv2d(X_img, theta)
-    #Y_hat_img = conv(X_img, theta)
+    #Y_hat_img = conv2d(X_img, theta)
+    Y_hat_img = conv(X_img, theta)
     
     #rescale to 0-255
     Y_hat_img -= Y_hat_img.min()
@@ -85,6 +84,10 @@ if __name__=="__main__":
     Y_hat_img = main(X_img, Y_img, filter_size)
     
     gray = cm.get_cmap('gray',256)
+    plt.figure(frameon=False)
     plt.imshow(Y_hat_img, cmap=gray)
-    plt.savefig(output_name)
+    plt.axis('off')
+    plt.savefig(output_name, bbox_inches='tight', pad_inches=0)
     
+    #im = Image.fromarray(Y_hat_img)
+    #im.save(temp_name)
