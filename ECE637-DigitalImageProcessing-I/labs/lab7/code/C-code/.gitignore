@@ -1,7 +1,0 @@
-*.o
-*.DS_Store
-bin/*
-demo/output/color.tif
-demo/output/green.tif
-demo/output/data.txt
-.idea
