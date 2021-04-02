@@ -12,7 +12,7 @@ import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
 from matplotlib import cm
-from scipy.signal import convolve2d as conv2d
+#from scipy.signal import convolve2d
 
 filter_size = 7
 sampling_frequency = 20
@@ -21,7 +21,7 @@ def get_base(filename):
     base = os.path.basename(filename).split('.')[0]
     return base
 
-def conv(X_img, conv_filter):
+def conv2d(X_img, conv_filter):
     "apply conv with zero padding"
     filter_half_wd = filter_size//2
     theta = conv_filter.flatten()
@@ -38,6 +38,7 @@ def conv(X_img, conv_filter):
 
 def main(X_img,Y_img, filter_size):
     filter_half_wd = filter_size//2
+    v = np.arange(filter_size) - filter_half_wd
     ht, wd = X_img.shape
     assert (ht,wd) == Y_img.shape    
     #make Z
@@ -46,8 +47,9 @@ def main(X_img,Y_img, filter_size):
         for j in range(wd//sampling_frequency):
             row = (i + 1)*sampling_frequency
             col = (j + 1)*sampling_frequency
-            zs = X_img[row - filter_half_wd : row + filter_half_wd + 1, 
-                       col - filter_half_wd : col + filter_half_wd + 1]
+            #zs = X_img[row - filter_half_wd : row + filter_half_wd + 1, 
+            #           col - filter_half_wd : col + filter_half_wd + 1]
+            zs = X_img[row + v[0] : row + v[-1] + 1, col + v[0] : col + v[-1] + 1]
             ys = Y_img[row, col]
             Z_sparse.append(list(zs.reshape(filter_size*filter_size)))
             Y_sparse.append(ys)
@@ -64,12 +66,12 @@ def main(X_img,Y_img, filter_size):
     theta = np.reshape(theta, (filter_size, filter_size))
     print('MSME filter: ')
     print(theta)
-    #Y_hat_img = conv2d(X_img, theta)
-    Y_hat_img = conv(X_img, theta)
+    #Y_hat_img = convolve2d(X_img, theta)
+    Y_hat_img = conv2d(X_img, theta)
     
     #rescale to 0-255
     Y_hat_img -= Y_hat_img.min()
-    Y_hat_img *= (255./Y_hat_img.max())
+    Y_hat_img *= (255.0/Y_hat_img.max())
     return Y_hat_img.astype(np.uint8)
     
 if __name__=="__main__":
@@ -78,8 +80,8 @@ if __name__=="__main__":
     output_name = get_base(noisy_img_name) + '_predicted.pdf'
     print(output_name)
     
-    X_img = np.array(Image.open(noisy_img_name))
-    Y_img = np.array(Image.open(original_img_name))
+    X_img = np.array(Image.open(noisy_img_name)).astype(np.float32)
+    Y_img = np.array(Image.open(original_img_name)).astype(np.float32)
     
     Y_hat_img = main(X_img, Y_img, filter_size)
     

@@ -1,0 +1,241 @@
+\documentclass[a4paper,11pt]{article}
+
+% ------
+% LAYOUT
+% ------
+\textwidth 165mm %
+\textheight 230mm %
+\oddsidemargin 0mm %
+\evensidemargin 0mm %
+\topmargin -15mm %
+\parindent= 10mm
+\setlength{\parskip}{0.5em}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[dvips]{graphics}
+\usepackage[table]{xcolor}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+% \usepackage{subfigure}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{pifont}
+\usepackage[outdir=./]{epstopdf}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{hyperref}
+\usepackage{textcomp}
+% 
+% \usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+\urlstyle{same}
+
+% My short functions
+\newcommand{\V}[1]{\boldsymbol{#1}}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\newcommand{\refEq}[1]{Eq. \ref{#1}}
+\newcommand{\reflst}[1]{Listing \ref{#1} at page \pageref{#1}}
+\newcommand{\reftbl}[1]{Table \ref{#1}}
+\newcommand{\reffig}[1]{Figure \ref{#1}}
+\newcommand{\dx}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\ddx}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\cmark}{{\color{blue}\text{\ding{51}}}}%
+\newcommand{\xmark}{{\color{red}\text{\ding{55}}}}%
+\newcommand{\TODO}{{\color{red}TODO}}
+
+%listing styles
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.82}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{upquote=true}
+
+\lstdefinestyle{CStyle}{
+    backgroundcolor=\color{white},   
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{magenta},
+    stringstyle=\color{mPurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=t,                    
+    keepspaces=true,
+    frame=trlb,
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C
+}
+
+\lstdefinestyle{TextStyle}{
+    backgroundcolor=\color{white},   
+%     stringstyle=\color{mPurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=t,                    
+    keepspaces=true,
+    frame=trlb,
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+}
+
+\lstdefinestyle{PythonStyle}{ %
+  language = python,
+  backgroundcolor=\color{white},   % choose the background color
+  basicstyle=\footnotesize,        % size of fonts used for the code
+  frame = trlb,
+  numbers=left,
+  stepnumber=1,
+  showstringspaces=false,
+  tabsize=1,
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=t,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  %escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{blue},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+}
+
+\lstdefinestyle{BashStyle}{ %
+  language = bash,
+  backgroundcolor=\color{white},   % choose the background color
+  basicstyle=\footnotesize,        % size of fonts used for the code
+  frame = trlb,
+  numbers=left,
+  stepnumber=1,
+  showstringspaces=false,
+  tabsize=1,
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=t,                    % sets the caption-position to bottom
+  commentstyle=\color{blue},    % comment style
+  %escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{orange},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+}
+%%###########################
+
+\begin{document}
+\begin{center}
+\Large{\textbf{ECE 637: Lab 7}}
+
+Rahul Deshmukh\\\href{mailto:deshmuk5@purdue.edu}{{\color{blue}deshmuk5@purdue.edu}}
+
+\today
+\end{center}
+
+%#########################################
+\subsection*{Section 1 Report} 
+\begin{enumerate}
+\item Plot of four original images:
+ \begin{figure}[!hp]
+  \centering
+\begin{subfigure}{0.45\textwidth}
+%  \centering
+  \includegraphics[width=\textwidth]{../pix/img14g}
+ \caption{Plot of img14g.tif}
+ \end{subfigure}
+\begin{subfigure}{0.45\textwidth}
+%  \centering
+  \includegraphics[width=\textwidth]{../pix/img14bl}
+ \caption{Plot of img14bl.tif}
+ \end{subfigure}
+ \vfill
+ \begin{subfigure}{0.45\textwidth}
+%  \centering
+  \includegraphics[width=\textwidth]{../pix/img14gn}
+ \caption{Plot of img14gn.tif}
+ \end{subfigure}
+ \begin{subfigure}{0.45\textwidth}
+%  \centering
+  \includegraphics[width=\textwidth]{../pix/img14sp}
+ \caption{Plot of img14sp.tif}
+ \end{subfigure}  
+ \end{figure}
+
+\clearpage
+\item Output of filtering of blurred and noisy image
+ \begin{figure}[!hp]
+  \centering
+\begin{subfigure}{0.45\textwidth}
+%  \centering
+  \includegraphics[width=\textwidth]{../code/python/output/sec1/img14bl_predicted}
+ \caption{Plot of restored img14bl.tif}
+ \end{subfigure}
+ \vfill
+ \begin{subfigure}{0.45\textwidth}
+%  \centering
+  \includegraphics[width=\textwidth]{../code/python/output/sec1/img14gn_predicted}
+ \caption{Plot of restored img14gn.tif}
+ \end{subfigure}
+ \begin{subfigure}{0.45\textwidth}
+%  \centering
+  \includegraphics[width=\textwidth]{../code/python/output/sec1/img14sp_predicted}
+ \caption{Plot of restored img14sp.tif}
+ \end{subfigure}  
+ \end{figure}
+
+\clearpage
+\item Computed MSME filter log files:
+\lstinputlisting[caption={output log for img14bl},style={TextStyle},label={lst:sec1log1}]{../code/python/output/sec1/bl.log}
+\lstinputlisting[caption={output log for img14gn},style={TextStyle},label={lst:sec1log2}]{../code/python/output/sec1/gn.log}
+\lstinputlisting[caption={output log for img14sp},style={TextStyle},label={lst:sec1log3}]{../code/python/output/sec1/sp.log}
+\end{enumerate}
+
+For python code refer to \reflst{lst:sec1} and \reflst{lst:bash1}.
+
+\clearpage
+\subsection*{Section 2 Report} 
+Results of median filtering:
+
+\begin{figure}[!hp]
+  \centering
+ \begin{subfigure}{0.45\textwidth}
+%  \centering
+  \includegraphics[width=\textwidth]{../code/C-code/run/output/img14gn_medianfilter}
+ \caption{median filtered img14gn.tif}
+ \end{subfigure}
+ \begin{subfigure}{0.45\textwidth}
+%  \centering
+  \includegraphics[width=\textwidth]{../code/C-code/run/output/img14sp_medianfilter}
+ \caption{median filtered img14sp.tif}
+ \end{subfigure}  
+ \end{figure}
+ 
+For C-code refer to \reflst{lst:sec2} and \reflst{lst:bash2}.
+
+
+\clearpage
+\subsection*{Appendix}
+Got to \href{https://github.com/rahuldeshmukh43/Courses/tree/master/ECE637-DigitalImageProcessing-I/labs/lab7/code/}{git repo} for complete code.
+%python code
+\lstinputlisting[caption={Python code for section 1},style={PythonStyle},label={lst:sec1}]{../code/python/section1.py}
+%C-code
+\lstinputlisting[caption={C-code for section 2},style={CStyle},label={lst:sec2}]{../code/C-code/src/MedianFiltering.c}
+%bash code
+\lstinputlisting[caption={Bash code for running python code for section 1},style={BashStyle},label={lst:bash1}]{../code/python/run.sh}
+\lstinputlisting[caption={Bash code for running C-code for section 2},style={BashStyle},label={lst:bash2}]{../code/C-code/run/run.sh}
+
+\end{document}
