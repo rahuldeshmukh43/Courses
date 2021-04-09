@@ -202,6 +202,39 @@ For python refer to \reflst{lst:sec4}, \reflst{lst:sec4print} and \reflst{lst:ba
 
 \clearpage
 \subsection*{Section 5 Report} 
+\begin{itemize}
+ \item For python code refer to \reflst{lst:sec5py}
+ \item The error diffusion result:
+ \begin{figure}[!hp]
+  \centering
+  \includegraphics[width=0.5\textwidth]{../code/python/output/sec5/house_error_diff}
+  \caption{Error diffusion result}
+ \end{figure}
+ \item RMSE and fidelity results:
+  \lstinputlisting[caption={RMSE and fidelity},style={TextStyle},label={lst:sec5log}]{../code/python/output/sec5/sec5.log}
+\item Table of RMSE and fidelity
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    Method& RMSE& Fidelity\\
+    \hline
+    Simple thresholding& 87.393& 75.661\\
+    \hline
+    Order dithering 2x2& 97.669& 49.313\\
+    \hline
+    Order dithering 4x4& 101.007& 16.847\\
+    \hline
+    Order dithering 8x8& 100.915& 15.855\\
+    \hline
+    Error diffusion& 98.847& 14.761\\
+    \hline
+    \end{tabular}
+\end{table}
+
+\TODO comment
+\end{itemize}
+
 
 \clearpage
 \subsection*{Appendix}
@@ -211,7 +244,7 @@ Got to \href{https://github.com/rahuldeshmukh43/Courses/tree/master/ECE637-Digit
 \lstinputlisting[caption={Python code for RMSE and Fidelity},style={PythonStyle},label={lst:utils}]{../code/python/utils.py}
 \lstinputlisting[caption={Python code for section 4},style={PythonStyle},label={lst:sec4}]{../code/python/order_dithering.py}
 \lstinputlisting[caption={Python code for printing bayer matrices},style={PythonStyle},label={lst:sec4print}]{../code/python/print_dither.py}
-
+\lstinputlisting[caption={Python code for section 5},style={PythonStyle},label={lst:sec5py}]{../code/python/error_diffusion.py}
 %bash code
 \lstinputlisting[caption={Bash code for running python code},style={BashStyle},label={lst:bash}]{../code/python/run.sh}
 
