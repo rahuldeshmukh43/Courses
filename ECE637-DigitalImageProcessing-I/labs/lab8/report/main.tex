@@ -219,20 +219,21 @@ For python refer to \reflst{lst:sec4}, \reflst{lst:sec4print} and \reflst{lst:ba
     \hline
     Method& RMSE& Fidelity\\
     \hline
-    Simple thresholding& 87.393& 75.661\\
+    Simple thresholding& 87.393& 75.420\\
     \hline
-    Order dithering 2x2& 97.669& 49.313\\
+    Order dithering 2x2& 97.669& 48.217\\
     \hline
-    Order dithering 4x4& 101.007& 16.847\\
+    Order dithering 4x4& 101.007& 15.524\\
     \hline
-    Order dithering 8x8& 100.915& 15.855\\
+    Order dithering 8x8& 100.915& 15.087\\
     \hline
-    Error diffusion& 98.847& 14.761\\
+    Error diffusion& 98.847& 13.640\\
     \hline
     \end{tabular}
 \end{table}
 
-\TODO comment
+As we can observe visually from the halftoned images produced using different methods, the image contours improved when we used order dithering. However, the RMSE metric increases in this case which indicates that RMSE is not an appropriate metric. For the case of Fidelity the metric score decreases as we increase the size of dithering and visually the image contours improve and we can see smoother grayscale colors. Therefore, fidelity is a good metric in this case. Fidelity score is the lowest for Error diffusion method and visually the image also looks the closest to the input image out of all the halftoned images.
+
 \end{itemize}
 
 
