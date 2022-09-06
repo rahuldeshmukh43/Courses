@@ -24,7 +24,7 @@ int main(){
 
 	//omp reduce
 	sum=0.0;
-	#pragma omp parallel for reduction(+:sum)
+	#pragma omp parallel for reduction(+:sum) //schedule(static)
 	for(i=1; i<=N; i++){
 		sum += 1.0/float(i);
 	}

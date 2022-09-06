@@ -1,0 +1,33 @@
+Explanation for why the sum or 1/i differs for the three loops:
+
+Three answers differ because we have a sum of large quantity of floating point numbers and because of the way fractions
+are stored in binary. Since we cannot exactly represent all fractions in binary, we get floating point arithmetic errors.
+Furthermore, the single-precision float entity can represent a maximum of about 7 decimal digits of precision, the sum is
+different for the two loops. 
+
+Now looking closely, the sequence 1/i is a decreasing sequence which means that terms with smaller i contributes
+more towards the sum/precision. The first loop computes the sum from i=1-10M, and the sum gets imprecise due to
+terms (large i) represented in correctly towards the end of the loop. Whereas, for the second loop when i=10M-1, the sum starts
+out with imprecise sum of smaller numbers (large i) and then adds up precise larger numbers (small i). 
+As a result the second loop should be the closest to the true value.
+
+In case of the parallel loop, OpenMP schedules the work on different thread and each thread gets a fixed chunk of 
+iteration space. This means that the first thread computes the sum for i \in [1-10M/N], where N is the number of threads.
+As a result the threads which compute sum for smaller i get more precise value and finally when the reduction happens
+we loose precision because of threads computing sum of larger i. So we would expect the sum of third loop to be somewhere
+between the first and second. 
+
+Finally when sum is computed as double, we can see that all three loops get the same answer because of increased precision.
+We can also see that second loop was the closest to the true value.
+
+Sum computed as a float:
+
+First loop sum: 15.403683
+Second loop sum: 16.686031
+OpenMP loop sum: 16.662542
+
+When sum is computed as double (15 decimal digits precision)
+
+First loop sum: 16.695311
+Second loop sum: 16.695311
+OpenMP loop sum: 16.695311

@@ -1,0 +1,21 @@
+Here are the run times for the two programs:
+
+Slow
+Elapsed: 174.425164 seconds
+----------------
+verySlow
+Elapsed: 172.643253 seconds
+
+Explanation for why slow.c and verSlow.c differ in runtimes:
+
+The two programs run with different times because of the way how the malloc() allocates the array on DRAM and
+how the array is brought to cache when the program is ran. malloc() allocates a contiguous 1D array of locations
+for storing the array on DRAM. 
+
+When veryslow.c is ran it brings in a row of matrix A and a column of matrix B, 
+since the columns of B are not adjacent to each other the program takes longer to bring in data into cache from DRAM 
+for every iteration. As a result, the processor is sitting idle for majority of the time.
+
+Whereas, in case of slow.c the program uses tiling and at a time brings an enitre tilesize squared data into 
+the cache and subsequently computes output for that tile. As a result slow.c has to do fewer exchanges between 
+DRAM and cache, essentially the processor is being used efficiently here and not sitting idle.
