@@ -1,0 +1,3 @@
+First loop sum: 15.403683
+Second loop sum: 16.686031
+OpenMP loop sum: 16.662542

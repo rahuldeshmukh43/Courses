@@ -1,0 +1,13 @@
+Num Threads: 24 Num Proc: 10 on host: ghRVLdesk
+SERIAL REGION: Master thread id: 0
+PARALLEL REGION: Worker thread id: 0
+PARALLEL REGION: Worker thread id: 1
+PARALLEL REGION: Worker thread id: 4
+PARALLEL REGION: Worker thread id: 7
+PARALLEL REGION: Worker thread id: 5
+PARALLEL REGION: Worker thread id: 3
+PARALLEL REGION: Worker thread id: 8
+PARALLEL REGION: Worker thread id: 6
+PARALLEL REGION: Worker thread id: 9
+PARALLEL REGION: Worker thread id: 2
+SERIAL REGION: Finished!

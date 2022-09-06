@@ -7,10 +7,10 @@ CFLAGS= -Wall -pedantic
 OMPFLAG=-fopenmp
 
 
-all: A
+all: C
 
 clean:
-	rm A
+	rm C
 
-A:   
-	$(CC) $(CFLAGS) $(OMPFLAG) A.cpp -o A
+C:   
+	$(CC) $(CFLAGS) $(OMPFLAG) C.cpp -o C

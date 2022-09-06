@@ -1,0 +1,11 @@
+Time to initialize: 0.001240
+
+Sequential sum: 1000000
+Time for sequential sum: 0.005180
+
+Manual reduction sum: 1000000
+Time for manual reduction sum: 0.004325
+
+OpenMP reduction sum: 1000000
+Time for OpenMP reduce sum: 0.000661
+
