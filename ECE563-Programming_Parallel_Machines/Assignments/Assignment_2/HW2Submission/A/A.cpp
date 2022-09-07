@@ -2,11 +2,22 @@
 #include <unistd.h>
 #include <omp.h>
 
+//int omp_thread_count() {
+//	/* for counting num threads in case of gcc */
+//    int n = 0;
+//    #pragma omp parallel reduction(+:n)
+//    n += 1;
+//    return n;
+//}
+
 int omp_thread_count() {
 	/* for counting num threads in case of gcc */
     int n = 0;
-    #pragma omp parallel reduction(+:n)
-    n += 1;
+    #pragma omp parallel
+    {
+		#pragma omp single
+    	n = omp_get_num_threads();
+    }
     return n;
 }
 
