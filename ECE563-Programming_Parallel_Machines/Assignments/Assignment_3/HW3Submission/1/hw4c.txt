@@ -1,0 +1,12 @@
+before parfor tid: 22000, tid address: 0x7ffe5f2d1b0c
+tid: 1, tid address: 0x7ffe5f2d1b0c
+tid: 8, tid address: 0x7ffe5f2d1b0c
+tid: 8, tid address: 0x7ffe5f2d1b0c
+tid: 8, tid address: 0x7ffe5f2d1b0c
+tid: 8, tid address: 0x7ffe5f2d1b0c
+tid: 8, tid address: 0x7ffe5f2d1b0c
+tid: 8, tid address: 0x7ffe5f2d1b0c
+tid: 8, tid address: 0x7ffe5f2d1b0c
+tid: 8, tid address: 0x7ffe5f2d1b0c
+tid: 8, tid address: 0x7ffe5f2d1b0c
+after parfor tid: 8, tid address: 0x7ffe5f2d1b0c

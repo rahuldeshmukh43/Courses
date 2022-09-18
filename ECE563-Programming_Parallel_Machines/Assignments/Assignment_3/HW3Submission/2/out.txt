@@ -1,0 +1,4 @@
+Count of passes through sections:
+master: 1
+single: 1
+critical: 10

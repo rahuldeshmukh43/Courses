@@ -1,0 +1,55 @@
+Here is the output from the three programs
+
+hw4a
+before parfor tid: -1, tid address: 0x7ffc57380274
+before parfor i: 1463288672, i address: 0x7ffc57380270
+tid: 7, tid address: 0x7f2507549e14
+tid: 1, tid address: 0x7f250a54fe14
+tid: 4, tid address: 0x7f2508d4ce14
+tid: 6, tid address: 0x7f2507d4ae14
+tid: 8, tid address: 0x7f2506d48e14
+tid: 3, tid address: 0x7f250954de14
+tid: 0, tid address: 0x7ffc57380204
+tid: 9, tid address: 0x7f2506547e14
+tid: 5, tid address: 0x7f250854be14
+tid: 2, tid address: 0x7f2509d4ee14
+after parfor tid: -1, tid address: 0x7ffc57380274
+------------------------
+hw4b
+tid: 1, tid address: 0x7f2b27197e10
+tid: 3, tid address: 0x7f2b26195e10
+tid: 7, tid address: 0x7f2b24191e10
+tid: 5, tid address: 0x7f2b25193e10
+tid: 2, tid address: 0x7f2b26996e10
+tid: 8, tid address: 0x7f2b23990e10
+tid: 4, tid address: 0x7f2b25994e10
+tid: 6, tid address: 0x7f2b24992e10
+tid: 9, tid address: 0x7f2b2318fe10
+tid: 0, tid address: 0x7ffd62f3fb20
+------------------------
+hw4c
+before parfor tid: 22083, tid address: 0x7fff84d55f8c
+tid: 1, tid address: 0x7fff84d55f8c
+tid: 9, tid address: 0x7fff84d55f8c
+tid: 9, tid address: 0x7fff84d55f8c
+tid: 9, tid address: 0x7fff84d55f8c
+tid: 9, tid address: 0x7fff84d55f8c
+tid: 9, tid address: 0x7fff84d55f8c
+tid: 9, tid address: 0x7fff84d55f8c
+tid: 9, tid address: 0x7fff84d55f8c
+tid: 9, tid address: 0x7fff84d55f8c
+tid: 9, tid address: 0x7fff84d55f8c
+after parfor tid: 9, tid address: 0x7fff84d55f8c
+
+
+In hw4a, we create a global variable $tid in main stack which is intialized to -1. 
+When the pragma parallel for with private() construct is encountered, OpenMP creates 
+a thread private variable $tid as can be seen from the memory address of each $tid (all memory addresses are unique).
+After the parallel for finishes, we are again printing the $tid on main stack as evidenced by the value and address of $tid
+
+In hw4b, we dont create a global variable $tid, but every thread gets its private $tid because it is declared inside
+the parallel for. As a result, all $tid addresses are unique.
+
+Finally in hw4c we have a race, since we created a global variable $tid on main stack and then each thread is writing 
+to the same memorry location. As a result the final value of $tid after the barrier gets changed and we cannot predict
+which thread writes to the $tid in the end. 

@@ -1,0 +1,13 @@
+before parfor tid: -1, tid address: 0x7ffd72311d84
+before parfor i: 1915821680, i address: 0x7ffd72311d80
+tid: 2, tid address: 0x7f2c455c9e14
+tid: 4, tid address: 0x7f2c445c7e14
+tid: 5, tid address: 0x7f2c43dc6e14
+tid: 7, tid address: 0x7f2c42dc4e14
+tid: 9, tid address: 0x7f2c41dc2e14
+tid: 3, tid address: 0x7f2c44dc8e14
+tid: 1, tid address: 0x7f2c45dcae14
+tid: 0, tid address: 0x7ffd72311d14
+tid: 6, tid address: 0x7f2c435c5e14
+tid: 8, tid address: 0x7f2c425c3e14
+after parfor tid: -1, tid address: 0x7ffd72311d84
