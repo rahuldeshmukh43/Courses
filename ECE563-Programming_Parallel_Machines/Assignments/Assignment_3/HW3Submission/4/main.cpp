@@ -9,9 +9,6 @@ int main (int argc, char *argv[]) {
 	printf("pragma omp parallel\n");
 	#pragma omp parallel
 	{
-		tid = omp_get_thread_num();
-		printf("tid: %d\n",tid);
-		#pragma omp for
 		for(int i=0;i<20;i++){
 			tid = omp_get_thread_num();
 			printf("i: %d tid: %d\n",i, tid);

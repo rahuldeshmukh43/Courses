@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// HW3 Part 2
+
 int main (int argc, char *argv[]) {
 	/* print count using single, master,
 	 * critical

@@ -11,6 +11,8 @@
 
 using namespace std;
 
+// HW3 Part 3
+
 //int DIM=10000;
 int MIN=-10;
 int MAX=10;
@@ -43,6 +45,8 @@ void print_vec(vector<int> a){
 	return;
 }
 
+// random vector generator
+// cite: https://stackoverflow.com/a/32887614/8645905
 static vector<int> generate_data(size_t size)
 {
     using value_type = int;
