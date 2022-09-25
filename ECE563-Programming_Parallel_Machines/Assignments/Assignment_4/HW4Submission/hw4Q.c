@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int N=100;
+
 typedef struct Q {
    int* q;
    int pos;
@@ -30,4 +32,44 @@ int getWork(struct Q* workQ) {
       workQ->pos--;
       return w;
    } else printf("ERROR: attempt to get work from empty Q%d\n", workQ->pos);
+}
+
+int main(){
+
+
+	int w;
+	double start, end;
+	// initialize and add work to the work queue
+	struct Q* Queue = initQ(N);
+	// add work
+	for(int i=0; i<Queue->size; i++){
+		putWork(Queue);
+	}
+
+
+	// Loop within parallel construct that pulls work from work queue
+	start = omp_get_wtime();
+	#pragma omp parallel for
+	for(i=0; i< Queue->size; i++){
+		w = getWork(workQ);
+	}
+	end = omp_get_wtime();
+	printf("Time to initialize: %lf\n\n", end - start);
+
+
+	//put work again
+	for(int i=0; i<Queue->size; i++){
+		putWork(Queue);
+	}
+
+
+	// sequential
+	start = omp_get_wtime();
+	for(i=0; i< Queue->size; i++){
+		w = getWork(workQ);
+	}
+	end = omp_get_wtime();
+	printf("Time to initialize: %lf\n\n", end - start);
+
+	return 0;
 }
