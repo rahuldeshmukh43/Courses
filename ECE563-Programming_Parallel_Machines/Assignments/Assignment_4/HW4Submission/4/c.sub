@@ -4,4 +4,4 @@
 #SBATCH --ntasks=20
 #SBATCH --time=00:02:00
 
-./run.sh 1000 
+./run.sh 1000 100

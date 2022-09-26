@@ -1,0 +1,13 @@
+Num Threads: 4 
+Sleep time in (usecs): 10
+
+Parallel execution using sections
+tid 0 start:0 stop:250
+tid 1 start:250 stop:500
+tid 2 start:500 stop:750
+tid 3 start:750 stop:1000
+Time for parallel (Array size 1000): 0.016544
+
+Sequential Execution
+Time for sequential (Array size 1000): 0.065976
+

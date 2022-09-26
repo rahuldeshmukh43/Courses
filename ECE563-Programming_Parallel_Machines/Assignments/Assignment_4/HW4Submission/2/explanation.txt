@@ -1,0 +1,12 @@
+# Output log
+Num Threads: 16 
+Array Size: 3599
+Sleep time in (usecs): 100
+
+Time for guided scheduling with default block size: 0.042808
+
+# explanation
+In part 1, we found that guided scheduling performed the best. For this part, 
+we have quadrupled the number of threads from 4 to 16. The timing improves from
+0.142232 to 0.042808, which is a factor of 3.322. This increase is not 4x because
+of the overhead in creating parallel threads accross 16 threads. 

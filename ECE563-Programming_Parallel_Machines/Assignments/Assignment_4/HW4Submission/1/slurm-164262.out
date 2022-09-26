@@ -1,0 +1,14 @@
+Num Threads: 4 
+Array Size: 3599
+Sleep time in (usecs): 100
+
+Time for static scheduling with default block size: 0.142635
+
+Time for static scheduling with block size 50: 0.142604
+
+Time for dynamic scheduling with default block size: 0.142572
+
+Time for dynamic scheduling with block size 50: 0.142335
+
+Time for guided scheduling with default block size: 0.142232
+

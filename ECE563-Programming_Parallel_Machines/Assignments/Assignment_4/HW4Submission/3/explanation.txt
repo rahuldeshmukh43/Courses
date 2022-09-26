@@ -1,0 +1,22 @@
+# Output log
+Num Threads: 4 
+Sleep time in (usecs): 10
+
+Parallel execution using sections
+tid 0 start:0 stop:250
+tid 1 start:250 stop:500
+tid 2 start:500 stop:750
+tid 3 start:750 stop:1000
+Time for parallel (Array size 1000): 0.016544
+
+Sequential Execution
+Time for sequential (Array size 1000): 0.065976
+
+# Explanation
+We run the code with a fixed number 4 threads. We have four sections in
+the code which will be ran by these threads.
+
+From the timing log, we can see that the parallel code performs faster
+than the sequential code and we get a speed up of 3.988. This is to be expected
+as all threads are doing work parallely and specifying tid start and stop ensures
+thread safe access.

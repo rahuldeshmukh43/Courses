@@ -1,0 +1,18 @@
+# Output Log
+Num Threads: 20 
+
+Putting work
+
+Getting work parallel
+Time for parallel (Queue size 1000): 0.007993
+
+Reset queue pos for sequential
+Getting work sequential
+Time for sequential (Queue size 1000): 0.157399
+
+# explanation
+From the timing log we can see that the parallel execution performs faster than
+the sequential execution. We can see a speedup of 19.7x when using 20 threads.
+This is expected as all threads are doing work parallely.
+
+The getWork() call is in critical section which ensures thread safe access to the shared array

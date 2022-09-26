@@ -1,0 +1,11 @@
+Num Threads: 20 
+
+Putting work
+
+Getting work parallel
+Time for parallel (Queue size 1000): 0.007993
+
+Reset queue pos for sequential
+Getting work sequential
+Time for sequential (Queue size 1000): 0.157399
+

@@ -1,0 +1,10 @@
+folders are numbered as per parts of homeworks
+
+each folder contains:
+	(0) *.c -- code file
+	(1) Makefile -- to build 
+	(2) run.sh -- to run the program
+	(4) c.sub -- scholar sbaatch script
+	(5) out*.txt and/or slurm*.txt -- output files
+	(6) explanation.txt -- for answering prompts of homework which needs textual explanation
+

@@ -1,0 +1,34 @@
+# output log from the code
+Num Threads: 4 
+Array Size: 3599
+Sleep time in (usecs): 100
+
+Time for static scheduling with default block size: 0.142635
+
+Time for static scheduling with block size 50: 0.142604
+
+Time for dynamic scheduling with default block size: 0.142572
+
+Time for dynamic scheduling with block size 50: 0.142335
+
+Time for guided scheduling with default block size: 0.142232
+
+
+# explanation
+I ran several experiments, since for our work for each element in the array is the same,
+all scheduling timings are about the same, specially when the size of the array is completely
+divisible by number of threads. When the size is not divisible, then we can see slight difference
+in timings for each scheduling strategy.
+
+We can notice that the guided scheduling performs the best compared to others. This is expected as
+guided scheduling combines the best of static and dynamic schduling. We can also notice that, dynamic
+scheduling does only slightly better than static scheduling but that may not be true when each work takes
+a variable amount of time.
+
+In case of dynamic scheduling, providing a chunk size makes the timing worse as the system cannot
+choose an optimal chunk size on its own based on availability of threads.
+
+Finally, for static scheduling both default and specified chunk size perform the same. This is because 
+all work takes the same amount of time. This would not be true when we have a "triangle" nested loop.
+
+
