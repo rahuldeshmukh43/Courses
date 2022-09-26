@@ -3,6 +3,7 @@
 #include <omp.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 //int N=100;
 
@@ -35,6 +36,11 @@ int getWork(struct Q* workQ) {
    } else printf("ERROR: attempt to get work from empty Q%d\n", workQ->pos);
 }
 
+void doWork(int t) {
+//   sleep(t); //sleep takes time in secs
+   usleep(t); //usleep takes time in microsecs
+}
+
 int omp_thread_count() {
 	/* for counting num threads in case of gcc */
     int n = 0;
@@ -52,11 +58,12 @@ int main(int argc, char *argv[]){
 	double start, end;
 
 	//parse args
-	if(argc<1){
-		printf("Provide size of vector as arg");
+	if(argc<2){
+		printf("Provide size, sleep time as arg");
 		return 1;
 	}
 	int N = atoi(argv[1]);
+	int sleep_time = atoi(argv[2]);
 
 	// initialize and add work to the work queue
 	struct Q* Queue = initQ(N);
@@ -81,10 +88,13 @@ int main(int argc, char *argv[]){
 	start = omp_get_wtime();
 	#pragma omp parallel for private(w)
 	for(int j=0; j<Queue->size; j++){
-		//#pragma omp critical
+		#pragma omp critical
 		w = getWork(Queue);
 		#ifdef DEBUG
 		printf("work: %d, pos: %d\n",w, Queue->pos);
+		#endif
+		#ifndef DEBUG
+		doWork(sleep_time);
 		#endif
 	}
 	end = omp_get_wtime();
@@ -107,6 +117,9 @@ int main(int argc, char *argv[]){
 		w = getWork(Queue);
 		#ifdef DEBUG
 		printf("work: %d, pos: %d\n",w, Queue->pos);
+		#endif
+		#ifndef DEBUG
+		doWork(sleep_time);
 		#endif
 	}
 	end = omp_get_wtime();
