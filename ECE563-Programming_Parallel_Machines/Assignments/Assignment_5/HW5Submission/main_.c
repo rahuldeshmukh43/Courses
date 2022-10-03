@@ -3,21 +3,11 @@
 #include <omp.h>
 #include <math.h>
 #include <unistd.h>
-#include <time.h>
 
-#define DEBUG
-#undef DEBUG
-
-#define MAXLEVEL 18
-#define SLEEP_TIME 1
-#define SEED 10
-
-/*
- * This version does traversal and updates a global variable
- * I am adding a doWork() while traversing the tree to see better timing
- * I am also using the same tree for comparing the two traversals
- * I am setting the seeds using time so as to check if different traversals always return the same count
- */
+void doWork(int t) {
+//   sleep(t); //sleep takes time in secs
+   usleep(t); //usleep takes time in microsecs
+}
 
 struct node {
    int val;
@@ -27,9 +17,7 @@ struct node {
    struct node* r;
 } nodeT;
 
-void doWork(int t) {
-   usleep(t); //usleep takes time in microsecs
-}
+#define MAXLEVEL 18
 
 struct node* build_serial(int level) {
 	if (level < MAXLEVEL) {
@@ -39,9 +27,7 @@ struct node* build_serial(int level) {
 		p->size = pow(2, p->level);
 		p->l = build_serial(level+1);
 		p->r = build_serial(level+1);
-		#ifdef DEBUG
-		printf("build val:%d level:%d size:%d \n", p->val, p->level, p->size);
-		#endif
+//		printf("build val:%d level:%d size:%d \n", p->val, p->level, p->size);
 		return p;
 	} else {
 	  return NULL;
@@ -50,17 +36,16 @@ struct node* build_serial(int level) {
 
 void traverse_serial(struct node* p, int* count_ptr) {
 	if (p == NULL) return;
-	#ifdef DEBUG
-	printf("serial val:%d level:%d size:%d\n", p->val, p->level, p->size);
-	#endif
+//	printf("serial val:%d level:%d size:%d\n", p->val, p->level, p->size);
 	if ((float)p->val < 0.5){
 	   *count_ptr += 1;
 	}
-	doWork(SLEEP_TIME);
+	doWork(1);
 	if (p->l == NULL) return;
 	else traverse_serial(p->l, count_ptr);
 	if (p->r == NULL) return;
 	else traverse_serial(p->r, count_ptr);
+
 }
 
 int omp_thread_count() {
@@ -80,64 +65,67 @@ struct node* build_parallel(int level, int num_threads) {
 		p->val = rand( )%2; //random value 0 or 1
 		p->level = level;
 		p->size = pow(2, p->level);
-
-		#pragma omp task
+		#pragma omp task untied //if (p->size < num_threads)
 		p->l = build_serial(level+1);
-		//#pragma omp taskwait
-
-		#pragma omp task
+		#pragma omp task untied //if (p->size < num_threads)
 		p->r = build_serial(level+1);
-		//#pragma omp taskwait
-
-		#ifdef DEBUG
-		printf("build val:%d level:%d size:%d \n", p->val, p->level, p->size);
-		#endif
+//		printf("build val:%d level:%d size:%d \n", p->val, p->level, p->size);
 		return p;
 	} else {
 	  return NULL;
 	}
 }
 
-void traverse_parallel(struct node *p, int* count_ptr, int num_threads){
+//void traverse_parallel(struct node *p, int* count_ptr, int num_threads){
+int traverse_parallel(struct node *p, int num_threads){
+//	if(p->size > num_threads){
+//		printf("size:%d too many nodes at level %d, going serial\n",p->size, p->level);
+//		traverse_serial(p, count_ptr);
+//	}r
+	int cL=0, cR=0;
 	if (p->l){
-	#pragma omp task if (p->l->size < num_threads) untied
-	traverse_parallel(p->l, count_ptr, num_threads);
+	#pragma omp task if (p->l->size < num_threads) shared(cL) untied
+//	traverse_parallel(p->l, count_ptr, num_threads);
+	cL = traverse_parallel(p->l, num_threads);
 	}
 	if (p->r){
-	#pragma omp task if (p->r->size < num_threads) untied
-	traverse_parallel(p->r, count_ptr, num_threads);
+	#pragma omp task if (p->r->size < num_threads) shared(cR) untied
+//	traverse_parallel(p->r, count_ptr, num_threads);
+	cR = traverse_parallel(p->r, num_threads);
 	}
 	#pragma omp taskwait
-	doWork(SLEEP_TIME);
-	#pragma omp critical
-	{
+	doWork(1);
 	if ((float)p->val < 0.5)
 		{
-			*count_ptr += 1;
+			return cL+cR+1;
 		}
-	#ifdef DEBUG
-	int tid = omp_get_thread_num();
-	printf("parallel val:%d level:%d size:%d count:%d tid: %d\n", p->val, p->level, p->size, *count_ptr,tid);
-	#endif
-	}//omp critical
+	else{return cL+cR;}
+
+//	#pragma omp critical
+//	{
+//	int tid = omp_get_thread_num();
+//	if ((float)p->val < 0.5)
+//		{
+//			*count_ptr += 1;
+//		}
+////	printf("parallel val:%d level:%d size:%d count:%d tid: %d\n", p->val, p->level, p->size, *count_ptr,tid);
+//	}//omp critical
 }
 
 int main( ) {
 	int count=0, num_threads=0;
 	double start, end;
-	struct node *h, *hp;
 
-	//set seed
-	#ifdef DEBUG
-	srand(SEED));
-	#endif
-	#ifndef DEBUG
-	srand(time(NULL));
-	#endif
-
-	//---------------- sequential part ---------------------
+   //sequential part
 	start = omp_get_wtime();
-	h = build_serial(0);
+//	struct node* h = build_serial(0);
+	struct node* h;
+	#pragma omp parallel //default(none)
+	{
+	#pragma omp single
+	h = build_parallel(0, num_threads);
+	}
+
 	end = omp_get_wtime();
 	printf("Serial build time: %lf\n\n", end-start);
 
@@ -148,30 +136,26 @@ int main( ) {
 	printf("Time for serial traversal: %lf\n\n", end - start);
 
 
-	//---------------- parallel part ---------------------
+   //parallel part
 	count = 0;
 	num_threads = omp_thread_count();
 	printf("Num threads: %d\n", num_threads);
 
 	//parallel build
-	start = omp_get_wtime();
-	#pragma omp parallels
-	{
-		#pragma omp single
-		hp = build_parallel(0, num_threads);
-	}
-	end = omp_get_wtime();
-	printf("Parallel build time: %lf\n", end-start);
-
+//	start = omp_get_wtime();
+//	struct node* hp = build_parallel(0, num_threads);
+//	end = omp_get_wtime();
+//	printf("Parallel build time: %lf\n", end-start);
 	//parallel traverse
 	start = omp_get_wtime();
-	#pragma omp parallel
+	#pragma omp parallel //default(none)
 	{
-		#pragma omp single
-		traverse_parallel(h, &count, num_threads);
+		#pragma omp single //default(none) nowait
+//		traverse_parallel(h, &count, num_threads);
+		count = traverse_parallel(h, num_threads);
 	}
 	end = omp_get_wtime();
-	printf("Count of nodes less than 0.5: %d\n", count);
+	printf("count of nodes less than 0.5: %d\n", count);
 	printf("Time for parallel traversal: %lf\n", end - start);
 }
 
