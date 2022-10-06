@@ -13,7 +13,7 @@ clean:
 	rm main main_ 
 
 main:   
-	$(CC) $(CFLAGS) $(OMPFLAG) main.c -o main
+	$(CC) $(CFLAGS) $(OMPFLAG) main.c -o main -lm
 
 main_:   
-	$(CC) $(CFLAGS) $(OMPFLAG) main_.c -o main_
+	$(CC) $(CFLAGS) $(OMPFLAG) main_.c -o main_ -lm

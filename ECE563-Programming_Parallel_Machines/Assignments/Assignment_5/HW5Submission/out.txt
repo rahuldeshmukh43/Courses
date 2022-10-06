@@ -1,0 +1,9 @@
+Serial build time: 0.027670
+
+Count of nodes less than 0.5: 131386
+Time for serial traversal: 14.314827
+
+Num threads: 20
+Parallel build time: 0.028432
+Count of nodes less than 0.5: 131386
+Time for parallel traversal: 1.828908

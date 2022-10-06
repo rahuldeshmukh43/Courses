@@ -1,0 +1,19 @@
+rm main main_ 
+g++ -Wall -pedantic -fopenmp -lm main.c -o main
+main.c:158:0: warning: ignoring #pragma omp parallels [-Wunknown-pragmas]
+  #pragma omp parallels
+ 
+main.c: In function 'int main()':
+main.c:128:19: warning: variable 'hp' set but not used [-Wunused-but-set-variable]
+  struct node *h, *hp;
+                   ^~
+g++ -Wall -pedantic -fopenmp -lm main_.c -o main_
+Serial build time: 0.027670
+
+Count of nodes less than 0.5: 131386
+Time for serial traversal: 14.314827
+
+Num threads: 20
+Parallel build time: 0.028432
+Count of nodes less than 0.5: 131386
+Time for parallel traversal: 1.828908
