@@ -1,0 +1,3 @@
+dot product sequential result: 10000000.000000, time taken 0.022255
+dot product parallel result: 10000000.000000, time taken 0.006046
+dot product omp reduction result: 10000000.000000, time taken 0.005826
