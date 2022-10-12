@@ -1,0 +1,24 @@
+data[0] 10000
+data[1] 10000
+data[2] 10000
+data[3] 10000
+data[4] 10000
+data[5] 10000
+data[6] 10000
+data[7] 10000
+data[8] 10000
+data[9] 10000
+sum serial is 100000, time is 0.000826
+
+par_data[0] 10000
+par_data[1] 10000
+par_data[2] 10000
+par_data[3] 10000
+par_data[4] 10000
+par_data[5] 10000
+par_data[6] 10000
+par_data[7] 10000
+par_data[8] 10000
+par_data[9] 10000
+sum parallel is 100000, time is 0.020999
+
