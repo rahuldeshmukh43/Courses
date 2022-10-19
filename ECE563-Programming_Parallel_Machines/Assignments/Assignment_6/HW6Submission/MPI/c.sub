@@ -1,0 +1,11 @@
+#!/bin/bash
+# FILENAME: c.sub
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=20
+#SBATCH -t 00:05:00
+#SBATCH -A scholar
+
+for N in 1 4 8 16
+do
+	srun --mpi=pmi2 -n "$N" ./mm "$N" | tee mm_mpi_"$N".out
+done

@@ -1,0 +1,8 @@
+time taken for matrix multiply (1 threads): 26.20
+--------------------
+time taken for matrix multiply (4 threads): 6.54
+--------------------
+time taken for matrix multiply (8 threads): 3.29
+--------------------
+time taken for matrix multiply (16 threads): 1.68
+--------------------

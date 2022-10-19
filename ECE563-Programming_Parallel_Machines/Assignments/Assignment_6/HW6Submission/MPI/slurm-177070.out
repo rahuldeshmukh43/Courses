@@ -1,0 +1,7 @@
+time taken for matrix multiply: 8517621.04
+Total time for MPI (pid: 0 world size: 4): 1309994.935989
+
+Total time for MPI (pid: 0 world size: 8): 599550.962448
+
+Total time for MPI (pid: 0 world size: 16): 316544.055939
+
