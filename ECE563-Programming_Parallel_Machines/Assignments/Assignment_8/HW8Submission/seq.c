@@ -2,10 +2,10 @@
 #include <string.h>
 #include <stdio.h>
 #include <time.h>
-// #define ARRAY_ROWS 1600
-// #define ARRAY_COLS 1600
-#define ARRAY_ROWS 16
-#define ARRAY_COLS 16
+#define ARRAY_ROWS 1600
+#define ARRAY_COLS 1600
+//#define ARRAY_ROWS 16
+//#define ARRAY_COLS 16
 
 void printArray(int* a, int rows, int cols, int sparseness) {
    printf("rows: %d, cols: %d, sparseness: %d\n", rows, cols, sparseness);
@@ -34,11 +34,13 @@ int* makeArray(int rows, int cols) {
 }
 
 int main (int argc, char *argv[]) {
-
+   
    int* a = makeArray(ARRAY_ROWS, ARRAY_ROWS);
    int* b = makeArray(ARRAY_ROWS, ARRAY_ROWS);
    int* sendBuffer = makeArray(ARRAY_ROWS, ARRAY_ROWS);
    int* c = makeArray(ARRAY_ROWS, ARRAY_ROWS);
+
+   clock_t start = clock();
 
    for (int i=0; i<ARRAY_ROWS; i++) {
       for (int j=0; j<ARRAY_COLS; j++) {
@@ -49,7 +51,9 @@ int main (int argc, char *argv[]) {
          *(c + i*ARRAY_COLS + j) = comp;
       }
    }
-
+   clock_t end = clock();
+   double time_spent = (double) (end - start) / CLOCKS_PER_SEC;
+   printf("time taken for %dx%d sequential multiply is: %lf\n", ARRAY_ROWS, ARRAY_COLS, time_spent);
    printf("Array values:\n");
    printArray(c, ARRAY_ROWS, ARRAY_COLS, ARRAY_ROWS/16);
    return 0;
