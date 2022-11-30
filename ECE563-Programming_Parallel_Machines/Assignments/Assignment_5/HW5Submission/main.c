@@ -155,7 +155,7 @@ int main( ) {
 
 	//parallel build
 	start = omp_get_wtime();
-	#pragma omp parallels
+	#pragma omp parallel
 	{
 		#pragma omp single
 		hp = build_parallel(0, num_threads);
