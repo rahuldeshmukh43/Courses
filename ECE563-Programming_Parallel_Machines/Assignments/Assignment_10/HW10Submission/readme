@@ -1,0 +1,6 @@
+I did experiments on two different GPUs:
+	(1) Tesla V100 on scholar
+	(2) RTX A5000 on local machine
+
+The zip file contains Makefile and output for both experiments. The output files also show the device properties.
+To run the two experiments, I have macros which need to be uncommented based on which gpu is used in the dotproduct.cpp file

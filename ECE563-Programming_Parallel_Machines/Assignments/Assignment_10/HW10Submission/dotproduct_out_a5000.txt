@@ -1,0 +1,40 @@
+#----------------------------------------------------#
+		 GPU Specs
+#----------------------------------------------------#
+Device number: 0
+  Device name: NVIDIA RTX A5000
+  Compute capability: 8.6
+
+  Clock Rate: 1695000 kHz
+  Total SMs: 64 
+  Shared Memory Per SM: 102400 bytes
+  Registers Per SM: 65536 32-bit
+  Max threads per SM: 1536
+  L2 Cache Size: 6291456 bytes
+  Total Global Memory: 25434587136 bytes
+  Memory Clock Rate: 8001000 kHz
+
+  Max threads per block: 1024
+  Max threads in X-dimension of block: 1024
+  Max threads in Y-dimension of block: 1024
+  Max threads in Z-dimension of block: 64
+
+  Max blocks in X-dimension of grid: 2147483647
+  Max blocks in Y-dimension of grid: 65535
+  Max blocks in Z-dimension of grid: 65535
+
+  Shared Memory Per Block: 49152 bytes
+  Registers Per Block: 65536 32-bit
+  Warp size: 32
+#----------------------------------------------------#
+
+
+For GPU execution: 
+	 block size: 128
+	 num blocks: 768
+
+Sequential dotproduct: 120795709440.000000
+GPU dotproduct: 120795709440.000000
+
+Yes! Sequential and GPU sum is same
+

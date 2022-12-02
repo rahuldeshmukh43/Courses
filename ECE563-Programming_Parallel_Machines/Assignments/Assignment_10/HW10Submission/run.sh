@@ -3,4 +3,4 @@
 make clean
 make all
 
-./dotproduct
+./dotproduct | tee dotproduct_out.txt

@@ -26,7 +26,7 @@ void deviceQuery ()
      printf("  Shared Memory Per SM: %lu bytes\n", prop.sharedMemPerMultiprocessor);
      printf("  Registers Per SM: %d 32-bit\n", prop.regsPerMultiprocessor);
      printf("  Max threads per SM: %d\n", prop.maxThreadsPerMultiProcessor);
-//     printf("  Max num thread blocks that can reside on a SM: %d", prop.maxBlocksPerMultiProcessor);
+     //printf("  Max num thread blocks that can reside on a SM: %d", prop.maxBlocksPerMultiProcessor);
      printf("  L2 Cache Size: %d bytes\n", prop.l2CacheSize);
      printf("  Total Global Memory: %lu bytes\n", prop.totalGlobalMem);
      printf("  Memory Clock Rate: %d kHz\n\n", prop.memoryClockRate);

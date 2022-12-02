@@ -8,24 +8,24 @@ using namespace std;
 #define VEC_LEN_MUL 5
 
 //V100 params Volta
-//#define NUM_SM 80 //84
-//#define MAX_THREADS_PER_SM 2048
-//#define MAX_NUM_BLKS_PER_SM 32
-//#define MAX_NUM_WARPS_PER_SM 64
-//#define MAX_NUM_THREADS 172032
-//#define WARP_SIZE 32
-
-//#define BLOCK_SIZE 128 // i choose this
-
-//a5000 params Ampere
-#define NUM_SM 64
-#define MAX_THREADS_PER_SM 1536
-#define MAX_NUM_BLKS_PER_SM  //?
-#define MAX_NUM_WARPS_PER_SM 48 // = MAX_THREADS_PER_SM/ WARP_SIZE
-#define MAX_NUM_THREADS 98304
+#define NUM_SM 84 //80
+#define MAX_THREADS_PER_SM 2048
+#define MAX_NUM_BLKS_PER_SM 32
+#define MAX_NUM_WARPS_PER_SM 64 // = MAX_THREADS_PER_SM/ WARP_SIZE
+#define MAX_NUM_THREADS 172032 //163840
 #define WARP_SIZE 32
 
-#define BLOCK_SIZE 128// i choose this
+#define BLOCK_SIZE 128 // i choose this
+
+//a5000 params Ampere
+//#define NUM_SM 64
+//#define MAX_THREADS_PER_SM 1536
+//#define MAX_NUM_BLKS_PER_SM  //?
+//#define MAX_NUM_WARPS_PER_SM 48 // = MAX_THREADS_PER_SM/ WARP_SIZE
+//#define MAX_NUM_THREADS 98304
+//#define WARP_SIZE 32
+//
+//#define BLOCK_SIZE 128// i choose this
 
 void deviceQuery ()
 {

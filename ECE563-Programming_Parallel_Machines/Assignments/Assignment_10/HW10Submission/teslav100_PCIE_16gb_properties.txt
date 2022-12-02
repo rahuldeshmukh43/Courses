@@ -1,0 +1,26 @@
+Device number: 0
+  Device name: Tesla V100-PCIE-16GB
+  Compute capability: 7.0
+
+  Clock Rate: 1380000 kHz
+  Total SMs: 80 
+  Shared Memory Per SM: 98304 bytes
+  Registers Per SM: 65536 32-bit
+  Max threads per SM: 2048
+  L2 Cache Size: 6291456 bytes
+  Total Global Memory: 16945512448 bytes
+  Memory Clock Rate: 877000 kHz
+
+  Max threads per block: 1024
+  Max threads in X-dimension of block: 1024
+  Max threads in Y-dimension of block: 1024
+  Max threads in Z-dimension of block: 64
+
+  Max blocks in X-dimension of grid: 2147483647
+  Max blocks in Y-dimension of grid: 65535
+  Max blocks in Z-dimension of grid: 65535
+
+  Shared Memory Per Block: 49152 bytes
+  Registers Per Block: 65536 32-bit
+  Warp size: 32
+
